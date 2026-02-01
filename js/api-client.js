@@ -1,7 +1,7 @@
 // API Configuration - Dynamische URL basierend auf Umgebung
 const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
     ? 'http://localhost:3000/api'
-    : 'https://api.immobilienghumman.de/api'; // Passen Sie diese URL an Ihren Live-Server an
+    : 'https://immobilien-ghumman-production.up.railway.app/api'; // Railway Backend API
 
 let authToken = localStorage.getItem('authToken');
 
