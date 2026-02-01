@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5J1C2PTR2">
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-Q5J1C2PTR2');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hausverwaltung - Immobilien Ghumman</title>
+    <meta name="description"
+        content="Professionelle Hausverwaltung von Immobilien Ghumman - Vollservice für Ihre Mietimmobilien in Bad Vilbel und Umgebung.">
+    <meta name="keywords" content="Hausverwaltung Bad Vilbel, Mietverwaltung, Immobilienverwaltung, Objektbetreuung">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="immobilien-styles.css">
+    <style>
+        /* Hero Section with Enhanced Effects */
+        .hero-section {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://res.cloudinary.com/dlpdbr0ey/image/upload/v1758552674/1758059612256_vousyd.png') center/cover;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(41, 128, 185, 0.7);
+            z-index: 2;
+        }
+
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.3), transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.2), transparent),
+                radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.4), transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: float 15s infinite linear;
+            z-index: 3;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            100% {
+                transform: translateY(-100px);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 4;
+            text-align: center;
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .typewriter-text {
+            border-right: 3px solid #fff;
+            animation: typing 3s steps(15, end), blink-caret 0.75s step-end infinite;
+        }
+
+        .cursor {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink-caret {
+
+            from,
+            to {
+                border-color: transparent;
+            }
+
+            50% {
+                border-color: #fff;
+            }
+        }
+
+        @keyframes blink {
+
+            0%,
+            50% {
+                opacity: 1;
+            }
+
+            51%,
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .hero-cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.75rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button.primary {
+            background: linear-gradient(135deg, #fff, #f8f9fa);
+            color: #2980b9;
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button.primary:hover {
+            color: #1e6ba8;
+        }
+
+        .cta-button.secondary:hover {
+            background: white;
+            color: #2980b9;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 4;
+        }
+
+        .scroll-arrow {
+            color: white;
+            opacity: 0.7;
+            cursor: pointer;
+        }
+
+        .animate-bounce {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-slide-up {
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        /* Contact CTA Section */
+        .contact-cta {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #87ceeb 0%, #b0e0e6 100%);
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            color: #34495e;
+        }
+
+        .contact-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-icon {
+            width: auto;
+            height: auto;
+            background: transparent;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3498db;
+        }
+
+        .contact-icon.whatsapp {
+            background: transparent;
+            color: #25d366;
+        }
+
+        .contact-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .contact-info a {
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #1e6ba8;
+        }
+
+        .cta-button-container {
+            margin-top: 2rem;
+        }
+
+        .cta-button.large {
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 6rem 0;
+            background: #f8f9fa;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .process-box {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            position: relative;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
+            overflow: hidden;
+        }
+
+        .process-box:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(52, 152, 219, 0.4);
+        }
+
+        .process-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .process-box:hover::before {
+            left: 100%;
+        }
+
+        .step-number {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .process-box h3 {
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 2rem 0 1.5rem 0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .process-description {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            text-align: left;
+            padding: 0 0.5rem;
+            margin-top: 1rem;
+        }
+
+        /* Knowledge Base / Blog Section */
+        .knowledge-base-section {
+            padding: 6rem 0;
+            background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
+        }
+
+        .knowledge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .knowledge-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #e5e7eb;
+            position: relative;
+        }
+
+        .knowledge-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .knowledge-image {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .knowledge-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .knowledge-card:hover .knowledge-image img {
+            transform: scale(1.1);
+        }
+
+        .knowledge-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding: 1rem;
+        }
+
+        .knowledge-tag {
+            background: rgba(41, 128, 185, 0.9);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(10px);
+        }
+
+        .knowledge-content {
+            padding: 2rem;
+        }
+
+        .knowledge-content h3 {
+            color: #1e293b;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .knowledge-content p {
+            color: #64748b;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .knowledge-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #2980b9;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .knowledge-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #2980b9;
+            transition: width 0.3s ease;
+        }
+
+        .knowledge-link:hover::after {
+            width: calc(100% - 28px);
+        }
+
+        .knowledge-link:hover {
+            color: #1e6ba8;
+        }
+
+        .knowledge-link .arrow-icon {
+            background: linear-gradient(135deg, #2980b9, #3498db);
+            color: white;
+            border-radius: 50%;
+            padding: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .knowledge-card:hover .knowledge-link .arrow-icon {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(41, 128, 185, 0.4);
+        }
+
+        /* Mobile Responsive Design */
+        @media (max-width: 1200px) {
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .knowledge-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                min-height: 60vh;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-content {
+                padding: 1rem;
+            }
+
+            .knowledge-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .knowledge-base-section {
+                padding: 4rem 0;
+            }
+
+            .hero-cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .contact-options {
+                grid-template-columns: 1fr;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0 1rem;
+            }
+
+            .process-box {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        /* AOS Animation Styles */
+        [data-aos] {
+            transition: all 0.6s ease-out;
+        }
+
+        [data-aos="fade-up"] {
+            transform: translateY(30px);
+            opacity: 0;
+        }
+
+        [data-aos="fade-up"].aos-animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Enhanced Service Section Styles */
+        .main-services {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        .service-section {
+            margin: 4rem 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .service-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 400px;
+        }
+
+        .service-content.reverse {
+            direction: rtl;
+        }
+
+        .service-content.reverse>* {
+            direction: ltr;
+        }
+
+        .service-text {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .service-text h3 {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-icon {
+            color: #2980b9;
+            flex-shrink: 0;
+        }
+
+        .service-text p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+
+        .service-benefits {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 0.5rem 0;
+        }
+
+        .benefit-item svg {
+            color: #27ae60;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .benefit-item span {
+            color: #2c3e50;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .service-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .service-section:hover .service-image img {
+            transform: scale(1.05);
+        }
+
+        /* Central CTA Section */
+        .central-cta {
+            background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+            color: white;
+            padding: 4rem 0;
+            margin: 4rem 0;
+        }
+
+        .cta-content {
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .cta-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons-large {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-button.large {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            min-width: 280px;
+            justify-content: center;
+        }
+
+        .cta-button.primary.large {
+            background: white;
+            color: #2980b9;
+        }
+
+        .cta-button.primary.large:hover {
+            background: #f8f9fa;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button.secondary.large {
+            background: transparent;
+            color: #2980b9;
+            border: 2px solid #2980b9;
+        }
+
+        .cta-button.secondary.large:hover {
+            background: #2980b9;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .service-content {
+                grid-template-columns: 1fr;
+            }
+
+            .service-content.reverse {
+                direction: ltr;
+            }
+
+            .service-text {
+                padding: 2rem;
+            }
+
+            .service-text h3 {
+                font-size: 1.5rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .service-image {
+                height: 250px;
+            }
+
+            .cta-content h2 {
+                font-size: 2rem;
+            }
+
+            .cta-buttons-large {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button.large {
+                min-width: auto;
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html">
+                        <img src="https://res.cloudinary.com/dlpdbr0ey/image/upload/v1755051245/7ae1aa7d-b239-4ee5-8090-6b8339e15d4e-removebg-preview_m6fipk.png"
+                            alt="Immobilien Ghumman Logo" class="logo">
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <ul class="nav-menu" id="site-menu">
+                    <li><a href="index.html" class="nav-link">Start</a></li>
+                    <li><a href="immobilien-angebote.html" class="nav-link">Immobilien</a></li>
+                    <li><a href="hausverwaltung.html" class="nav-link active">Hausverwaltung</a></li>
+                    <li><a href="finanzierung.html" class="nav-link">Finanzierung</a></li>
+                    <li><a href="index.html#about" class="nav-link">Über uns</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Kontakt</a></li>
+                    <li><a href="index.html#faq" class="nav-link">FAQ</a></li>
+                </ul>
+
+                <!-- Contact Icons -->
+                <div class="nav-contacts">
+                    <a href="https://wa.me/4916098787878" class="contact-icon whatsapp" target="_blank"
+                        title="WhatsApp">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+                        </svg>
+                    </a>
+                    <a href="mailto:info@immobilien-ghumman.de" class="contact-icon email" title="E-Mail">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                        </svg>
+                    </a>
+                    <a href="tel:+4916098787878" class="contact-icon phone" title="Telefon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <div class="hamburger" role="button" aria-label="Menü öffnen" aria-controls="site-menu"
+                    aria-expanded="false" tabindex="0">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section with Enhanced Background -->
+    <section class="hero-section" id="hero">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+            <div class="hero-particles"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="container">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        Professionelle <span id="typewriter-text" class="typewriter-text">Hausverwaltung</span><span
+                            class="cursor">|</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Entlasten Sie sich komplett – wir übernehmen die Verwaltung Ihrer Immobilie mit höchster
+                        Sorgfalt
+                    </p>
+
+                    <div class="hero-cta-buttons">
+                        <a href="#kontakt" class="cta-button primary animate-slide-up">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                            </svg>
+                            Jetzt beantragen
+                        </a>
+                        <a href="#services" class="cta-button secondary animate-slide-up">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
+                            </svg>
+                            Service anschauen
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="scroll-arrow animate-bounce">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog/Knowledge Base Section -->
+    <section class="knowledge-base-section" id="wissensbereich">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Unsere <span class="accent-highlight">Hausverwaltungs-Leistungen</span></h2>
+                <p>Komplettservice für Ihre Immobilie - Professionell, Transparent, Zuverlässig</p>
+            </div>
+
+            <div class="knowledge-grid">
+                <!-- Category 1: Mietverwaltung -->
+                <article class="knowledge-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="knowledge-image">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=250&fit=crop"
+                            alt="Mietverwaltung" loading="lazy">
+                        <div class="knowledge-overlay">
+                            <span class="knowledge-tag">Verwaltung</span>
+                        </div>
+                    </div>
+                    <div class="knowledge-content">
+                        <h3>Mietverwaltung</h3>
+                        <p>Alles über professionelle Mietverwaltung, Mietvertragsgestaltung und Mieterbetreuung</p>
+                        <a href="hausverwaltung-mietverwaltung.html" class="knowledge-link">
+                            Mehr erfahren
+                            <svg class="arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Category 2: Nebenkostenabrechnung -->
+                <article class="knowledge-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="knowledge-image">
+                        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=400&h=250&fit=crop"
+                            alt="Nebenkostenabrechnung" loading="lazy">
+                        <div class="knowledge-overlay">
+                            <span class="knowledge-tag">Finanzen</span>
+                        </div>
+                    </div>
+                    <div class="knowledge-content">
+                        <h3>Nebenkostenabrechnung</h3>
+                        <p>Transparente und rechtssichere Nebenkostenabrechnungen für Eigentümer und Mieter</p>
+                        <a href="hausverwaltung-nebenkostenabrechnung.html" class="knowledge-link">
+                            Mehr erfahren
+                            <svg class="arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Category 3: Instandhaltung -->
+                <article class="knowledge-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="knowledge-image">
+                        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&h=250&fit=crop"
+                            alt="Instandhaltung" loading="lazy">
+                        <div class="knowledge-overlay">
+                            <span class="knowledge-tag">Wartung</span>
+                        </div>
+                    </div>
+                    <div class="knowledge-content">
+                        <h3>Instandhaltung & Reparaturen</h3>
+                        <p>Professionelles Management von Wartungsarbeiten und Reparaturen Ihrer Immobilie</p>
+                        <a href="hausverwaltung-instandhaltung.html" class="knowledge-link">
+                            Mehr erfahren
+                            <svg class="arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Category 4: Eigentümerversammlung -->
+                <article class="knowledge-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="knowledge-image">
+                        <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=400&h=250&fit=crop"
+                            alt="Eigentümerversammlung" loading="lazy">
+                        <div class="knowledge-overlay">
+                            <span class="knowledge-tag">Organisation</span>
+                        </div>
+                    </div>
+                    <div class="knowledge-content">
+                        <h3>Eigentümerversammlungen</h3>
+                        <p>Organisation und Durchführung rechtssicherer Eigentümerversammlungen</p>
+                        <a href="hausverwaltung-eigentuemerversammlung.html" class="knowledge-link">
+                            Mehr erfahren
+                            <svg class="arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Category 5: Rechtliche Fragen -->
+                <article class="knowledge-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="knowledge-image">
+                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=250&fit=crop"
+                            alt="Rechtliche Fragen" loading="lazy">
+                        <div class="knowledge-overlay">
+                            <span class="knowledge-tag">Recht</span>
+                        </div>
+                    </div>
+                    <div class="knowledge-content">
+                        <h3>Rechtliche Fragen</h3>
+                        <p>Wichtige rechtliche Aspekte der Hausverwaltung und WEG-Verwaltung</p>
+                        <a href="hausverwaltung-rechtliches.html" class="knowledge-link">
+                            Mehr erfahren
+                            <svg class="arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Category 6: Digitale Verwaltung -->
+                <article class="knowledge-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="knowledge-image">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop"
+                            alt="Digitale Verwaltung" loading="lazy">
+                        <div class="knowledge-overlay">
+                            <span class="knowledge-tag">Digital</span>
+                        </div>
+                    </div>
+                    <div class="knowledge-content">
+                        <h3>Digitale Verwaltung</h3>
+                        <p>Moderne digitale Lösungen für effiziente Hausverwaltung und Kommunikation</p>
+                        <a href="hausverwaltung-digital.html" class="knowledge-link">
+                            Mehr erfahren
+                            <svg class="arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA Section -->
+    <section class="contact-cta" id="contact-cta">
+        <div class="container">
+            <div class="cta-content" data-aos="fade-up">
+                <h2>Überzeugen Sie sich von unserem <span class="accent-highlight">Service</span></h2>
+                <p>Professionelle Hausverwaltung mit persönlicher Betreuung</p>
+
+                <div class="contact-options">
+                    <div class="contact-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="contact-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                            </svg>
+                        </div>
+                        <div class="contact-info">
+                            <h4>Telefon</h4>
+                            <a href="tel:+4916098787878">+49 160 98787878</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="contact-icon whatsapp">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+                            </svg>
+                        </div>
+                        <div class="contact-info">
+                            <h4>WhatsApp</h4>
+                            <a href="https://wa.me/4916098787878">Direkt schreiben</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-button-container" data-aos="fade-up" data-aos-delay="300">
+                    <a href="#kontakt" class="cta-button primary large">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                        </svg>
+                        Kostenlos beantragen
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2>Häufig gestellte Fragen - <span class="accent-highlight">Hausverwaltung</span></h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Was kostet eine professionelle Hausverwaltung?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Die Kosten für eine Hausverwaltung richten sich nach dem Umfang der Leistungen und der
+                            Objektgröße:</p>
+                        <ul>
+                            <li><strong>Grundverwaltung:</strong> 25-35 € pro Wohneinheit/Monat</li>
+                            <li><strong>Vollverwaltung:</strong> 35-50 € pro Wohneinheit/Monat</li>
+                            <li><strong>Zusatzleistungen:</strong> nach Aufwand (Vermietung, Sanierung etc.)</li>
+                        </ul>
+                        <p>Wir erstellen Ihnen gerne ein kostenloses, unverbindliches Angebot basierend auf Ihren
+                            spezifischen Anforderungen.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Welche Unterlagen benötigen Sie für die Übernahme einer Hausverwaltung?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Für eine reibungslose Übernahme benötigen wir folgende Unterlagen:</p>
+                        <ul>
+                            <li>Grundbuchauszug und Flurkarte</li>
+                            <li>Aktuelle Mietverträge aller Mieter</li>
+                            <li>Nebenkostenabrechnungen der letzten 3 Jahre</li>
+                            <li>Versicherungsunterlagen (Gebäude-, Haftpflichtversicherung)</li>
+                            <li>Wartungsverträge (Heizung, Aufzug, etc.)</li>
+                            <li>Hausordnung und Verwaltungsunterlagen</li>
+                        </ul>
+                        <p>Wir helfen Ihnen gerne bei der Zusammenstellung der erforderlichen Dokumente.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Wie schnell können Sie eine Hausverwaltung übernehmen?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Die Übernahme einer Hausverwaltung erfolgt strukturiert und professionell:</p>
+                        <ul>
+                            <li><strong>Erstberatung:</strong> Innerhalb von 24-48 Stunden</li>
+                            <li><strong>Angebotserstellung:</strong> 3-5 Werktage</li>
+                            <li><strong>Vertragsabschluss:</strong> Nach Ihrer Zusage sofort möglich</li>
+                            <li><strong>Vollständige Übernahme:</strong> 2-4 Wochen je nach Komplexität</li>
+                        </ul>
+                        <p>Bei dringenden Fällen können wir auch eine schnellere Übernahme arrangieren.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Übernehmen Sie auch die Mietersuche und Vermietung?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Ja, als Full-Service-Hausverwaltung bieten wir auch Vermietungsleistungen an:</p>
+                        <ul>
+                            <li>Erstellung aussagekräftiger Exposés mit professionellen Fotos</li>
+                            <li>Insertion auf allen relevanten Immobilienportalen</li>
+                            <li>Interessentenvorauswahl und Bonitätsprüfung</li>
+                            <li>Besichtigungstermine und Mietvertragsabschluss</li>
+                            <li>Übergabeprotokoll und Schlüsselübergabe</li>
+                        </ul>
+                        <p>Unsere Erfolgsquote bei der Vermietung liegt bei über 95% binnen 4-6 Wochen.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Wie werden Reparaturen und Instandhaltungsmaßnahmen abgewickelt?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Wir kümmern uns um alle Reparaturen und Instandhaltungsmaßnahmen:</p>
+                        <ul>
+                            <li><strong>Kleinreparaturen bis 150€:</strong> Sofortige Beauftragung unserer Partnerfirmen
+                            </li>
+                            <li><strong>Größere Reparaturen:</strong> Kostenvoranschlag und Rücksprache mit Ihnen</li>
+                            <li><strong>Notfälle:</strong> 24/7 Erreichbarkeit für Schadensmeldungen</li>
+                            <li><strong>Regelmäßige Wartungen:</strong> Koordination aller Termine</li>
+                        </ul>
+                        <p>Sie erhalten monatlich transparente Abrechnungen aller durchgeführten Maßnahmen.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Wie oft erhalte ich Berichte über meine Immobilie?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Transparenz ist uns wichtig. Sie erhalten regelmäßige Updates:</p>
+                        <ul>
+                            <li><strong>Monatliche Berichte:</strong> Mieteinnahmen, Ausgaben und besondere Vorkommnisse
+                            </li>
+                            <li><strong>Jährliche Nebenkostenabrechnungen:</strong> Für alle Mieter</li>
+                            <li><strong>Quartalsweise Objektberichte:</strong> Zustand und erforderliche Maßnahmen</li>
+                            <li><strong>Sofortige Information:</strong> Bei wichtigen Ereignissen oder Notfällen</li>
+                        </ul>
+                        <p>Auf Wunsch können wir auch ein Online-Portal einrichten, über das Sie jederzeit Einsicht
+                            haben.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo-section">
+                    <img src="https://res.cloudinary.com/dlpdbr0ey/image/upload/v1755051245/7ae1aa7d-b239-4ee5-8090-6b8339e15d4e-removebg-preview_m6fipk.png"
+                        alt="Immobilien Ghumman" class="footer-logo-img">
+                    <p class="footer-slogan">Ihr vertrauensvoller Partner für Immobilien</p>
+                </div>
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Navigation</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html" aria-label="Zur Startseite">Start</a></li>
+                        <li><a href="immobilien-angebote.html" aria-label="Zu unseren Immobilien">Immobilien</a></li>
+                        <li><a href="hausverwaltung.html" aria-label="Zu unserem Service">Hausverwaltung</a></li>
+                        <li><a href="index.html#contact" aria-label="Zur Kontaktseite">Kontakt</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Schnelllinks</h3>
+                    <ul class="footer-links">
+                        <li><a href="impressum.html" aria-label="Zum Impressum">Impressum</a></li>
+                        <li><a href="datenschutz.html" aria-label="Zur Datenschutzerklärung">Datenschutz</a></li>
+                        <li><a href="index.html#contact" aria-label="Zur Kontaktseite">Beratung</a></li>
+                        <li><a href="immobilien-angebote.html" aria-label="Zu unseren aktuellen Angeboten">Aktuelle
+                                Angebote</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Kontakt</h3>
+                    <ul class="footer-links">
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"
+                                style="vertical-align: middle; margin-right: 8px;">
+                                <path
+                                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                            </svg>
+                            Bad Vilbel
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"
+                                style="vertical-align: middle; margin-right: 8px;">
+                                <path
+                                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                            </svg>
+                            info@immobilien-ghumman.de
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"
+                                style="vertical-align: middle; margin-right: 8px;">
+                                <path
+                                    d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                            </svg>
+                            +49 (0) 160 98787878
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Immobilien Ghumman. Alle Rechte vorbehalten.</p>
+                <p>Hausverwaltung | Bad Vilbel</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Sticky Button -->
+    <div class="whatsapp-sticky">
+        <a href="https://wa.me/4916098787878" target="_blank" title="WhatsApp Chat">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+            </svg>
+        </a>
+    </div>
+
+    <script src="immobilien-script.js"></script>
+    <script>
+        // Typewriter effect for hero section
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    // Add blinking cursor
+                    element.innerHTML += '<span class="cursor">|</span>';
+                }
+            }
+            type();
+        }
+
+        // Parallax effect for benefits section
+        function handleParallax() {
+            const parallaxElements = document.querySelectorAll('.parallax-background');
+            const scrolled = window.pageYOffset;
+
+            parallaxElements.forEach(element => {
+                const rate = scrolled * -0.5;
+                element.style.transform = `translateY(${rate}px)`;
+            });
+        }
+
+        // Scroll animations (AOS alternative)
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('[data-aos]');
+
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('aos-animate');
+                }
+            });
+        }
+
+        // Service expand functionality
+        function toggleService(element) {
+            const details = element.nextElementSibling;
+            const btn = element;
+
+            if (details.classList.contains('expanded')) {
+                details.classList.remove('expanded');
+                btn.textContent = 'Mehr erfahren';
+            } else {
+                // Close all other expanded details
+                document.querySelectorAll('.service-details.expanded').forEach(detail => {
+                    detail.classList.remove('expanded');
+                });
+                document.querySelectorAll('.expand-btn').forEach(button => {
+                    button.textContent = 'Mehr erfahren';
+                });
+
+                // Open current detail
+                details.classList.add('expanded');
+                btn.textContent = 'Weniger anzeigen';
+            }
+        }
+
+        // Smooth scrolling for anchor links
+        function smoothScrollTo(target) {
+            const element = document.querySelector(target);
+            if (element) {
+                element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // Initialize animations when page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize typewriter effect
+            const typewriterElement = document.querySelector('.typewriter-text');
+            if (typewriterElement) {
+                const text = typewriterElement.textContent;
+                setTimeout(() => {
+                    typeWriter(typewriterElement, text, 80);
+                }, 1500);
+            }
+
+            // Initialize scroll animations
+            handleScrollAnimations();
+
+            // Add scroll listeners
+            window.addEventListener('scroll', function () {
+                handleParallax();
+                handleScrollAnimations();
+            });
+
+            // Scroll indicator click handler
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            if (scrollIndicator) {
+                scrollIndicator.addEventListener('click', function () {
+                    const benefitsSection = document.querySelector('.benefits-parallax');
+                    if (benefitsSection) {
+                        benefitsSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            }
+
+            // Add hover effects for cards
+            const cards = document.querySelectorAll('.benefit-card, .service-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function () {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Add click animation for CTA buttons
+            const ctaButtons = document.querySelectorAll('.cta-button');
+            ctaButtons.forEach(button => {
+                button.addEventListener('click', function (e) {
+                    // Create ripple effect
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    ripple.classList.add('ripple');
+
+                    this.appendChild(ripple);
+
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+
+            // Process steps animation
+            const processSteps = document.querySelectorAll('.process-step');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            processSteps.forEach(step => {
+                step.style.opacity = '0';
+                step.style.transform = 'translateY(30px)';
+                step.style.transition = 'all 0.6s ease-out';
+                observer.observe(step);
+            });
+
+            // Add counter animation for process numbers
+            const stepNumbers = document.querySelectorAll('.step-number');
+            stepNumbers.forEach((number, index) => {
+                number.addEventListener('mouseenter', function () {
+                    this.style.transform = 'scale(1.2) rotate(360deg)';
+                });
+
+                number.addEventListener('mouseleave', function () {
+                    this.style.transform = 'scale(1) rotate(0deg)';
+                });
+            });
+        });
+
+        // Add CSS for ripple effect
+        const style = document.createElement('style');
+        style.textContent = `
+            .ripple {
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.6);
+                pointer-events: none;
+                transform: scale(0);
+                animation: rippleEffect 0.6s linear;
+            }
+            
+            @keyframes rippleEffect {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+            
+            .cta-button {
+                position: relative;
+                overflow: hidden;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+
+</html>

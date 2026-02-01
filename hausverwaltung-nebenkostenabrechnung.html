@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nebenkostenabrechnung - Immobilien Ghumman</title>
+    <meta name="description"
+        content="Professionelle Nebenkostenabrechnung - Transparent, rechtssicher und verständlich für Eigentümer und Mieter.">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="immobilien-styles.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+            color: white;
+            padding: 120px 20px 80px;
+            text-align: center;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 0.7;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        .content-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .main-content {
+            background: white;
+        }
+
+        .content-intro {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e3e9ff 100%);
+            padding: 40px;
+            border-radius: 16px;
+            margin-bottom: 50px;
+            border-left: 5px solid #2980b9;
+        }
+
+        .content-intro h2 {
+            color: #1e293b;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .content-intro p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #475569;
+        }
+
+        .content-block {
+            margin-bottom: 50px;
+        }
+
+        .content-block h2 {
+            color: #1e293b;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #2980b9;
+        }
+
+        .content-block h3 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .content-block p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #4a5568;
+            margin-bottom: 20px;
+        }
+
+        .content-block ul,
+        .content-block ol {
+            margin-left: 25px;
+            margin-bottom: 25px;
+        }
+
+        .content-block li {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #4a5568;
+            margin-bottom: 12px;
+            padding-left: 10px;
+        }
+
+        .content-block li strong {
+            color: #2980b9;
+        }
+
+        .highlight-box {
+            background: #fff8e1;
+            border-left: 4px solid #ffd700;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .highlight-box h3 {
+            color: #f59e0b;
+            margin-top: 0;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .info-box h3 {
+            color: #1976d2;
+            margin-top: 0;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            align-self: start;
+        }
+
+        .sidebar-widget {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
+
+        .sidebar-widget h3 {
+            color: #1e293b;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .quick-links {
+            list-style: none;
+        }
+
+        .quick-links li {
+            margin-bottom: 12px;
+        }
+
+        .quick-links a {
+            color: #475569;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .quick-links a:hover {
+            background: #f1f5f9;
+            color: #2980b9;
+            transform: translateX(5px);
+        }
+
+        .cta-widget {
+            background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-widget h3 {
+            color: white;
+            border: none;
+        }
+
+        .cta-widget p {
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: white;
+            color: #2980b9;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .faq-section {
+            background: #f8fafc;
+            padding: 80px 20px;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .faq-header h2 {
+            font-size: 2.5rem;
+            color: #1e293b;
+            margin-bottom: 15px;
+        }
+
+        .faq-header p {
+            font-size: 1.1rem;
+            color: #64748b;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 25px 30px;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .faq-question:hover {
+            color: #2980b9;
+        }
+
+        .faq-icon {
+            flex-shrink: 0;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 1000px;
+        }
+
+        .faq-answer-content {
+            padding: 0 30px 30px;
+            color: #475569;
+            line-height: 1.8;
+        }
+
+        .faq-answer-content ul {
+            margin: 15px 0 15px 20px;
+        }
+
+        .faq-answer-content li {
+            margin-bottom: 10px;
+        }
+
+        .contact-cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .contact-cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn-primary {
+            background: white;
+            color: #667eea;
+            padding: 15px 35px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 15px 35px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .contact-btn-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        .cost-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .cost-table th {
+            background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .cost-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .cost-table tr:hover {
+            background: #f8fafc;
+        }
+
+        @media (max-width: 968px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .content-intro {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page-header {
+                padding: 100px 20px 60px;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .content-section {
+                padding: 50px 20px;
+            }
+
+            .faq-question {
+                font-size: 1rem;
+                padding: 20px;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cost-table {
+                font-size: 0.9rem;
+            }
+
+            .cost-table th,
+            .cost-table td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html">
+                        <img src="https://res.cloudinary.com/dlpdbr0ey/image/upload/v1755051245/7ae1aa7d-b239-4ee5-8090-6b8339e15d4e-removebg-preview_m6fipk.png"
+                            alt="Immobilien Ghumman Logo" class="logo">
+                    </a>
+                </div>
+
+                <ul class="nav-menu" id="site-menu">
+                    <li><a href="index.html" class="nav-link">Start</a></li>
+                    <li><a href="immobilien-angebote.html" class="nav-link">Immobilien</a></li>
+                    <li><a href="hausverwaltung.html" class="nav-link active">Hausverwaltung</a></li>
+                    <li><a href="finanzierung.html" class="nav-link">Finanzierung</a></li>
+                    <li><a href="index.html#about" class="nav-link">Über uns</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Kontakt</a></li>
+                    <li><a href="index.html#faq" class="nav-link">FAQ</a></li>
+                </ul>
+
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="breadcrumb">
+            <a href="index.html">Start</a>
+            <span>›</span>
+            <a href="hausverwaltung.html">Hausverwaltung</a>
+            <span>›</span>
+            <span>Nebenkostenabrechnung</span>
+        </div>
+        <h1>Nebenkostenabrechnung</h1>
+        <p>Transparente und rechtssichere Betriebskostenabrechnungen für Eigentümer und Mieter</p>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        <div class="content-grid">
+            <div class="main-content">
+                <!-- Intro -->
+                <div class="content-intro">
+                    <h2>Was ist eine Nebenkostenabrechnung?</h2>
+                    <p>Die Nebenkostenabrechnung (auch Betriebskostenabrechnung genannt) ist eine jährliche Aufstellung
+                        aller umlagefähigen Kosten einer Immobilie. Sie dient der transparenten Verteilung der Kosten
+                        auf die Mieter und muss rechtssicheren Vorgaben entsprechen. Als professionelle Hausverwaltung
+                        erstellen wir für Sie korrekte, nachvollziehbare und rechtssichere Nebenkostenabrechnungen.</p>
+                </div>
+
+                <!-- Umlagefähige Kosten -->
+                <div class="content-block">
+                    <h2>Welche Kosten sind umlagefähig?</h2>
+                    <p>Nach § 2 der Betriebskostenverordnung (BetrKV) können folgende Kosten auf Mieter umgelegt werden:
+                    </p>
+
+                    <h3>1. Öffentliche Lasten</h3>
+                    <ul>
+                        <li><strong>Grundsteuer:</strong> Die von der Gemeinde erhobene Steuer auf Grundbesitz</li>
+                        <li><strong>Straßenreinigung:</strong> Kosten für die öffentliche Straßenreinigung</li>
+                        <li><strong>Müllabfuhr:</strong> Entsorgungskosten für Hausmüll und Sperrmüll</li>
+                    </ul>
+
+                    <h3>2. Versorgungskosten</h3>
+                    <ul>
+                        <li><strong>Wasserversorgung:</strong> Kosten für Frischwasser und Wasserzähler</li>
+                        <li><strong>Abwasser:</strong> Gebühren für Schmutzwasser und Niederschlagswasser</li>
+                        <li><strong>Heizung:</strong> Kosten für Brennstoffe, Wartung und Betrieb der Heizanlage</li>
+                        <li><strong>Warmwasser:</strong> Aufbereitung und Bereitstellung von Warmwasser</li>
+                        <li><strong>Strom:</strong> Allgemeinstrom für Beleuchtung, Aufzüge, Garagentore etc.</li>
+                    </ul>
+
+                    <h3>3. Gebäude- und Grundstückspflege</h3>
+                    <ul>
+                        <li><strong>Hausreinigung:</strong> Treppenhausreinigung, Fensterputzen gemeinschaftlicher
+                            Flächen</li>
+                        <li><strong>Gartenpflege:</strong> Pflege von Grünanlagen, Rasen mähen, Heckenschnitt</li>
+                        <li><strong>Winterdienst:</strong> Schneeräumung und Streudienst</li>
+                        <li><strong>Schädlingsbekämpfung:</strong> Präventive und akute Maßnahmen</li>
+                    </ul>
+
+                    <h3>4. Sicherheit und Wartung</h3>
+                    <ul>
+                        <li><strong>Hausmeister:</strong> Kosten für Hausmeisterdienste (nur regelmäßige Aufgaben)</li>
+                        <li><strong>Aufzugwartung:</strong> Regelmäßige Wartung und TÜV-Prüfungen</li>
+                        <li><strong>Versicherungen:</strong> Gebäudeversicherung, Haftpflichtversicherung</li>
+                        <li><strong>Schornsteinfeger:</strong> Gesetzlich vorgeschriebene Kontrollen und Messungen</li>
+                    </ul>
+
+                    <h3>5. Sonstige Betriebskosten</h3>
+                    <ul>
+                        <li><strong>Hausverwaltung:</strong> Kosten für die professionelle Verwaltung (sofern im
+                            Mietvertrag vereinbart)</li>
+                        <li><strong>Gemeinschaftsantenne/Kabel-TV:</strong> Kosten für Empfangsanlagen</li>
+                        <li><strong>Waschraum:</strong> Betrieb gemeinschaftlicher Wascheinrichtungen</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>⚠️ Wichtig zu wissen</h3>
+                    <p>Nicht alle Kosten sind umlagefähig! Verwaltungskosten, Instandhaltungsrücklagen und Reparaturen
+                        dürfen NICHT auf Mieter umgelegt werden. Diese Kosten trägt der Eigentümer.</p>
+                </div>
+
+                <!-- Verteilerschlüssel -->
+                <div class="content-block">
+                    <h2>Verteilerschlüssel für Nebenkosten</h2>
+                    <p>Die Verteilung der Betriebskosten erfolgt nach verschiedenen Schlüsseln:</p>
+
+                    <table class="cost-table">
+                        <thead>
+                            <tr>
+                                <th>Kostenart</th>
+                                <th>Typischer Verteilerschlüssel</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Wasser/Abwasser</td>
+                                <td>Nach Verbrauch (Zähler) oder Personenzahl</td>
+                            </tr>
+                            <tr>
+                                <td>Heizung/Warmwasser</td>
+                                <td>50-70% nach Verbrauch, Rest nach Wohnfläche</td>
+                            </tr>
+                            <tr>
+                                <td>Grundsteuer</td>
+                                <td>Nach Wohnfläche oder Miteigentumsanteil</td>
+                            </tr>
+                            <tr>
+                                <td>Hausreinigung</td>
+                                <td>Nach Wohnfläche</td>
+                            </tr>
+                            <tr>
+                                <td>Gartenpflege</td>
+                                <td>Nach Wohnfläche</td>
+                            </tr>
+                            <tr>
+                                <td>Müllabfuhr</td>
+                                <td>Nach Personenzahl oder Wohnfläche</td>
+                            </tr>
+                            <tr>
+                                <td>Allgemeinstrom</td>
+                                <td>Nach Wohnfläche</td>
+                            </tr>
+                            <tr>
+                                <td>Versicherungen</td>
+                                <td>Nach Wohnfläche</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p style="margin-top: 20px;">Der Verteilerschlüssel muss im Mietvertrag vereinbart sein und darf
+                        während des laufenden Mietverhältnisses nicht einseitig geändert werden.</p>
+                </div>
+
+                <!-- Fristen -->
+                <div class="content-block">
+                    <h2>Fristen und Formvorschriften</h2>
+
+                    <h3>Abrechnungszeitraum</h3>
+                    <p>Die Nebenkostenabrechnung muss für einen zusammenhängenden Zeitraum von 12 Monaten erstellt
+                        werden. Üblicherweise ist dies das Kalenderjahr (01.01. bis 31.12.), es kann aber auch ein
+                        Wirtschaftsjahr sein.</p>
+
+                    <h3>Abrechnungsfrist</h3>
+                    <p><strong>Wichtig:</strong> Die Nebenkostenabrechnung muss dem Mieter spätestens 12 Monate nach
+                        Ende des Abrechnungszeitraums zugehen. Wird diese Frist versäumt, verliert der Vermieter seinen
+                        Nachzahlungsanspruch!</p>
+
+                    <p>Beispiel: Für das Abrechnungsjahr 2023 (01.01. - 31.12.2023) muss die Abrechnung spätestens am
+                        31.12.2024 beim Mieter ankommen.</p>
+
+                    <h3>Nachzahlungsfrist für Mieter</h3>
+                    <p>Mieter haben 30 Tage Zeit, um Nachzahlungen zu begleichen, sofern im Mietvertrag keine andere
+                        Frist vereinbart ist.</p>
+
+                    <h3>Einspruchsfrist</h3>
+                    <p>Mieter können innerhalb von 12 Monaten nach Zugang der Abrechnung Einspruch erheben. Danach ist
+                        die Abrechnung grundsätzlich bindend.</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>✓ Unser Service</h3>
+                    <p>Wir erstellen Ihre Nebenkostenabrechnungen fristgerecht und rechtssicher. Sie müssen sich keine
+                        Gedanken über Fristen machen – wir überwachen alle Termine und informieren Sie rechtzeitig über
+                        notwendige Handlungen.</p>
+                </div>
+
+                <!-- Formale Anforderungen -->
+                <div class="content-block">
+                    <h2>Formale Anforderungen an die Abrechnung</h2>
+                    <p>Eine rechtssichere Nebenkostenabrechnung muss folgende Elemente enthalten:</p>
+
+                    <ol>
+                        <li><strong>Abrechnungszeitraum:</strong> Klare Angabe des Zeitraums (z.B. 01.01.2023 -
+                            31.12.2023)</li>
+                        <li><strong>Gesamtkosten:</strong> Aufstellung aller angefallenen Betriebskosten des Objekts
+                        </li>
+                        <li><strong>Umlageschlüssel:</strong> Erklärung, nach welchem Schlüssel die Kosten verteilt
+                            werden</li>
+                        <li><strong>Anteilige Kosten:</strong> Berechnung des Mieteranteils anhand der
+                            Wohnfläche/Verbrauchswerte</li>
+                        <li><strong>Vorauszahlungen:</strong> Auflistung der geleisteten monatlichen Vorauszahlungen
+                        </li>
+                        <li><strong>Saldo:</strong> Endgültige Nachzahlung oder Guthaben</li>
+                        <li><strong>Nachvollziehbarkeit:</strong> Klare und verständliche Darstellung aller Positionen
+                        </li>
+                        <li><strong>Belege:</strong> Auf Verlangen müssen Originalbelege zur Einsicht bereitgestellt
+                            werden</li>
+                    </ol>
+                </div>
+
+                <!-- Häufige Fehler -->
+                <div class="content-block">
+                    <h2>Häufige Fehler bei Nebenkostenabrechnungen</h2>
+                    <p>Diese Fehler sehen wir besonders oft bei selbst erstellten Abrechnungen:</p>
+
+                    <ul>
+                        <li><strong>Verspätete Abrechnung:</strong> Versäumnis der 12-Monats-Frist führt zum Verlust des
+                            Nachzahlungsanspruchs</li>
+                        <li><strong>Falsche Umlageschlüssel:</strong> Verwendung eines anderen Schlüssels als im
+                            Mietvertrag vereinbart</li>
+                        <li><strong>Nicht umlagefähige Kosten:</strong> Abrechnung von Instandhaltung oder
+                            Verwaltungskosten</li>
+                        <li><strong>Fehlende Positionen:</strong> Unvollständige Aufstellung der Gesamtkosten</li>
+                        <li><strong>Rechenfehler:</strong> Falsche Berechnung der anteiligen Kosten</li>
+                        <li><strong>Unklare Darstellung:</strong> Mieter können die Abrechnung nicht nachvollziehen</li>
+                        <li><strong>Fehlende Wirtschaftlichkeit:</strong> Unverhältnismäßig hohe Kosten ohne Erklärung
+                        </li>
+                        <li><strong>Abrechnungszeitraum-Fehler:</strong> Überschneidende oder lückenhafte Zeiträume</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>💡 Profi-Tipp</h3>
+                    <p>Fehlerhafte Nebenkostenabrechnungen führen häufig zu Streitigkeiten und können vor Gericht als
+                        unwirksam erklärt werden. Eine professionell erstellte Abrechnung schützt Sie vor rechtlichen
+                        Problemen und spart Zeit bei der Klärung von Unstimmigkeiten.</p>
+                </div>
+
+                <!-- Wirtschaftlichkeitsgebot -->
+                <div class="content-block">
+                    <h2>Wirtschaftlichkeitsgebot</h2>
+                    <p>Bei der Nebenkostenabrechnung gilt das Wirtschaftlichkeitsgebot: Der Vermieter muss die
+                        Interessen des Mieters angemessen berücksichtigen und darf keine unverhältnismäßig hohen Kosten
+                        verursachen.</p>
+
+                    <p>Das bedeutet konkret:</p>
+                    <ul>
+                        <li>Einholung mehrerer Angebote bei größeren Aufträgen</li>
+                        <li>Vermeidung unnötiger Kosten</li>
+                        <li>Energieeffiziente Lösungen bevorzugen</li>
+                        <li>Regelmäßige Wartung zur Kostenvermeidung</li>
+                    </ul>
+
+                    <p>Mieter können überhöhte Kosten anfechten, wenn nachgewiesen wird, dass wirtschaftlichere
+                        Alternativen vorhanden waren.</p>
+                </div>
+
+                <!-- Vorteile professioneller Abrechnung -->
+                <div class="content-block">
+                    <h2>Vorteile unserer professionellen Nebenkostenabrechnung</h2>
+
+                    <ul>
+                        <li><strong>Rechtssicherheit:</strong> Alle Abrechnungen entsprechen der aktuellen
+                            Rechtsprechung</li>
+                        <li><strong>Fristwahrung:</strong> Wir garantieren die Einhaltung aller gesetzlichen Fristen
+                        </li>
+                        <li><strong>Transparenz:</strong> Klare und verständliche Darstellung für Mieter</li>
+                        <li><strong>Zeitersparnis:</strong> Sie müssen sich um nichts kümmern</li>
+                        <li><strong>Fehlerminimierung:</strong> Durch automatisierte Prozesse und mehrfache Prüfung</li>
+                        <li><strong>Konfliktprävention:</strong> Professionelle Abrechnungen reduzieren Beschwerden</li>
+                        <li><strong>Belegverwaltung:</strong> Digitale Archivierung aller relevanten Dokumente</li>
+                        <li><strong>Mieteranfragen:</strong> Wir beantworten Rückfragen zu Abrechnungen</li>
+                        <li><strong>Mahnwesen:</strong> Automatische Überwachung und Einforderung von Nachzahlungen</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-widget">
+                    <h3>Schnellnavigation</h3>
+                    <ul class="quick-links">
+                        <li><a href="#umlagefaehig">→ Umlagefähige Kosten</a></li>
+                        <li><a href="#verteilung">→ Verteilerschlüssel</a></li>
+                        <li><a href="#fristen">→ Fristen</a></li>
+                        <li><a href="#fehler">→ Häufige Fehler</a></li>
+                        <li><a href="#faq">→ Häufige Fragen</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3>Weitere Themen</h3>
+                    <ul class="quick-links">
+                        <li><a href="hausverwaltung-mietverwaltung.html">→ Mietverwaltung</a></li>
+                        <li><a href="hausverwaltung-instandhaltung.html">→ Instandhaltung</a></li>
+                        <li><a href="hausverwaltung-eigentuemerversammlung.html">→ Eigentümerversammlung</a></li>
+                        <li><a href="hausverwaltung-rechtliches.html">→ Rechtliche Fragen</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-widget cta-widget">
+                    <h3>Kostenlose Beratung</h3>
+                    <p>Fragen zur Nebenkostenabrechnung?</p>
+                    <a href="index.html#contact" class="cta-btn">Jetzt Kontakt aufnehmen</a>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+        <div class="faq-container">
+            <div class="faq-header">
+                <h2>Häufig gestellte Fragen zur Nebenkostenabrechnung</h2>
+                <p>Hier finden Sie Antworten auf die wichtigsten Fragen</p>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Bis wann muss die Nebenkostenabrechnung vorliegen?</span>
+                    <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Die Nebenkostenabrechnung muss dem Mieter spätestens 12 Monate nach Ende des
+                            Abrechnungszeitraums zugehen. Bei Versäumnis dieser Frist verliert der Vermieter seinen
+                            Anspruch auf Nachzahlung.</p>
+                        <p><strong>Beispiel:</strong> Für das Abrechnungsjahr 2023 (01.01.-31.12.2023) muss die
+                            Abrechnung bis spätestens 31.12.2024 beim Mieter sein.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Können Reparaturkosten umgelegt werden?</span>
+                    <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p><strong>Nein!</strong> Reparaturen und Instandhaltungskosten sind NICHT umlagefähig. Diese
+                            Kosten muss der Eigentümer selbst tragen.</p>
+                        <p>Umlagefähig sind nur regelmäßige Wartungskosten, z.B.:</p>
+                        <ul>
+                            <li>Wartung der Heizungsanlage (nicht Reparatur)</li>
+                            <li>TÜV-Prüfung des Aufzugs</li>
+                            <li>Schornsteinfegerkosten</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Was kann ich tun, wenn die Abrechnung fehlerhaft ist?</span>
+                    <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Als Mieter haben Sie folgende Rechte:</p>
+                        <ol>
+                            <li><strong>Belegseinsicht:</strong> Sie können die Einsicht in alle Originalbelege
+                                verlangen</li>
+                            <li><strong>Schriftlicher Einspruch:</strong> Legen Sie Widerspruch gegen die Abrechnung ein
+                                (innerhalb von 12 Monaten)</li>
+                            <li><strong>Zahlungszurückhaltung:</strong> Bei offensichtlichen Fehlern können Sie die
+                                Zahlung zunächst zurückhalten</li>
+                            <li><strong>Rechtliche Prüfung:</strong> Lassen Sie die Abrechnung durch einen Experten
+                                prüfen</li>
+                        </ol>
+                        <p>Bei professionell erstellten Abrechnungen treten solche Probleme selten auf.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Wie werden Heizkosten abgerechnet?</span>
+                    <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Die Heizkostenabrechnung folgt der Heizkostenverordnung (HeizkostenV):</p>
+                        <ul>
+                            <li><strong>50-70% verbrauchsabhängig:</strong> Nach Heizkörperzählern oder
+                                Wärmemengenzählern</li>
+                            <li><strong>30-50% grundkostenabhängig:</strong> Nach Wohnfläche oder m³ umbauter Raum</li>
+                        </ul>
+                        <p>Bei Warmwasser gilt:</p>
+                        <ul>
+                            <li>Mindestens 50% nach Verbrauch (Wasserzähler)</li>
+                            <li>Maximal 50% nach Wohnfläche</li>
+                        </ul>
+                        <p>Die Verteilung muss im Mietvertrag oder in der Hausordnung geregelt sein.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Was passiert bei einer Nachzahlung?</span>
+                    <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Bei einer Nachzahlung haben Sie als Mieter folgende Rechte und Pflichten:</p>
+                        <ul>
+                            <li><strong>Zahlungsfrist:</strong> In der Regel 30 Tage nach Erhalt der Abrechnung</li>
+                            <li><strong>Ratenzahlung:</strong> Bei hohen Nachzahlungen können Sie um Ratenzahlung bitten
+                            </li>
+                            <li><strong>Vorauszahlungsanpassung:</strong> Der Vermieter kann die monatlichen
+                                Vorauszahlungen für die Zukunft anpassen</li>
+                        </ul>
+                        <p>Bei einem Guthaben muss der Vermieter dieses mit der nächsten Mietzahlung verrechnen oder
+                            auszahlen.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Wie werden Leerstandszeiten berücksichtigt?</span>
+                    <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Leerstandszeiten müssen in der Nebenkostenabrechnung berücksichtigt werden:</p>
+                        <ul>
+                            <li>Die Gesamtkosten werden nur auf die tatsächlich vermieteten Wohnungen umgelegt</li>
+                            <li>Mieter zahlen keine Kosten für leerstehende Wohnungen</li>
+                            <li>Der Eigentümer trägt die Kosten für Leerstand selbst</li>
+                        </ul>
+                        <p><strong>Ausnahme:</strong> Bei verbrauchsabhängigen Kosten (Wasser, Heizung) fallen bei
+                            Leerstand naturgemäß keine Kosten an.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kontakt-Hinweis -->
+            <div class="info-box" style="margin-top: 40px;">
+                <h3>💬 Weitere Fragen zur Nebenkostenabrechnung?</h3>
+                <p>Wir helfen Ihnen gerne weiter! Kontaktieren Sie uns für eine persönliche Beratung zur Erstellung
+                    rechtssicherer Nebenkostenabrechnungen.</p>
+                <div style="margin-top: 20px;">
+                    <a href="index.html#contact" class="cta-btn" style="display: inline-block;">Jetzt Kontakt
+                        aufnehmen</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="contact-cta-section">
+        <h2>Professionelle Nebenkostenabrechnungen gewünscht?</h2>
+        <p>Lassen Sie uns die Abrechnung übernehmen – rechtssicher und transparent</p>
+        <div class="contact-buttons">
+            <a href="tel:+4916098787878" class="contact-btn-primary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                </svg>
+                Jetzt anrufen
+            </a>
+            <a href="index.html#contact" class="contact-btn-secondary">Beratung vereinbaren</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Navigation</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Start</a></li>
+                        <li><a href="immobilien-angebote.html">Immobilien</a></li>
+                        <li><a href="hausverwaltung.html">Hausverwaltung</a></li>
+                        <li><a href="index.html#contact">Kontakt</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Rechtliches</h3>
+                    <ul class="footer-links">
+                        <li><a href="impressum.html">Impressum</a></li>
+                        <li><a href="datenschutz.html">Datenschutz</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Immobilien Ghumman. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="immobilien-script.js"></script>
+    <script>
+        function toggleFAQ(button) {
+            const faqItem = button.parentElement;
+            const allFaqItems = document.querySelectorAll('.faq-item');
+
+            allFaqItems.forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                }
+            });
+
+            faqItem.classList.toggle('active');
+        }
+    </script>
+</body>
+
+</html>

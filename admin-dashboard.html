@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Immobilien Ghumman</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 260px;
+            height: 100vh;
+            background: linear-gradient(180deg, #336699 0%, #2a5580 100%);
+            color: white;
+            padding: 20px 0;
+            overflow-y: auto;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
+            padding: 0 20px 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .sidebar-header img {
+            max-width: 120px;
+            margin-bottom: 10px;
+            filter: brightness(0) invert(1);
+        }
+
+        .sidebar-header h2 {
+            font-size: 18px;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .sidebar-header p {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .sidebar-menu {
+            padding: 20px 0;
+        }
+
+        .menu-item {
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+        }
+
+        .menu-item:hover,
+        .menu-item.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-left-color: #60a5fa;
+        }
+
+        .menu-icon {
+            font-size: 20px;
+        }
+
+        .sidebar-footer {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            padding: 0 20px;
+        }
+
+        .logout-btn {
+            width: 100%;
+            padding: 12px;
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: #ef4444;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 260px;
+            min-height: 100vh;
+            padding: 30px;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar h1 {
+            font-size: 28px;
+            color: #336699;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .stat-icon.blue {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        }
+
+        .stat-icon.green {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .stat-icon.orange {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        .stat-icon.purple {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        }
+
+        .stat-info h3 {
+            font-size: 32px;
+            color: #336699;
+            margin-bottom: 5px;
+        }
+
+        .stat-info p {
+            color: #64748b;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Content Section */
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .section-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .section-header h2 {
+            font-size: 22px;
+            color: #1e293b;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #336699 0%, #2a5580 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(51, 102, 153, 0.3);
+        }
+
+        /* Property List */
+        .property-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .property-item {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .property-item:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .property-image-small {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .property-details {
+            flex: 1;
+        }
+
+        .property-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .property-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 10px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .property-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-edit,
+        .btn-delete,
+        .btn-view {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-edit {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-view {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-delete {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-edit:hover,
+        .btn-view:hover,
+        .btn-delete:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .empty-state svg {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        .empty-state h3 {
+            font-size: 20px;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        .empty-state p {
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+
+        /* Mobile */
+        .mobile-menu-btn {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: #336699;
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 20px 15px;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .top-bar {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .property-item {
+                flex-direction: column;
+            }
+
+            .property-image-small {
+                width: 100%;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="https://res.cloudinary.com/dlpdbr0ey/image/upload/v1755051245/7ae1aa7d-b239-4ee5-8090-6b8339e15d4e-removebg-preview_m6fipk.png"
+                alt="Logo">
+            <h2>Admin Panel</h2>
+            <p>Immobilien Management</p>
+        </div>
+
+        <nav class="sidebar-menu">
+            <a class="menu-item active" onclick="showSection('dashboard')">
+                <span class="menu-icon">📊</span>
+                <span>Dashboard</span>
+            </a>
+            <a class="menu-item" onclick="showSection('properties')">
+                <span class="menu-icon">🏠</span>
+                <span>Immobilien</span>
+            </a>
+            <a class="menu-item" onclick="showSection('add-property')">
+                <span class="menu-icon">➕</span>
+                <span>Neue Immobilie</span>
+            </a>
+            <a class="menu-item" onclick="showSection('settings')">
+                <span class="menu-icon">⚙️</span>
+                <span>Einstellungen</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="logout-btn" onclick="handleLogout()">🚪 Abmelden</button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <h1 id="page-title">Dashboard</h1>
+            <div class="user-info">
+                <div class="user-avatar">A</div>
+                <div>
+                    <div style="font-weight: 600;">Admin</div>
+                    <div style="font-size: 12px; color: #64748b;">Administrator</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div id="dashboard" class="content-section active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon blue">🏠</div>
+                    <div class="stat-info">
+                        <h3 id="total-properties">0</h3>
+                        <p>Gesamt Immobilien</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon green">✅</div>
+                    <div class="stat-info">
+                        <h3 id="active-properties">0</h3>
+                        <p>Aktive Angebote</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon orange">👁️</div>
+                    <div class="stat-info">
+                        <h3>1,234</h3>
+                        <p>Aufrufe (30 Tage)</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon purple">📧</div>
+                    <div class="stat-info">
+                        <h3>47</h3>
+                        <p>Anfragen</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <div class="section-header">
+                    <h2>Letzte Aktivitäten</h2>
+                </div>
+                <p style="color: #64748b;">Hier werden zukünftig die letzten Aktivitäten angezeigt...</p>
+            </div>
+        </div>
+
+        <!-- Properties Section -->
+        <div id="properties" class="content-section">
+            <div class="section-card">
+                <div class="section-header">
+                    <h2>Alle Immobilien</h2>
+                    <button class="btn-primary" onclick="showSection('add-property')">
+                        ➕ Neue Immobilie
+                    </button>
+                </div>
+                <div id="property-list" class="property-list">
+                    <!-- Properties will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Property Section -->
+        <div id="add-property" class="content-section">
+            <div class="section-card">
+                <div class="section-header">
+                    <h2>Neue Immobilie hinzufügen</h2>
+                </div>
+                <iframe src="admin-upload.html" style="width: 100%; min-height: 800px; border: none;"></iframe>
+            </div>
+        </div>
+
+        <!-- Settings Section -->
+        <div id="settings" class="content-section">
+            <div class="section-card">
+                <div class="section-header">
+                    <h2>Einstellungen</h2>
+                </div>
+                <p style="color: #64748b;">Einstellungen werden hier angezeigt...</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/api-client.js"></script>
+    <script>
+        // Initialize API Client
+        const api = new PropertyAPI();
+
+        // Check authentication
+        async function checkAuth() {
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                window.location.href = 'admin-login.html';
+                return false;
+            }
+
+            try {
+                // Verify token with backend
+                // await api.getCurrentUser(); // Optional: verify token validity
+                return true;
+            } catch (error) {
+                console.error('Auth check failed:', error);
+                localStorage.removeItem('authToken');
+                window.location.href = 'admin-login.html';
+                return false;
+            }
+        }
+
+        // Logout
+        function handleLogout() {
+            if (confirm('Möchten Sie sich wirklich abmelden?')) {
+                api.logout();
+                window.location.href = 'admin-login.html';
+            }
+        }
+
+        // Toggle Sidebar (Mobile)
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+
+        // Show Section
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Update menu items
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Find the menu item that corresponds to this section
+            const menuItem = document.querySelector(`.menu-item[onclick*="'${sectionId}'"]`);
+            if (menuItem) {
+                menuItem.classList.add('active');
+            }
+
+            // Update page title
+            const titles = {
+                'dashboard': 'Dashboard',
+                'properties': 'Immobilien',
+                'add-property': 'Neue Immobilie',
+                'settings': 'Einstellungen'
+            };
+            document.getElementById('page-title').textContent = titles[sectionId] || 'Dashboard';
+
+            // Load properties if needed
+            if (sectionId === 'properties') {
+                loadProperties();
+            }
+
+            // Reset iframe if switching to add-property (to clear any edit state)
+            if (sectionId === 'add-property') {
+                const iframe = document.querySelector('#add-property iframe');
+                if (iframe) {
+                    // Reload iframe to reset form
+                    iframe.src = iframe.src;
+                }
+            }
+
+            // Close sidebar on mobile
+            if (window.innerWidth <= 768) {
+                document.getElementById('sidebar').classList.remove('active');
+            }
+        }
+
+        // Load Properties
+        async function loadProperties() {
+            const propertyList = document.getElementById('property-list');
+            propertyList.innerHTML = '<div style="text-align:center; padding: 20px;">Laden...</div>';
+
+            try {
+                const response = await api.getProperties({ limit: 100 });
+                const properties = response.properties || [];
+
+                if (properties.length === 0) {
+                    propertyList.innerHTML = `
+                        <div class="empty-state">
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                            </svg>
+                            <h3>Keine Immobilien vorhanden</h3>
+                            <p>Fügen Sie Ihre erste Immobilie hinzu</p>
+                            <button class="btn-primary" onclick="showSection('add-property')">
+                                ➕ Immobilie hinzufügen
+                            </button>
+                        </div>
+                    `;
+                    return;
+                }
+
+                propertyList.innerHTML = properties.map((property, index) => {
+                    const imageUrl = property.primary_image || (property.images && property.images.length > 0 ? property.images[0] : 'https://via.placeholder.com/120');
+
+                    return `
+                    <div class="property-item">
+                        <img src="${imageUrl}" alt="${property.title}" class="property-image-small">
+                        <div class="property-details">
+                            <div class="property-title">${property.title}</div>
+                            <div class="property-meta">
+                                <span>💰 ${new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(property.price)}</span>
+                                <span>📏 ${property.size} m²</span>
+                                <span>🛏️ ${property.rooms} Zimmer</span>
+                                <span>📍 ${property.city || property.location}</span>
+                            </div>
+                            <div style="color: #64748b; font-size: 14px; margin-bottom: 10px;">
+                                ${property.description ? property.description.substring(0, 100) + '...' : ''}
+                            </div>
+                            <div class="property-actions">
+                                <button class="btn-view" onclick="viewProperty(${property.id})">👁️ Ansehen</button>
+                                <button class="btn-edit" onclick="editProperty(${property.id})">✏️ Bearbeiten</button>
+                                <button class="btn-delete" onclick="deleteProperty(${property.id})">🗑️ Löschen</button>
+                            </div>
+                        </div>
+                    </div>
+                `}).join('');
+
+                updateStats(properties.length);
+            } catch (error) {
+                console.error('Error loading properties:', error);
+                propertyList.innerHTML = `<div class="alert error">Fehler beim Laden der Immobilien: ${error.message}</div>`;
+            }
+        }
+
+        // Update Stats
+        function updateStats(count) {
+            if (count !== undefined) {
+                document.getElementById('total-properties').textContent = count;
+                document.getElementById('active-properties').textContent = count;
+            } else {
+                // Fetch stats if not provided
+                api.getProperties({ limit: 1 }).then(res => {
+                    // This is a rough estimate if the API doesn't return total count
+                    // Ideally API should return total count
+                    // For now we just leave it or update if we have the full list
+                });
+            }
+        }
+
+        // View Property
+        async function viewProperty(id) {
+            try {
+                const response = await api.getProperty(id);
+                const property = response.property;
+                alert(`Immobilie: ${property.title}\nPreis: ${property.price}\nDetails: ${property.description}`);
+            } catch (error) {
+                alert('Fehler beim Laden der Details');
+            }
+        }
+
+        // Edit Property
+        async function editProperty(id) {
+            try {
+                const response = await api.getProperty(id);
+                const property = response.property;
+
+                // Switch to add-property section
+                showSection('add-property');
+
+                // Wait for iframe to be ready/accessible
+                const iframe = document.querySelector('#add-property iframe');
+
+                // Send data to iframe
+                // We need to wait a bit or ensure iframe is loaded. 
+                // Since it's already in the DOM, we can just postMessage.
+                setTimeout(() => {
+                    iframe.contentWindow.postMessage({
+                        type: 'loadProperty',
+                        property: property
+                    }, '*');
+                }, 500);
+
+            } catch (error) {
+                console.error('Error fetching property for edit:', error);
+                alert('Fehler beim Laden der Immobilie zum Bearbeiten');
+            }
+        }
+
+        // Delete Property
+        async function deleteProperty(id) {
+            if (confirm('Möchten Sie diese Immobilie wirklich löschen?')) {
+                try {
+                    await api.deleteProperty(id);
+                    loadProperties();
+                    alert('Immobilie erfolgreich gelöscht!');
+                } catch (error) {
+                    console.error('Error deleting property:', error);
+                    alert('Fehler beim Löschen: ' + error.message);
+                }
+            }
+        }
+
+        // Listen for property updates from iframe
+        window.addEventListener('message', function (e) {
+            if (e.data.type === 'propertyAdded' || e.data.type === 'propertyUpdated') {
+                // Switch back to list view and reload
+                showSection('properties');
+                loadProperties();
+            }
+        });
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', function () {
+            checkAuth();
+            loadProperties(); // Load initially for dashboard stats
+        });
+    </script>
+</body>
+
+</html>

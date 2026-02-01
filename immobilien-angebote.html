@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5J1C2PTR2">
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-Q5J1C2PTR2');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Immobilienangebote - Immobilien Ghumman</title>
+    <meta name="description"
+        content="Aktuelle Immobilienangebote von Immobilien Ghumman - Wohnungen und Häuser in Bad Vilbel und Umgebung.">
+    <meta name="keywords" content="Immobilienangebote Bad Vilbel, Wohnung mieten Bad Vilbel, Haus kaufen Bad Vilbel">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="immobilien-styles.css">
+
+    <style>
+        /* Enhanced Property Filters */
+        .property-filters {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e3e9ff 100%);
+            padding: 40px 0;
+            margin-bottom: 60px;
+        }
+
+        .filter-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .filter-header h3 {
+            color: #1e3a8a;
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .filter-header p {
+            color: #64748b;
+            font-size: 16px;
+        }
+
+        .advanced-filters {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin: 0 auto;
+            max-width: 1000px;
+        }
+
+        .filter-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            align-items: end;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .filter-select {
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #374151;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .filter-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .filter-tags {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-tag {
+            background: #3b82f6;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .filter-tag .remove {
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Enhanced Featured Properties Section */
+        .featured-properties {
+            padding: 80px 0;
+            background: linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%);
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header-text h2 {
+            color: #1e293b;
+            font-size: 36px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .header-text p {
+            color: #64748b;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .view-toggle {
+            display: flex;
+            background: #f1f5f9;
+            border-radius: 12px;
+            padding: 4px;
+        }
+
+        .view-btn {
+            background: none;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            color: #64748b;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn.active,
+        .view-btn:hover {
+            background: white;
+            color: #3b82f6;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .results-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .results-count {
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .sort-options {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sort-options label {
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .sort-select {
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            background: white;
+        }
+
+        /* Property Grid */
+        .properties-grid {
+            display: grid;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .properties-grid.grid-view {
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+        }
+
+        .properties-grid.list-view {
+            grid-template-columns: 1fr;
+        }
+
+        .properties-grid.list-view .property-card {
+            display: flex;
+            flex-direction: row;
+            max-width: none;
+        }
+
+        .properties-grid.list-view .property-image {
+            width: 300px;
+            flex-shrink: 0;
+        }
+
+        .properties-grid.list-view .property-info {
+            flex: 1;
+            padding: 24px;
+        }
+
+        /* Property Cards */
+        .property-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #f1f5f9;
+            max-width: 100%;
+        }
+
+        .property-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .property-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .property-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .property-card:hover .property-image img {
+            transform: scale(1.05);
+        }
+
+        .property-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: #10b981;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .property-badge.new {
+            background: #3b82f6;
+        }
+
+        .property-favorite {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #64748b;
+        }
+
+        .property-favorite:hover,
+        .property-favorite.active {
+            background: #ef4444;
+            color: white;
+        }
+
+        .property-info {
+            padding: 24px;
+        }
+
+        .property-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            gap: 16px;
+        }
+
+        .property-header h4 {
+            color: #1e293b;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.3;
+            flex: 1;
+        }
+
+        .property-price {
+            color: #059669;
+            font-size: 20px;
+            font-weight: 700;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .property-price span {
+            font-size: 14px;
+            color: #64748b;
+            font-weight: 400;
+        }
+
+        .property-location {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .property-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .detail-item svg {
+            color: #3b82f6;
+        }
+
+        .property-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .feature {
+            background: #eff6ff;
+            color: #1d4ed8;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .property-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .details-btn {
+            flex: 1;
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .details-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .contact-btn {
+            background: #f8fafc;
+            color: #475569;
+            border: 2px solid #e2e8f0;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            background: #1e293b;
+            color: white;
+            border-color: #1e293b;
+        }
+
+        /* Load More Section */
+        .load-more-section {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .load-more-btn {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
+        }
+
+        .load-more-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(99, 102, 241, 0.4);
+        }
+
+        .load-info {
+            color: #64748b;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .properties-grid.grid-view {
+                grid-template-columns: 1fr;
+            }
+
+            .properties-grid.list-view .property-card {
+                flex-direction: column;
+            }
+
+            .properties-grid.list-view .property-image {
+                width: 100%;
+                height: 200px;
+            }
+
+            .filter-row {
+                grid-template-columns: 1fr;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+
+            .results-info {
+                flex-direction: column;
+                gap: 16px;
+                align-items: flex-start;
+            }
+
+            .property-details {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .property-actions {
+                flex-direction: column;
+            }
+
+            .contact-btn {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .advanced-filters {
+                padding: 20px;
+            }
+
+            .property-info {
+                padding: 16px;
+            }
+
+            .property-details {
+                grid-template-columns: 1fr;
+            }
+
+            .property-header {
+                flex-direction: column;
+                gap: 8px;
+                align-items: flex-start;
+            }
+
+            .filter-header h3 {
+                font-size: 24px;
+            }
+
+            .header-text h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html">
+                        <img src="https://res.cloudinary.com/dlpdbr0ey/image/upload/v1755051245/7ae1aa7d-b239-4ee5-8090-6b8339e15d4e-removebg-preview_m6fipk.png"
+                            alt="Immobilien Ghumman Logo" class="logo">
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <ul class="nav-menu" id="site-menu">
+                    <li><a href="index.html" class="nav-link">Start</a></li>
+                    <li><a href="immobilien-angebote.html" class="nav-link active">Immobilien</a></li>
+                    <li><a href="hausverwaltung.html" class="nav-link">Hausverwaltung</a></li>
+                    <li><a href="finanzierung.html" class="nav-link">Finanzierung</a></li>
+                    <li><a href="index.html#about" class="nav-link">Über uns</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Kontakt</a></li>
+                    <li><a href="index.html#faq" class="nav-link">FAQ</a></li>
+                </ul>
+
+                <!-- Contact Icons -->
+                <div class="nav-contacts">
+                    <a href="https://wa.me/4916098787878" class="contact-icon whatsapp" target="_blank"
+                        title="WhatsApp">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+                        </svg>
+                    </a>
+                    <a href="mailto:info@immobilien-ghumman.de" class="contact-icon email" title="E-Mail">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                        </svg>
+                    </a>
+                    <a href="tel:+4916098787878" class="contact-icon phone" title="Telefon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <div class="hamburger" role="button" aria-label="Menü öffnen" aria-controls="site-menu"
+                    aria-expanded="false" tabindex="0">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section with Background -->
+    <section class="page-header"
+        style="position: relative; min-height: 70vh; display: flex; align-items: center; justify-content: center; background: url('https://res.cloudinary.com/dlpdbr0ey/image/upload/v1758552673/1758059506092_asauj1.png') center/cover; color: white; text-align: center; padding: 2rem 0;">
+        <div class="hero-overlay"
+            style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(51, 102, 153, 0.5); z-index: 1;">
+        </div>
+        <div class="container"
+            style="position: relative; z-index: 2; max-width: 800px; margin: 0 auto; padding: 1.5rem;">
+            <h1
+                style="font-size: 2.8rem; font-weight: 700; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); line-height: 1.2;">
+                Unsere <span id="typewriter-text-immobilien">Immobilien</span><span class="cursor">|</span></h1>
+            <p class="page-subtitle"
+                style="font-size: 1.15rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; text-shadow: 1px 1px 3px rgba(0,0,0,0.4); line-height: 1.5;">
+                Entdecken Sie Ihr Traumzuhause – von modernen Wohnungen bis hin zu exklusiven Häusern</p>
+            <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                <div
+                    style="background: rgba(255,255,255,0.2); padding: 12px 16px; border-radius: 10px; backdrop-filter: blur(10px);">
+                    <div style="font-size: 1.6rem; font-weight: 700; color: #60a5fa;">120+</div>
+                    <div style="font-size: 0.85rem; opacity: 0.9;">Angebote</div>
+                </div>
+                <div
+                    style="background: rgba(255,255,255,0.2); padding: 12px 16px; border-radius: 10px; backdrop-filter: blur(10px);">
+                    <div style="font-size: 1.6rem; font-weight: 700; color: #60a5fa;">15+</div>
+                    <div style="font-size: 0.85rem; opacity: 0.9;">Jahre Erfahrung</div>
+                </div>
+                <div
+                    style="background: rgba(255,255,255,0.2); padding: 12px 16px; border-radius: 10px; backdrop-filter: blur(10px);">
+                    <div style="font-size: 1.6rem; font-weight: 700; color: #60a5fa;">200+</div>
+                    <div style="font-size: 0.85rem; opacity: 0.9;">Zufriedene Kunden</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Active filters will be shown here -->
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <!-- Featured Properties -->
+    <section class="featured-properties">
+        <div class="container">
+            <div class="section-header">
+                <div class="header-content">
+                    <div class="header-text">
+                        <h2>Aktuelle <span class="accent-highlight">Immobilienangebote</span></h2>
+                        <p>Entdecken Sie unsere handverlesenen Immobilien in Bad Vilbel und Umgebung</p>
+                    </div>
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="grid" onclick="toggleView('grid')">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M4 11h5V5H4v6zm0 7h5v-6H4v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5V5h-5v6zm6-6v6h5V5h-5z" />
+                            </svg>
+                            Raster
+                        </button>
+                        <button class="view-btn" data-view="list" onclick="toggleView('list')">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z" />
+                            </svg>
+                            Liste
+                        </button>
+                    </div>
+                </div>
+                <div class="results-info">
+                    <span class="results-count" id="results-count">Immobilien</span>
+                    <div class="sort-options">
+                        <label>Sortieren nach:</label>
+                        <select class="sort-select" id="sort-by" onchange="sortProperties()">
+                            <option value="newest">Neueste zuerst</option>
+                            <option value="price-asc">Preis aufsteigend</option>
+                            <option value="price-desc">Preis absteigend</option>
+                            <option value="size-asc">Größe aufsteigend</option>
+                            <option value="size-desc">Größe absteigend</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property Grid -->
+            <div class="properties-grid grid-view" id="properties-grid">
+                <!-- Properties will be added here -->
+            </div>
+
+            <!-- Info Message -->
+            <div class="load-more-section"
+                style="text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #f8f9ff 0%, #e3e9ff 100%); border-radius: 16px; margin-top: 40px;">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="#3b82f6"
+                    style="margin-bottom: 20px; opacity: 0.7;">
+                    <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+                </svg>
+                <h3 style="color: #1e40af; font-size: 24px; margin-bottom: 12px; font-weight: 600;">Derzeit keine
+                    weiteren Angebote</h3>
+                <p style="color: #64748b; font-size: 16px; line-height: 1.6; max-width: 600px; margin: 0 auto;">
+                    Zur Zeit sind nur die Immobilien auf der <a href="index.html#properties"
+                        style="color: #3b82f6; text-decoration: underline; font-weight: 600;">Startseite</a> verfügbar.
+                    Neue Angebote werden in Kürze hinzugefügt.
+                </p>
+                <div style="margin-top: 30px;">
+                    <a href="index.html#properties"
+                        style="display: inline-block; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);">
+                        Zur Startseite
+                    </a>
+                    <a href="index.html#contact"
+                        style="display: inline-block; background: white; color: #3b82f6; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; border: 2px solid #3b82f6; margin-left: 12px;">
+                        Kontakt aufnehmen
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="kontakt">
+        <div class="container">
+            <h2>Kontaktieren Sie uns für <span class="accent-highlight">Immobilienanfragen</span></h2>
+            <p class="section-subtitle">Wir sind jederzeit für Sie da – wählen Sie Ihren bevorzugten Kontaktweg</p>
+
+            <div class="contact-options"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 3rem 0;">
+                <!-- Phone Contact -->
+                <div class="contact-option-card"
+                    style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.05) 100%); backdrop-filter: blur(10px); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 16px; padding: 2rem; text-align: center; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <div class="contact-icon-wrapper"
+                        style="width: 70px; height: 70px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="white">
+                            <path
+                                d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                        </svg>
+                    </div>
+                    <h3 style="color: #1e40af; font-size: 1.3rem; margin-bottom: 0.5rem;">Telefonisch</h3>
+                    <p style="color: #64748b; margin-bottom: 1.5rem; font-size: 0.95rem;">Sprechen Sie direkt mit
+                        unserem Team</p>
+                    <a href="tel:+4916098787878"
+                        style="display: inline-block; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; padding: 0.85rem 1.75rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);">
+                        +49 160 98787878
+                    </a>
+                    <p style="color: #94a3b8; margin-top: 1rem; font-size: 0.85rem;">Mo-Fr: 9:00 - 18:00 Uhr</p>
+                </div>
+
+                <!-- WhatsApp Contact -->
+                <div class="contact-option-card"
+                    style="background: linear-gradient(135deg, rgba(37, 211, 102, 0.1) 0%, rgba(22, 163, 74, 0.05) 100%); backdrop-filter: blur(10px); border: 1px solid rgba(37, 211, 102, 0.2); border-radius: 16px; padding: 2rem; text-align: center; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <div class="contact-icon-wrapper"
+                        style="width: 70px; height: 70px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, #25d366 0%, #128c7e 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="white">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+                        </svg>
+                    </div>
+                    <h3 style="color: #15803d; font-size: 1.3rem; margin-bottom: 0.5rem;">WhatsApp</h3>
+                    <p style="color: #64748b; margin-bottom: 1.5rem; font-size: 0.95rem;">Schnelle Antwort per Nachricht
+                    </p>
+                    <a href="https://wa.me/4916098787878" target="_blank"
+                        style="display: inline-block; background: linear-gradient(135deg, #25d366 0%, #128c7e 100%); color: white; padding: 0.85rem 1.75rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);">
+                        Chat starten
+                    </a>
+                    <p style="color: #94a3b8; margin-top: 1rem; font-size: 0.85rem;">Antwort innerhalb weniger Minuten
+                    </p>
+                </div>
+
+                <!-- Email Contact -->
+                <div class="contact-option-card"
+                    style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(234, 88, 12, 0.05) 100%); backdrop-filter: blur(10px); border: 1px solid rgba(249, 115, 22, 0.2); border-radius: 16px; padding: 2rem; text-align: center; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <div class="contact-icon-wrapper"
+                        style="width: 70px; height: 70px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="white">
+                            <path
+                                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                        </svg>
+                    </div>
+                    <h3 style="color: #c2410c; font-size: 1.3rem; margin-bottom: 0.5rem;">E-Mail</h3>
+                    <p style="color: #64748b; margin-bottom: 1.5rem; font-size: 0.95rem;">Schreiben Sie uns ausführlich
+                    </p>
+                    <a href="mailto:info@immobilien-ghumman.de"
+                        style="display: inline-block; background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); color: white; padding: 0.85rem 1.75rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);">
+                        E-Mail senden
+                    </a>
+                    <p style="color: #94a3b8; margin-top: 1rem; font-size: 0.85rem;">Antwort innerhalb von 24 Stunden
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <section class="faq-section">
+                <div class="container">
+                    <h2>Häufig gestellte Fragen - Immobilienkauf & Vermietung</h2>
+                    <div class="faq-container">
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Wie hoch sind die Nebenkosten beim Immobilienkauf?</span>
+                                <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Die Nebenkosten beim Immobilienkauf betragen in Deutschland etwa 10-15% des
+                                    Kaufpreises. Diese setzen sich zusammen aus:</p>
+                                <ul>
+                                    <li><strong>Grunderwerbsteuer:</strong> 5-6,5% (je nach Bundesland)</li>
+                                    <li><strong>Notar- und Grundbuchkosten:</strong> ca. 1,5-2%</li>
+                                    <li><strong>Maklerprovision:</strong> 3,57-7,14% (geteilt zwischen Käufer und
+                                        Verkäufer)</li>
+                                </ul>
+                                <p>Wir beraten Sie gerne über alle anfallenden Kosten und helfen bei der
+                                    Finanzierungsplanung.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Welche Unterlagen brauche ich für eine Immobilienbesichtigung?</span>
+                                <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Für eine erste Besichtigung benötigen Sie zunächst keine Unterlagen. Bei ernsthaftem
+                                    Kaufinteresse sollten Sie jedoch folgende Dokumente bereithalten:</p>
+                                <ul>
+                                    <li>Personalausweis oder Reisepass</li>
+                                    <li>Nachweis über Eigenkapital (Kontoauszüge, Sparbücher)</li>
+                                    <li>Einkommensnachweise der letzten 3 Monate</li>
+                                    <li>Selbstauskunft (erhalten Sie von uns)</li>
+                                    <li>Bei Selbstständigen: BWA und Steuerbescheide</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Wie lange dauert ein Immobilienkauf von der Besichtigung bis zum
+                                    Notartermin?</span>
+                                <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Der gesamte Kaufprozess dauert in der Regel 8-12 Wochen:</p>
+                                <ul>
+                                    <li><strong>Besichtigung bis Kaufangebot:</strong> 1-2 Wochen</li>
+                                    <li><strong>Finanzierungszusage:</strong> 2-4 Wochen</li>
+                                    <li><strong>Kaufvertragsentwurf:</strong> 1-2 Wochen</li>
+                                    <li><strong>Notartermin:</strong> 2-4 Wochen nach Terminvereinbarung</li>
+                                    <li><strong>Eigentumsübertragung:</strong> 6-8 Wochen nach Notartermin</li>
+                                </ul>
+                                <p>Bei Barzahlung kann sich der Prozess erheblich verkürzen.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Was ist der Unterschied zwischen Kauf- und Mietpreis pro Quadratmeter?</span>
+                                <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>In Bad Vilbel und Umgebung liegen die Preise aktuell bei:</p>
+                                <ul>
+                                    <li><strong>Kaufpreise:</strong> 3.500-5.500 €/m² (je nach Lage und Zustand)</li>
+                                    <li><strong>Mietpreise:</strong> 12-18 €/m² (kalt)</li>
+                                    <li><strong>Faktor:</strong> Kaufpreis geteilt durch Jahreskaltmiete = 20-30 Jahre
+                                    </li>
+                                </ul>
+                                <p>Wir erstellen gerne eine kostenlose Marktanalyse für Ihre Wunschimmobilie.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Bieten Sie auch Mietobjekte an?</span>
+                                <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Ja, wir vermitteln sowohl Kauf- als auch Mietobjekte in Bad Vilbel und der Region:
+                                </p>
+                                <ul>
+                                    <li>Wohnungen zur Miete (1-5 Zimmer)</li>
+                                    <li>Häuser zur Miete</li>
+                                    <li>Gewerbeimmobilien</li>
+                                    <li>Möblierte Apartments</li>
+                                </ul>
+                                <p>Registrieren Sie sich für unseren Newsletter, um über neue Mietobjekte informiert zu
+                                    werden.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Wie kann ich den Wert meiner Immobilie ermitteln lassen?</span>
+                                <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Wir bieten kostenlose Immobilienbewertungen an. Unser Service umfasst:</p>
+                                <ul>
+                                    <li>Vor-Ort-Besichtigung und Begutachtung</li>
+                                    <li>Marktvergleichsanalyse</li>
+                                    <li>Berücksichtigung von Lage, Zustand und Ausstattung</li>
+                                    <li>Schriftliche Marktwerteinschätzung</li>
+                                    <li>Verkaufsberatung (falls gewünscht)</li>
+                                </ul>
+                                <p>Kontaktieren Sie uns für einen unverbindlichen Bewertungstermin.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="container">
+                    <div class="footer-top">
+                        <div class="footer-logo-section">
+                            <img src="https://res.cloudinary.com/dlpdbr0ey/image/upload/v1755051245/7ae1aa7d-b239-4ee5-8090-6b8339e15d4e-removebg-preview_m6fipk.png"
+                                alt="Immobilien Ghumman" class="footer-logo-img">
+                            <p class="footer-slogan">Ihr vertrauensvoller Partner für Immobilien</p>
+                        </div>
+                    </div>
+
+                    <div class="footer-divider"></div>
+
+                    <div class="footer-content">
+                        <div class="footer-section">
+                            <h3>Navigation</h3>
+                            <ul class="footer-links">
+                                <li><a href="index.html" aria-label="Zur Startseite">Start</a></li>
+                                <li><a href="immobilien-angebote.html" aria-label="Zu unseren Immobilien">Immobilien</a>
+                                </li>
+                                <li><a href="hausverwaltung.html" aria-label="Zu unserem Service">Hausverwaltung</a>
+                                </li>
+                                <li><a href="index.html#contact" aria-label="Zur Kontaktseite">Kontakt</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-section">
+                            <h3>Schnelllinks</h3>
+                            <ul class="footer-links">
+                                <li><a href="impressum.html" aria-label="Zum Impressum">Impressum</a></li>
+                                <li><a href="datenschutz.html" aria-label="Zur Datenschutzerklärung">Datenschutz</a>
+                                </li>
+                                <li><a href="index.html#contact" aria-label="Zur Kontaktseite">Beratung</a></li>
+                                <li><a href="immobilien-angebote.html"
+                                        aria-label="Zu unseren aktuellen Angeboten">Aktuelle Angebote</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-section">
+                            <h3>Kontakt</h3>
+                            <ul class="footer-links">
+                                <li>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"
+                                        style="vertical-align: middle; margin-right: 8px;">
+                                        <path
+                                            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                                    </svg>
+                                    Bad Vilbel
+                                </li>
+                                <li>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"
+                                        style="vertical-align: middle; margin-right: 8px;">
+                                        <path
+                                            d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                                    </svg>
+                                    info@immobilien-ghumman.de
+                                </li>
+                                <li>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"
+                                        style="vertical-align: middle; margin-right: 8px;">
+                                        <path
+                                            d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                                    </svg>
+                                    +49 (0) 160 98787878
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="footer-bottom">
+                        <p>&copy; 2024 Immobilien Ghumman. Alle Rechte vorbehalten.</p>
+                        <p>Immobilienangebote | Bad Vilbel</p>
+                    </div>
+                </div>
+            </footer>
+
+            <!-- Property Details Modal -->
+            <div class="modal-overlay" id="property-modal">
+                <div class="modal-container">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="property-modal-title">Objektdetails</h2>
+                        <button class="modal-close" id="close-property-modal" aria-label="Schließen">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="modal-content property-modal-content">
+                        <div class="property-gallery">
+                            <div class="property-gallery-main">
+                                <img id="property-gallery-main" src="" alt="Objektbild" loading="lazy">
+                            </div>
+                            <div class="property-gallery-thumbs" id="property-gallery-thumbs"></div>
+                        </div>
+
+                        <div class="property-details">
+                            <div class="property-summary">
+                                <h3 id="property-summary-title">Immobilie</h3>
+                                <div class="property-summary-meta">
+                                    <span class="rent-price" id="property-rent">€ 0</span>
+                                    <span class="rent-location" id="property-location">Standort</span>
+                                </div>
+                                <p class="property-intro" id="property-intro">Beschreibung wird geladen...</p>
+                            </div>
+
+                            <div class="property-section">
+                                <h4>Objektdaten</h4>
+                                <ul class="details-list" id="property-specs">
+                                    <!-- JS will populate items here -->
+                                </ul>
+                            </div>
+
+                            <div class="property-section">
+                                <h4>Lage & Standort</h4>
+                                <p id="property-location-text">Standort-Informationen werden geladen...</p>
+                            </div>
+
+                            <div class="property-section">
+                                <h4>Ausstattung & Merkmale</h4>
+                                <ul class="details-list" id="property-notes">
+                                    <!-- JS will populate features here -->
+                                </ul>
+                            </div>
+
+                            <div class="modal-cta">
+                                <a href="#contact" class="cta-button modal-cta-btn"
+                                    onclick="document.getElementById('property-modal').classList.remove('active'); document.body.style.overflow = '';">Jetzt
+                                    anfragen</a>
+                                <a href="tel:+4961019651350" class="cta-button cta-button-secondary">📞 Anrufen</a>
+                                <a href="https://wa.me/4916098787878" target="_blank"
+                                    class="cta-button cta-button-success">💬 WhatsApp</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WhatsApp Sticky Button -->
+            <div class="whatsapp-sticky">
+                <a href="https://wa.me/4916098787878" target="_blank" title="WhatsApp Chat">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+                    </svg>
+                </a>
+            </div>
+
+            <!-- API Client for loading properties from database -->
+            <script src="js/api-client.js"></script>
+            <script src="immobilien-script.js"></script>
+            <script src="property-manager.js"></script>
+            <!-- Immobilien-Angebote Loader (Kategorisiert: Neu vs. Archiv) -->
+            <script src="js/immobilien-angebote-loader.js"></script>
+
+            <script>
+                // Enhanced Property Listing Functionality
+
+                // Filter Properties Function
+                function filterProperties() {
+                    const propertyType = document.getElementById('property-type').value;
+                    const rooms = document.getElementById('rooms').value;
+                    const price = document.getElementById('price').value;
+                    const size = document.getElementById('size').value;
+
+                    const propertyCards = document.querySelectorAll('.property-card');
+                    let visibleCount = 0;
+
+                    propertyCards.forEach(card => {
+                        let shouldShow = true;
+
+                        // Filter by property type
+                        if (propertyType && card.dataset.type !== propertyType) {
+                            shouldShow = false;
+                        }
+
+                        // Filter by rooms
+                        if (rooms && card.dataset.rooms !== rooms) {
+                            shouldShow = false;
+                        }
+
+                        // Filter by price
+                        if (price) {
+                            const cardPrice = parseInt(card.dataset.price);
+                            const maxPrice = parseInt(price);
+                            if (cardPrice > maxPrice) {
+                                shouldShow = false;
+                            }
+                        }
+
+                        // Filter by size
+                        if (size) {
+                            const cardSize = parseInt(card.dataset.size);
+                            const maxSize = parseInt(size);
+                            if (cardSize > maxSize) {
+                                shouldShow = false;
+                            }
+                        }
+
+                        // Show/hide card
+                        if (shouldShow) {
+                            card.style.display = 'block';
+                            visibleCount++;
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+
+                    // Update results count
+                    document.getElementById('results-count').textContent = `${visibleCount} Immobilien gefunden`;
+
+                    // Update active filters
+                    updateActiveFilters();
+                }
+
+                // Update Active Filters Display
+                function updateActiveFilters() {
+                    const filtersContainer = document.getElementById('active-filters');
+                    const propertyType = document.getElementById('property-type');
+                    const rooms = document.getElementById('rooms');
+                    const price = document.getElementById('price');
+                    const size = document.getElementById('size');
+
+                    let filtersHTML = '';
+
+                    if (propertyType.value) {
+                        filtersHTML += `<span class="filter-tag">${propertyType.options[propertyType.selectedIndex].text} <span class="remove" onclick="clearFilter('property-type')">×</span></span>`;
+                    }
+                    if (rooms.value) {
+                        filtersHTML += `<span class="filter-tag">${rooms.options[rooms.selectedIndex].text} <span class="remove" onclick="clearFilter('rooms')">×</span></span>`;
+                    }
+                    if (price.value) {
+                        filtersHTML += `<span class="filter-tag">Bis ${price.value}€ <span class="remove" onclick="clearFilter('price')">×</span></span>`;
+                    }
+                    if (size.value) {
+                        filtersHTML += `<span class="filter-tag">Bis ${size.value} m² <span class="remove" onclick="clearFilter('size')">×</span></span>`;
+                    }
+
+                    filtersContainer.innerHTML = filtersHTML;
+                }
+
+                // Clear Individual Filter
+                function clearFilter(filterType) {
+                    document.getElementById(filterType).value = '';
+                    filterProperties();
+                }
+
+                // Toggle View (Grid/List)
+                function toggleView(viewType) {
+                    const grid = document.getElementById('properties-grid');
+                    const gridBtn = document.querySelector('[data-view="grid"]');
+                    const listBtn = document.querySelector('[data-view="list"]');
+
+                    if (viewType === 'grid') {
+                        grid.classList.remove('list-view');
+                        grid.classList.add('grid-view');
+                        gridBtn.classList.add('active');
+                        listBtn.classList.remove('active');
+                    } else {
+                        grid.classList.remove('grid-view');
+                        grid.classList.add('list-view');
+                        listBtn.classList.add('active');
+                        gridBtn.classList.remove('active');
+                    }
+
+                    // Save preference
+                    localStorage.setItem('preferred-view', viewType);
+                }
+
+                // Sort Properties
+                function sortProperties() {
+                    const sortBy = document.getElementById('sort-by').value;
+                    const grid = document.getElementById('properties-grid');
+                    const cards = Array.from(document.querySelectorAll('.property-card'));
+
+                    cards.sort((a, b) => {
+                        switch (sortBy) {
+                            case 'price-asc':
+                                return parseInt(a.dataset.price) - parseInt(b.dataset.price);
+                            case 'price-desc':
+                                return parseInt(b.dataset.price) - parseInt(a.dataset.price);
+                            case 'size-asc':
+                                return parseInt(a.dataset.size) - parseInt(b.dataset.size);
+                            case 'size-desc':
+                                return parseInt(b.dataset.size) - parseInt(a.dataset.size);
+                            case 'newest':
+                            default:
+                                // Keep original order for newest
+                                return 0;
+                        }
+                    });
+
+                    // Re-append sorted cards
+                    cards.forEach(card => grid.appendChild(card));
+                }
+
+                // Toggle Favorite
+                function toggleFavorite(element) {
+                    element.classList.toggle('active');
+
+                    // Save to localStorage (you can expand this for persistent favorites)
+                    const propertyCard = element.closest('.property-card');
+                    const propertyTitle = propertyCard.querySelector('h4').textContent;
+
+                    let favorites = JSON.parse(localStorage.getItem('favorite-properties')) || [];
+
+                    if (element.classList.contains('active')) {
+                        if (!favorites.includes(propertyTitle)) {
+                            favorites.push(propertyTitle);
+                        }
+                    } else {
+                        favorites = favorites.filter(title => title !== propertyTitle);
+                    }
+
+                    localStorage.setItem('favorite-properties', JSON.stringify(favorites));
+                }
+
+                // Load More Properties (placeholder function)
+                function loadMoreProperties() {
+                    // This would typically make an AJAX call to load more properties
+                    // For now, we'll just show a message
+                    alert('Diese Funktion würde weitere Eigenschaften vom Server laden.');
+                }
+
+                // Open Contact Modal (placeholder)
+                function openContactModal() {
+                    // This would open a contact modal or redirect to contact form
+                    alert('Kontaktformular würde hier geöffnet werden.');
+                }
+
+                // Initialize on page load
+                document.addEventListener('DOMContentLoaded', function () {
+                    // Restore preferred view
+                    const preferredView = localStorage.getItem('preferred-view');
+                    if (preferredView) {
+                        toggleView(preferredView);
+                    }
+
+                    // Load favorite properties
+                    const favorites = JSON.parse(localStorage.getItem('favorite-properties')) || [];
+                    document.querySelectorAll('.property-card').forEach(card => {
+                        const title = card.querySelector('h4').textContent;
+                        if (favorites.includes(title)) {
+                            card.querySelector('.property-favorite').classList.add('active');
+                        }
+                    });
+
+                    // Add event listeners for filter changes
+                    const filterSelects = document.querySelectorAll('.filter-select');
+                    filterSelects.forEach(select => {
+                        select.addEventListener('change', filterProperties);
+                    });
+                });
+            </script>
+</body>
+
+</html>

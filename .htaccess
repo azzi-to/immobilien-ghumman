@@ -1,0 +1,82 @@
+# Apache .htaccess file for immobilienghumman.de
+# Redirects for specific pages
+
+# Enable RewriteEngine
+RewriteEngine On
+
+# ==================================================================
+# HTTPS ERZWINGEN - Alle HTTP-Anfragen zu HTTPS umleiten
+# ==================================================================
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Force www to non-www
+RewriteCond %{HTTP_HOST} ^www\.immobilienghumman\.de$ [NC]
+RewriteRule ^(.*)$ https://immobilienghumman.de/$1 [R=301,L]
+
+# Redirect https://immobilienghumman.de/impressum/ to homepage
+RewriteCond %{HTTP_HOST} ^immobilienghumman\.de$ [NC]
+RewriteRule ^impressum/?$ https://immobilienghumman.de/ [R=301,L]
+
+# Redirect https://immobilienghumman.de/finden-sie-uns/ to homepage
+RewriteCond %{HTTP_HOST} ^immobilienghumman\.de$ [NC]
+RewriteRule ^finden-sie-uns/?$ https://immobilienghumman.de/ [R=301,L]
+
+# Security Headers (recommended)
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options DENY
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+</IfModule>
+
+# Performance Optimization - Enable Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>
+
+# Browser Caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+    ExpiresByType text/html "access plus 5 minutes"
+    ExpiresByType application/xhtml+xml "access plus 5 minutes"
+</IfModule>
+
+# ==================================================================
+# VERZEICHNIS-BROWSING DEAKTIVIEREN
+# ==================================================================
+Options -Indexes
+
+# ==================================================================
+# SENSIBLE DATEIEN SCHÜTZEN
+# ==================================================================
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.(env|config|yml|yaml|log|sql|bak)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
