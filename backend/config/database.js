@@ -1,22 +1,42 @@
 const mysql = require('mysql2/promise');
 require('dotenv').config();
 
-// Database configuration
-const dbConfig = {
-    host: process.env.DB_HOST || 'localhost',
-    user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || '',
-    database: process.env.DB_NAME || 'immobilien_ghumman',
-    port: process.env.DB_PORT || 3306,
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0,
-    enableKeepAlive: true,
-    keepAliveInitialDelay: 0
-};
+// Parse DATABASE_URL if available (Railway provides this)
+let dbConfig;
+
+if (process.env.DATABASE_URL || process.env.MYSQL_URL) {
+    // Use DATABASE_URL or MYSQL_URL from Railway
+    const dbUrl = process.env.DATABASE_URL || process.env.MYSQL_URL;
+    dbConfig = {
+        uri: dbUrl,
+        waitForConnections: true,
+        connectionLimit: 10,
+        queueLimit: 0,
+        enableKeepAlive: true,
+        keepAliveInitialDelay: 0
+    };
+    console.log('📦 Using DATABASE_URL for connection');
+} else {
+    // Fallback to individual environment variables (local development)
+    dbConfig = {
+        host: process.env.DB_HOST || 'localhost',
+        user: process.env.DB_USER || 'root',
+        password: process.env.DB_PASSWORD || '',
+        database: process.env.DB_NAME || 'immobilien_ghumman',
+        port: process.env.DB_PORT || 3306,
+        waitForConnections: true,
+        connectionLimit: 10,
+        queueLimit: 0,
+        enableKeepAlive: true,
+        keepAliveInitialDelay: 0
+    };
+    console.log('📦 Using individual DB config for connection');
+}
 
 // Create connection pool
-const pool = mysql.createPool(dbConfig);
+const pool = dbConfig.uri 
+    ? mysql.createPool(dbConfig.uri)
+    : mysql.createPool(dbConfig);
 
 // Test connection
 async function testConnection() {
