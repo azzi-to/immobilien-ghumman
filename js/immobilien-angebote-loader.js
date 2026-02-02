@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 /**
  * Lädt ALLE Immobilien für die Angebote-Seite
  * Sortiert nach Datum: Neueste zuerst, ältere weiter unten
+ * Falls API nicht verfügbar: Fallback auf statische Daten
  */
 async function loadAllProperties() {
     const propertiesContainer = document.getElementById('properties-grid') || document.getElementById('propertiesGrid');
@@ -24,84 +25,91 @@ async function loadAllProperties() {
 
     propertiesContainer.innerHTML = '<div class="loading-message">🏠 Immobilien werden geladen...</div>';
 
+    let recent = [];
+    let archived = [];
+    let total = 0;
+
     try {
         // Check if API client is available
-        if (typeof PropertyAPI === 'undefined') {
-            console.error('PropertyAPI not available');
-            propertiesContainer.innerHTML = `
-                <div class="error-message">
-                    <p>⚠️ Verbindung zum Server konnte nicht hergestellt werden.</p>
-                </div>
-            `;
-            return;
+        if (typeof PropertyAPI !== 'undefined') {
+            const api = new PropertyAPI();
+            // Kategorisierte Immobilien laden (neu vs. archiviert)
+            const result = await api.getCategorizedProperties(14); // 14 Tage Schwelle
+            recent = result.recent || [];
+            archived = result.archived || [];
+            total = result.total || 0;
         }
-
-        const api = new PropertyAPI();
-
-        // Kategorisierte Immobilien laden (neu vs. archiviert)
-        const { recent, archived, total } = await api.getCategorizedProperties(14); // 14 Tage Schwelle
-
-        propertiesContainer.innerHTML = '';
-
-        if (total === 0) {
-            propertiesContainer.innerHTML = `
-                <div class="empty-state">
-                    <h3>🏠 Derzeit keine Immobilien verfügbar</h3>
-                    <p>Schauen Sie bald wieder vorbei oder kontaktieren Sie uns für individuelle Anfragen!</p>
-                    <a href="index.html#contact" class="cta-button" style="margin-top: 20px;">Kontakt aufnehmen</a>
-                </div>
-            `;
-            return;
-        }
-
-        // === NEUE IMMOBILIEN SEKTION ===
-        if (recent.length > 0) {
-            const newSection = document.createElement('div');
-            newSection.className = 'property-section new-properties-section';
-            newSection.innerHTML = `
-                <h3 class="section-subtitle">🆕 Neue Angebote <span class="count-badge">${recent.length}</span></h3>
-                <div class="properties-grid-inner" id="new-properties-grid"></div>
-            `;
-            propertiesContainer.appendChild(newSection);
-
-            const newGrid = document.getElementById('new-properties-grid');
-            recent.forEach(property => {
-                const propertyData = convertPropertyData(property, true);
-                const card = createAngebotePropertyCard(propertyData);
-                newGrid.appendChild(card);
-            });
-        }
-
-        // === WEITERE/ARCHIVIERTE IMMOBILIEN SEKTION ===
-        if (archived.length > 0) {
-            const archiveSection = document.createElement('div');
-            archiveSection.className = 'property-section archive-section';
-            archiveSection.innerHTML = `
-                <h3 class="section-subtitle">📁 Weitere Angebote <span class="count-badge">${archived.length}</span></h3>
-                <div class="properties-grid-inner" id="archive-properties-grid"></div>
-            `;
-            propertiesContainer.appendChild(archiveSection);
-
-            const archiveGrid = document.getElementById('archive-properties-grid');
-            archived.forEach(property => {
-                const propertyData = convertPropertyData(property, false);
-                const card = createAngebotePropertyCard(propertyData);
-                archiveGrid.appendChild(card);
-            });
-        }
-
-        console.log(`✅ Loaded ${total} properties (${recent.length} new, ${archived.length} archived)`);
-
     } catch (error) {
-        console.error('Error loading properties:', error);
+        console.warn('API error, will try static fallback:', error.message);
+    }
+
+    // Fallback auf statische Daten wenn API fehlschlägt
+    if (total === 0 && typeof STATIC_PROPERTIES !== 'undefined' && STATIC_PROPERTIES.length > 0) {
+        console.log('Using static properties as fallback');
+        const now = new Date();
+        const twoWeeksAgo = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000);
+        
+        STATIC_PROPERTIES.forEach(property => {
+            const createdAt = new Date(property.created_at);
+            if (createdAt >= twoWeeksAgo) {
+                recent.push(property);
+            } else {
+                archived.push(property);
+            }
+        });
+        total = STATIC_PROPERTIES.length;
+    }
+
+    propertiesContainer.innerHTML = '';
+
+    if (total === 0) {
         propertiesContainer.innerHTML = `
-            <div class="error-message">
-                <p>⚠️ Fehler beim Laden der Immobilien.</p>
-                <p>Bitte versuchen Sie es später erneut oder kontaktieren Sie uns.</p>
-                <a href="index.html#contact" class="cta-button" style="margin-top: 15px;">Kontakt</a>
+            <div class="empty-state">
+                <h3>🏠 Derzeit keine Immobilien verfügbar</h3>
+                <p>Schauen Sie bald wieder vorbei oder kontaktieren Sie uns für individuelle Anfragen!</p>
+                <a href="index.html#contact" class="cta-button" style="margin-top: 20px;">Kontakt aufnehmen</a>
             </div>
         `;
+        return;
     }
+
+    // === NEUE IMMOBILIEN SEKTION ===
+    if (recent.length > 0) {
+        const newSection = document.createElement('div');
+        newSection.className = 'property-section new-properties-section';
+        newSection.innerHTML = `
+            <h3 class="section-subtitle">🆕 Neue Angebote <span class="count-badge">${recent.length}</span></h3>
+            <div class="properties-grid-inner" id="new-properties-grid"></div>
+        `;
+        propertiesContainer.appendChild(newSection);
+
+        const newGrid = document.getElementById('new-properties-grid');
+        recent.forEach(property => {
+            const propertyData = convertPropertyData(property, true);
+            const card = createAngebotePropertyCard(propertyData);
+            newGrid.appendChild(card);
+        });
+    }
+
+    // === WEITERE/ARCHIVIERTE IMMOBILIEN SEKTION ===
+    if (archived.length > 0) {
+        const archiveSection = document.createElement('div');
+        archiveSection.className = 'property-section archive-section';
+        archiveSection.innerHTML = `
+            <h3 class="section-subtitle">📁 Weitere Angebote <span class="count-badge">${archived.length}</span></h3>
+            <div class="properties-grid-inner" id="archive-properties-grid"></div>
+        `;
+        propertiesContainer.appendChild(archiveSection);
+
+        const archiveGrid = document.getElementById('archive-properties-grid');
+        archived.forEach(property => {
+            const propertyData = convertPropertyData(property, false);
+            const card = createAngebotePropertyCard(propertyData);
+            archiveGrid.appendChild(card);
+        });
+    }
+
+    console.log(`✅ Loaded ${total} properties (${recent.length} new, ${archived.length} archived)`);
 }
 
 /**

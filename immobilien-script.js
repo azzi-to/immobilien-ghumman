@@ -263,6 +263,7 @@ function loadMoreProperties() {
 /**
  * Load Properties from Database - NUR AKTUELLE (neueste 3 für Startseite)
  * Ältere Immobilien werden auf der Angebote-Seite angezeigt
+ * Falls API nicht verfügbar: Fallback auf statische Daten
  */
 async function loadSampleProperties() {
     const propertiesGrid = document.getElementById('propertiesGrid');
@@ -271,28 +272,34 @@ async function loadSampleProperties() {
     // Show loading state
     propertiesGrid.innerHTML = '<div class="loading-message">Immobilien werden geladen...</div>';
 
+    let properties = [];
+
     try {
         // Check if API client is available
-        if (typeof PropertyAPI === 'undefined') {
-            console.warn('PropertyAPI not available');
-            showEmptyPropertiesState(propertiesGrid, 'API nicht verfügbar');
-            return;
+        if (typeof PropertyAPI !== 'undefined') {
+            const api = new PropertyAPI();
+
+            // ⬇️ NUR die neuesten 3 Immobilien für die Startseite laden
+            const response = await api.getRecentProperties(3);
+            properties = response.properties || [];
         }
+    } catch (error) {
+        console.warn('API error, using static fallback:', error.message);
+    }
 
-        const api = new PropertyAPI();
+    // Fallback auf statische Daten wenn API fehlschlägt
+    if (properties.length === 0 && typeof STATIC_PROPERTIES !== 'undefined') {
+        console.log('Using static properties as fallback');
+        properties = STATIC_PROPERTIES.slice(0, 3);
+    }
 
-        // ⬇️ NUR die neuesten 3 Immobilien für die Startseite laden
-        const response = await api.getRecentProperties(3);
+    // Clear loading message
+    propertiesGrid.innerHTML = '';
 
-        const properties = response.properties || [];
-
-        // Clear loading message
-        propertiesGrid.innerHTML = '';
-
-        if (properties.length === 0) {
-            console.log('No properties found in database');
-            showEmptyPropertiesState(propertiesGrid, 'Keine Immobilien vorhanden');
-            return;
+    if (properties.length === 0) {
+        console.log('No properties found');
+        showEmptyPropertiesState(propertiesGrid, 'Keine Immobilien vorhanden');
+        return;
         }
 
         // Create and append property cards with "NEU" badge for recent properties
@@ -326,12 +333,7 @@ async function loadSampleProperties() {
             propertiesGrid.appendChild(propertyCard);
         });
 
-        console.log(`Loaded ${properties.length} recent properties from database`);
-
-    } catch (error) {
-        console.error('Error loading properties:', error);
-        showEmptyPropertiesState(propertiesGrid, 'Fehler beim Laden');
-    }
+        console.log(`Loaded ${properties.length} properties`);
 }
 
 /**

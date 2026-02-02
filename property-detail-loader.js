@@ -1,6 +1,7 @@
 /**
  * Property Detail Page Loader
  * Loads specific property from database and displays it
+ * Falls API nicht verfügbar: Fallback auf statische Daten
  */
 
 // Gallery state
@@ -20,33 +21,34 @@ async function loadPropertyDetails() {
         return;
     }
     
+    let property = null;
+    
     try {
         // Show loading state
         showLoading();
         
         // Check if API client is available
-        if (typeof PropertyAPI === 'undefined') {
-            showError('API nicht verfügbar. Bitte stellen Sie sicher, dass der Backend-Server läuft.');
-            return;
+        if (typeof PropertyAPI !== 'undefined') {
+            const api = new PropertyAPI();
+            property = await api.getProperty(propertyId);
         }
-        
-        const api = new PropertyAPI();
-        
-        // Fetch property details
-        const property = await api.getProperty(propertyId);
-        
-        if (!property) {
-            showError('Immobilie nicht gefunden');
-            return;
-        }
-        
-        // Display property details
-        displayProperty(property);
-        
     } catch (error) {
-        console.error('Error loading property:', error);
-        showError('Fehler beim Laden der Immobilie: ' + error.message);
+        console.warn('API error, trying static fallback:', error.message);
     }
+    
+    // Fallback auf statische Daten
+    if (!property && typeof getStaticPropertyById !== 'undefined') {
+        console.log('Using static property data for ID:', propertyId);
+        property = getStaticPropertyById(propertyId);
+    }
+    
+    if (!property) {
+        showError('Immobilie nicht gefunden');
+        return;
+    }
+    
+    // Display property details
+    displayProperty(property);
 }
 
 /**
