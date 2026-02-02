@@ -5,11 +5,11 @@
  * Kann später durch Sentry oder ähnliches ersetzt werden
  */
 
-(function() {
+(function () {
     'use strict';
 
     const IS_PRODUCTION = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
-    const API_BASE = IS_PRODUCTION 
+    const API_BASE = IS_PRODUCTION
         ? 'https://immobilien-ghumman-production.up.railway.app/api'
         : 'http://localhost:3000/api';
 
@@ -92,7 +92,7 @@
     /**
      * Global Error Handler
      */
-    window.onerror = function(message, source, lineno, colno, error) {
+    window.onerror = function (message, source, lineno, colno, error) {
         trackError(error || new Error(message), {
             source: source,
             line: lineno,
@@ -104,7 +104,7 @@
     /**
      * Unhandled Promise Rejection Handler
      */
-    window.addEventListener('unhandledrejection', function(event) {
+    window.addEventListener('unhandledrejection', function (event) {
         trackError(event.reason || new Error('Unhandled Promise Rejection'), {
             type: 'unhandledrejection'
         });
@@ -114,10 +114,10 @@
      * Network Error Tracking (optional)
      */
     const originalFetch = window.fetch;
-    window.fetch = async function(...args) {
+    window.fetch = async function (...args) {
         try {
             const response = await originalFetch.apply(this, args);
-            
+
             // Nur Server-Errors tracken (5xx)
             if (response.status >= 500) {
                 trackError(new Error(`Server Error: ${response.status}`), {
@@ -125,7 +125,7 @@
                     status: response.status
                 });
             }
-            
+
             return response;
         } catch (error) {
             // Network-Fehler tracken
@@ -149,7 +149,7 @@
         /**
          * Info-Event tracken (kein Error)
          */
-        info: function(message, context = {}) {
+        info: function (message, context = {}) {
             if (!IS_PRODUCTION) {
                 console.info('📝 Info:', message, context);
             }
@@ -158,14 +158,14 @@
         /**
          * Warning tracken
          */
-        warn: function(message, context = {}) {
+        warn: function (message, context = {}) {
             trackError(new Error(message), { ...context, level: 'warning' });
         },
 
         /**
          * Queue leeren und senden
          */
-        flush: function() {
+        flush: function () {
             const batch = errorQueue.splice(0);
             sendToBackend(batch);
         }

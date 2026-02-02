@@ -7,8 +7,250 @@
     <title>Datenschutzerklärung - Immobilien Ghumman</title>
     <meta name="description"
         content="Datenschutzerklärung von Immobilien Ghumman - Informationen zum Umgang mit Ihren persönlichen Daten gemäß DSGVO.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="https://res.cloudinary.com/dlpdbr0ey/image/upload/v1755051245/7ae1aa7d-b239-4ee5-8090-6b8339e15d4e-removebg-preview_m6fipk.png">
+    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="immobilien-styles.css">
+    
+    <style>
+        .legal-page {
+            padding: 120px 0 80px 0;
+            background: linear-gradient(rgba(248, 250, 252, 0.97), rgba(241, 245, 249, 0.95));
+            min-height: 100vh;
+        }
+
+        .legal-container {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            padding: 60px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            max-width: 900px;
+            margin: 0 auto;
+            border: 1px solid rgba(51, 102, 153, 0.1);
+        }
+
+        .legal-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .legal-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 15px;
+        }
+
+        .legal-header .subtitle {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        .legal-header .last-updated {
+            display: inline-block;
+            background: #f1f5f9;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-top: 15px;
+        }
+
+        .legal-section {
+            margin-bottom: 40px;
+        }
+
+        .legal-section h2 {
+            color: #336699;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .legal-section h2 .section-number {
+            background: linear-gradient(135deg, #336699, #2a5580);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .legal-section h3 {
+            color: #1e293b;
+            font-size: 1.15rem;
+            margin: 25px 0 12px 0;
+        }
+
+        .legal-section p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #475569;
+        }
+
+        .legal-section ul {
+            margin: 15px 0 15px 25px;
+            color: #475569;
+        }
+
+        .legal-section ul li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #336699;
+        }
+
+        .contact-box p {
+            margin-bottom: 8px;
+        }
+
+        .highlight-box {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .highlight-box p {
+            color: #92400e;
+            margin: 0;
+        }
+
+        .rights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .right-item {
+            background: #f8fafc;
+            padding: 15px 20px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .right-item strong {
+            color: #336699;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .right-item span {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        .cookie-settings-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #336699;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 15px;
+            cursor: pointer;
+            border: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .cookie-settings-btn:hover {
+            background: #2a5580;
+            transform: translateY(-2px);
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #f1f5f9;
+        }
+
+        .toc {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+        }
+
+        .toc h3 {
+            color: #1e293b;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            columns: 2;
+            column-gap: 30px;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+            break-inside: avoid;
+        }
+
+        .toc a {
+            color: #336699;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .legal-container {
+                padding: 30px 20px;
+                margin: 0 15px;
+                border-radius: 15px;
+            }
+
+            .legal-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .legal-section h2 {
+                font-size: 1.25rem;
+            }
+
+            .rights-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .toc ul {
+                columns: 1;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -17,8 +259,10 @@
         <nav class="navbar">
             <div class="nav-container">
                 <div class="nav-logo">
-                    <img src="https://res.cloudinary.com/dlpdbr0ey/image/upload/v1755051245/7ae1aa7d-b239-4ee5-8090-6b8339e15d4e-removebg-preview_m6fipk.png"
-                        alt="Immobilien Ghumman Logo" class="logo">
+                    <a href="index.html">
+                        <img src="https://res.cloudinary.com/dlpdbr0ey/image/upload/v1755051245/7ae1aa7d-b239-4ee5-8090-6b8339e15d4e-removebg-preview_m6fipk.png"
+                            alt="Immobilien Ghumman Logo" class="logo">
+                    </a>
                 </div>
 
                 <!-- Desktop Navigation -->
@@ -29,28 +273,23 @@
                     <li><a href="finanzierung.html" class="nav-link">Finanzierung</a></li>
                     <li><a href="index.html#about" class="nav-link">Über uns</a></li>
                     <li><a href="index.html#contact" class="nav-link">Kontakt</a></li>
-                    <li><a href="index.html#faq" class="nav-link">FAQ</a></li>
                 </ul>
 
                 <!-- Contact Icons -->
                 <div class="nav-contacts">
-                    <a href="https://wa.me/4916098787878" class="contact-icon whatsapp" target="_blank"
-                        title="WhatsApp">
+                    <a href="https://wa.me/4916098787878" class="contact-icon whatsapp" target="_blank" title="WhatsApp">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
                         </svg>
                     </a>
                     <a href="mailto:info@immobilien-ghumman.de" class="contact-icon email" title="E-Mail">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                         </svg>
                     </a>
                     <a href="tel:+4916098787878" class="contact-icon phone" title="Telefon">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                         </svg>
                     </a>
                 </div>
@@ -65,112 +304,305 @@
         </nav>
     </header>
 
-    <main class="legal-page"
-        style="background: linear-gradient(rgba(248, 250, 252, 0.95), rgba(241, 245, 249, 0.9)), url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1920&h=800&fit=crop&q=80') center/cover; padding: 80px 0; min-height: 100vh;">
-        <div class="container"
-            style="background: rgba(255,255,255,0.95); border-radius: 20px; padding: 60px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3);">
-            <article class="legal-content">
-                <div style="text-align: center; margin-bottom: 50px;">
-                    <h1 style="font-size: 3rem; font-weight: 700; color: #1e293b; margin-bottom: 15px;">
-                        Datenschutzerklärung / Privacy Policy</h1>
-                    <div
-                        style="width: 120px; height: 4px; background: linear-gradient(90deg, #059669, #10b981); margin: 0 auto; border-radius: 2px;">
-                    </div>
+    <main class="legal-page">
+        <div class="container">
+            <div class="legal-container">
+                
+                <!-- Header -->
+                <div class="legal-header">
+                    <h1>Datenschutzerklärung</h1>
+                    <p class="subtitle">Informationen zum Umgang mit Ihren personenbezogenen Daten gemäß DSGVO</p>
+                    <span class="last-updated">Stand: Februar 2026</span>
                 </div>
 
-                <section class="legal-section">
-                    <h2>Datenschutzerklärung</h2>
+                <!-- Inhaltsverzeichnis -->
+                <div class="toc">
+                    <h3>📋 Inhaltsverzeichnis</h3>
+                    <ul>
+                        <li><a href="#verantwortlicher">1. Verantwortlicher</a></li>
+                        <li><a href="#grundsaetze">2. Grundsätze der Datenverarbeitung</a></li>
+                        <li><a href="#erhebung">3. Erhebung personenbezogener Daten</a></li>
+                        <li><a href="#cookies">4. Cookies und Tracking</a></li>
+                        <li><a href="#analytics">5. Google Analytics</a></li>
+                        <li><a href="#kontaktformular">6. Kontaktformular</a></li>
+                        <li><a href="#cloudinary">7. Cloudinary (Bildhosting)</a></li>
+                        <li><a href="#ssl">8. SSL-Verschlüsselung</a></li>
+                        <li><a href="#rechte">9. Ihre Rechte als Betroffener</a></li>
+                        <li><a href="#speicherdauer">10. Speicherdauer</a></li>
+                        <li><a href="#sicherheit">11. Datensicherheit</a></li>
+                        <li><a href="#aenderungen">12. Änderungen</a></li>
+                    </ul>
+                </div>
 
-                    <p><strong>Verantwortlicher für die Datenverarbeitung ist:</strong></p>
-
-                    <div class="contact-details">
-                        <p>
-                            <strong>Immobilien Ghumman</strong><br>
-                            Nasir Ghumman<br>
-                            Homburger Str. 100<br>
-                            61118 Bad Vilbel<br>
-                            Deutschland<br>
-                            E-Mail: info@immobilienghumman.de<br>
-                            Telefon: 0160 98787878
+                <!-- 1. Verantwortlicher -->
+                <section class="legal-section" id="verantwortlicher">
+                    <h2><span class="section-number">1</span> Verantwortlicher</h2>
+                    <p>Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) und anderer nationaler Datenschutzgesetze sowie sonstiger datenschutzrechtlicher Bestimmungen ist:</p>
+                    
+                    <div class="contact-box">
+                        <p><strong>Immobilien Ghumman</strong></p>
+                        <p>Inhaber: Nasir Ghumman</p>
+                        <p>Homburger Str. 100</p>
+                        <p>61118 Bad Vilbel</p>
+                        <p>Deutschland</p>
+                        <p style="margin-top: 15px;">
+                            <strong>Telefon:</strong> +49 (0) 160 98787878<br>
+                            <strong>E-Mail:</strong> <a href="mailto:info@immobilien-ghumman.de" style="color: #336699;">info@immobilien-ghumman.de</a><br>
+                            <strong>Website:</strong> <a href="https://immobilienghumman.de" style="color: #336699;">www.immobilienghumman.de</a>
                         </p>
                     </div>
-
-                    <h3>Erhebung und Verarbeitung von Daten</h3>
-                    <p>Wir erheben und verarbeiten personenbezogene Daten, die Sie uns über das Kontaktformular oder bei
-                        der Anmeldung zum Newsletter zur Verfügung stellen (Name, E-Mail-Adresse). Diese Daten werden
-                        ausschließlich zur Bearbeitung Ihrer Anfrage bzw. zum Versand des Newsletters verwendet.</p>
-
-                    <h3>Cookies und Google Analytics</h3>
-                    <p>Unsere Website verwendet technisch notwendige Cookies, um die Funktionalität zu gewährleisten.
-                        Darüber hinaus nutzen wir Google Analytics, um die Websitenutzung zu analysieren und unser
-                        Angebot zu verbessern. Google Analytics wird nur mit Ihrer ausdrücklichen Zustimmung aktiviert.
-                        Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO.</p>
-
-                    <h3>Zweck und Rechtsgrundlage der Datenverarbeitung</h3>
-                    <p>Die Verarbeitung Ihrer Daten erfolgt zur Erfüllung unserer vertraglichen Pflichten und zur
-                        Wahrung unserer berechtigten Interessen an einer ansprechenden Darstellung unserer
-                        Online-Angebote. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b und f DSGVO.</p>
-
-                    <h3>Speicherdauer</h3>
-                    <p>Ihre Daten werden gelöscht, sobald sie für die Erreichung des Zwecks ihrer Erhebung nicht mehr
-                        erforderlich sind und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
-
-                    <h3>Ihre Rechte als Betroffener</h3>
-                    <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung,
-                        Datenübertragbarkeit und Widerspruch bezüglich Ihrer personenbezogenen Daten.</p>
-
-                    <h3>Keine Datenübermittlung in Drittländer</h3>
-                    <p>Eine Übermittlung Ihrer Daten an Drittländer außerhalb der EU findet nicht statt.</p>
                 </section>
 
-                <section class="legal-section">
-                    <h2>Privacy Policy</h2>
+                <!-- 2. Grundsätze -->
+                <section class="legal-section" id="grundsaetze">
+                    <h2><span class="section-number">2</span> Grundsätze der Datenverarbeitung</h2>
+                    <p>Der Schutz Ihrer persönlichen Daten ist uns ein wichtiges Anliegen. Wir verarbeiten Ihre personenbezogenen Daten im Einklang mit den geltenden Datenschutzgesetzen, insbesondere der EU-Datenschutz-Grundverordnung (DSGVO) und dem Bundesdatenschutzgesetz (BDSG).</p>
+                    
+                    <p>Wir halten uns an folgende Grundsätze:</p>
+                    <ul>
+                        <li><strong>Rechtmäßigkeit:</strong> Wir verarbeiten Daten nur auf Grundlage einer gesetzlichen Erlaubnis oder Ihrer Einwilligung.</li>
+                        <li><strong>Zweckbindung:</strong> Daten werden nur für festgelegte, eindeutige und legitime Zwecke erhoben.</li>
+                        <li><strong>Datenminimierung:</strong> Wir erheben nur die Daten, die für den jeweiligen Zweck erforderlich sind.</li>
+                        <li><strong>Richtigkeit:</strong> Wir bemühen uns, Ihre Daten aktuell und korrekt zu halten.</li>
+                        <li><strong>Speicherbegrenzung:</strong> Daten werden nur so lange gespeichert, wie es für den Zweck erforderlich ist.</li>
+                        <li><strong>Integrität und Vertraulichkeit:</strong> Wir schützen Ihre Daten durch angemessene technische und organisatorische Maßnahmen.</li>
+                    </ul>
+                </section>
 
-                    <p><strong>The controller for data processing is:</strong></p>
+                <!-- 3. Erhebung -->
+                <section class="legal-section" id="erhebung">
+                    <h2><span class="section-number">3</span> Erhebung und Speicherung personenbezogener Daten</h2>
+                    
+                    <h3>3.1 Beim Besuch unserer Website</h3>
+                    <p>Beim Aufrufen unserer Website werden durch den auf Ihrem Endgerät zum Einsatz kommenden Browser automatisch Informationen an den Server unserer Website gesendet. Diese Informationen werden temporär in einem sog. Logfile gespeichert:</p>
+                    <ul>
+                        <li>IP-Adresse des anfragenden Rechners (anonymisiert)</li>
+                        <li>Datum und Uhrzeit des Zugriffs</li>
+                        <li>Name und URL der abgerufenen Datei</li>
+                        <li>Website, von der aus der Zugriff erfolgt (Referrer-URL)</li>
+                        <li>Verwendeter Browser und ggf. das Betriebssystem Ihres Rechners</li>
+                        <li>Name Ihres Access-Providers</li>
+                    </ul>
+                    <p>Die genannten Daten werden durch uns zu folgenden Zwecken verarbeitet:</p>
+                    <ul>
+                        <li>Gewährleistung eines reibungslosen Verbindungsaufbaus der Website</li>
+                        <li>Gewährleistung einer komfortablen Nutzung unserer Website</li>
+                        <li>Auswertung der Systemsicherheit und -stabilität</li>
+                        <li>Zu weiteren administrativen Zwecken</li>
+                    </ul>
+                    <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse)</p>
 
-                    <div class="contact-details">
-                        <p>
-                            <strong>Immobilien Ghumman</strong><br>
-                            Nasir Ghumman<br>
-                            Homburger Str. 100<br>
-                            61118 Bad Vilbel<br>
-                            Germany<br>
-                            Email: info@immobilienghumman.de<br>
-                            Phone: 0160 98787878
-                        </p>
+                    <h3>3.2 Bei Nutzung unserer Dienste</h3>
+                    <p>Wenn Sie unsere Dienstleistungen in Anspruch nehmen möchten (z.B. Immobilienanfragen, Beratungstermine, Hausverwaltungsanfragen), erheben wir folgende Daten:</p>
+                    <ul>
+                        <li>Vor- und Nachname</li>
+                        <li>E-Mail-Adresse</li>
+                        <li>Telefonnummer</li>
+                        <li>Anschrift (bei Bedarf)</li>
+                        <li>Inhalt Ihrer Anfrage</li>
+                        <li>Ggf. Informationen zu Ihrer Immobilie (bei Hausverwaltungsanfragen)</li>
+                    </ul>
+                    <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung) oder Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</p>
+                </section>
+
+                <!-- 4. Cookies -->
+                <section class="legal-section" id="cookies">
+                    <h2><span class="section-number">4</span> Cookies und Tracking</h2>
+                    <p>Unsere Website verwendet Cookies. Cookies sind kleine Textdateien, die auf Ihrem Endgerät gespeichert werden und die Ihr Browser speichert.</p>
+                    
+                    <h3>4.1 Technisch notwendige Cookies</h3>
+                    <p>Diese Cookies sind für den Betrieb der Website erforderlich und können nicht deaktiviert werden. Sie speichern keine persönlich identifizierbaren Informationen.</p>
+                    <ul>
+                        <li><strong>cookie_consent:</strong> Speichert Ihre Cookie-Präferenzen (1 Jahr)</li>
+                        <li><strong>Session-Cookies:</strong> Werden nach Schließen des Browsers gelöscht</li>
+                    </ul>
+                    <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse)</p>
+
+                    <h3>4.2 Analyse-Cookies (optional)</h3>
+                    <p>Diese Cookies helfen uns zu verstehen, wie Besucher mit unserer Website interagieren. Alle Daten werden anonymisiert erfasst. Diese Cookies werden nur mit Ihrer ausdrücklichen Einwilligung gesetzt.</p>
+                    <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</p>
+
+                    <h3>4.3 Cookie-Einstellungen ändern</h3>
+                    <p>Sie können Ihre Cookie-Einstellungen jederzeit ändern:</p>
+                    <button type="button" class="cookie-settings-btn" onclick="if(typeof CookieConsent !== 'undefined') CookieConsent.reset(); else alert('Cookie-Einstellungen werden beim nächsten Seitenaufruf angezeigt.');">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.14 12.94c.04-.31.06-.63.06-.94 0-.31-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+                        </svg>
+                        Cookie-Einstellungen öffnen
+                    </button>
+                </section>
+
+                <!-- 5. Google Analytics -->
+                <section class="legal-section" id="analytics">
+                    <h2><span class="section-number">5</span> Google Analytics</h2>
+                    <p>Diese Website nutzt Google Analytics, einen Webanalysedienst der Google Ireland Limited („Google"), Gordon House, Barrow Street, Dublin 4, Irland.</p>
+                    
+                    <p>Google Analytics verwendet Cookies, die eine Analyse Ihrer Benutzung der Website ermöglichen. Die durch das Cookie erzeugten Informationen werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert.</p>
+
+                    <h3>IP-Anonymisierung</h3>
+                    <p>Wir haben auf dieser Website die Funktion IP-Anonymisierung aktiviert. Dadurch wird Ihre IP-Adresse von Google innerhalb von Mitgliedstaaten der Europäischen Union oder in anderen Vertragsstaaten des Abkommens über den Europäischen Wirtschaftsraum vor der Übermittlung in die USA gekürzt.</p>
+
+                    <h3>Einwilligung erforderlich</h3>
+                    <p>Google Analytics wird nur aktiviert, wenn Sie dem über unser Cookie-Banner ausdrücklich zustimmen. Ohne Ihre Einwilligung werden keine Analyse-Daten erhoben.</p>
+
+                    <h3>Widerspruch / Opt-Out</h3>
+                    <p>Sie können die Speicherung der Cookies durch eine entsprechende Einstellung Ihrer Browser-Software verhindern. Sie können darüber hinaus die Erfassung der durch das Cookie erzeugten Daten durch Änderung Ihrer Cookie-Einstellungen auf dieser Website verhindern.</p>
+
+                    <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</p>
+                    <p><strong>Mehr Informationen:</strong> <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color: #336699;">Google Datenschutzerklärung</a></p>
+                </section>
+
+                <!-- 6. Kontaktformular -->
+                <section class="legal-section" id="kontaktformular">
+                    <h2><span class="section-number">6</span> Kontaktformular und E-Mail-Kontakt</h2>
+                    <p>Wenn Sie uns per Kontaktformular oder E-Mail kontaktieren, werden Ihre Angaben einschließlich der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert.</p>
+                    
+                    <p>Folgende Daten werden verarbeitet:</p>
+                    <ul>
+                        <li>Name</li>
+                        <li>E-Mail-Adresse</li>
+                        <li>Telefonnummer (falls angegeben)</li>
+                        <li>Nachrichteninhalt</li>
+                        <li>Zeitpunkt der Anfrage</li>
+                        <li>Bei Immobilienanfragen: Interesse an bestimmten Objekten</li>
+                    </ul>
+
+                    <p>Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.</p>
+                    
+                    <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen) und Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Bearbeitung von Kundenanfragen)</p>
+                    
+                    <p><strong>Speicherdauer:</strong> Ihre Anfragen werden nach abschließender Bearbeitung gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
+                </section>
+
+                <!-- 7. Cloudinary -->
+                <section class="legal-section" id="cloudinary">
+                    <h2><span class="section-number">7</span> Cloudinary (Bildhosting)</h2>
+                    <p>Wir nutzen den Dienst Cloudinary für das Hosting und die Bereitstellung von Bildern auf unserer Website, insbesondere für Immobilienfotos und Unternehmensbilder.</p>
+                    
+                    <div class="contact-box">
+                        <p><strong>Anbieter:</strong> Cloudinary Ltd.</p>
+                        <p>111 W Evelyn Ave, Suite 206</p>
+                        <p>Sunnyvale, CA 94086, USA</p>
                     </div>
 
-                    <h3>Collection and Processing of Data</h3>
-                    <p>We collect and process personal data that you provide to us via the contact form or when
-                        subscribing to the newsletter (name, email address). This data is used exclusively to process
-                        your request or to send the newsletter.</p>
-
-                    <h3>Cookies and Google Analytics</h3>
-                    <p>Our website uses technically necessary cookies to ensure functionality. In addition, we use
-                        Google Analytics to analyze website usage and improve our services. Google Analytics is only
-                        activated with your express consent. The legal basis is Art. 6 (1) (a) GDPR.</p>
-
-                    <h3>Purpose and Legal Basis of Data Processing</h3>
-                    <p>Your data is processed to fulfill our contractual obligations and to protect our legitimate
-                        interests in an appealing presentation of our online services. The legal basis is Art. 6 (1) (b)
-                        and (f) GDPR.</p>
-
-                    <h3>Data Retention</h3>
-                    <p>Your data will be deleted as soon as it is no longer required for the purpose for which it was
-                        collected and there are no statutory retention obligations.</p>
-
-                    <h3>Your Rights as a Data Subject</h3>
-                    <p>You have the right to access, rectify, delete, restrict the processing of, and object to the
-                        processing of your personal data, as well as the right to data portability.</p>
-
-                    <h3>No Data Transfer to Third Countries</h3>
-                    <p>Your data will not be transferred to third countries outside the EU.</p>
+                    <p>Beim Laden von Bildern wird eine Verbindung zu den Servern von Cloudinary hergestellt. Dabei wird Ihre IP-Adresse übertragen. Cloudinary ist nach dem EU-US Data Privacy Framework zertifiziert, was ein angemessenes Datenschutzniveau gewährleistet.</p>
+                    
+                    <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer ansprechenden Darstellung unserer Website und schnellen Ladezeiten)</p>
+                    <p><strong>Mehr Informationen:</strong> <a href="https://cloudinary.com/privacy" target="_blank" rel="noopener" style="color: #336699;">Cloudinary Datenschutzerklärung</a></p>
                 </section>
 
+                <!-- 8. SSL -->
+                <section class="legal-section" id="ssl">
+                    <h2><span class="section-number">8</span> SSL-/TLS-Verschlüsselung</h2>
+                    <p>Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte, wie zum Beispiel Anfragen, die Sie an uns als Seitenbetreiber senden, eine SSL-bzw. TLS-Verschlüsselung.</p>
+                    
+                    <p>Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://" auf „https://" wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.</p>
+                    
+                    <p>Wenn die SSL- bzw. TLS-Verschlüsselung aktiviert ist, können die Daten, die Sie an uns übermitteln, nicht von Dritten mitgelesen werden.</p>
+                </section>
+
+                <!-- 9. Ihre Rechte -->
+                <section class="legal-section" id="rechte">
+                    <h2><span class="section-number">9</span> Ihre Rechte als Betroffener</h2>
+                    <p>Sie haben gegenüber uns folgende Rechte hinsichtlich der Sie betreffenden personenbezogenen Daten:</p>
+                    
+                    <div class="rights-grid">
+                        <div class="right-item">
+                            <strong>Auskunftsrecht (Art. 15 DSGVO)</strong>
+                            <span>Sie können Auskunft über Ihre von uns verarbeiteten Daten verlangen.</span>
+                        </div>
+                        <div class="right-item">
+                            <strong>Berichtigungsrecht (Art. 16 DSGVO)</strong>
+                            <span>Sie können die Berichtigung unrichtiger Daten verlangen.</span>
+                        </div>
+                        <div class="right-item">
+                            <strong>Löschungsrecht (Art. 17 DSGVO)</strong>
+                            <span>Sie können die Löschung Ihrer Daten verlangen („Recht auf Vergessenwerden").</span>
+                        </div>
+                        <div class="right-item">
+                            <strong>Einschränkung (Art. 18 DSGVO)</strong>
+                            <span>Sie können die Einschränkung der Verarbeitung verlangen.</span>
+                        </div>
+                        <div class="right-item">
+                            <strong>Datenübertragbarkeit (Art. 20 DSGVO)</strong>
+                            <span>Sie können Ihre Daten in einem gängigen, maschinenlesbaren Format erhalten.</span>
+                        </div>
+                        <div class="right-item">
+                            <strong>Widerspruchsrecht (Art. 21 DSGVO)</strong>
+                            <span>Sie können der Verarbeitung jederzeit widersprechen.</span>
+                        </div>
+                    </div>
+
+                    <h3>Widerruf Ihrer Einwilligung</h3>
+                    <p>Soweit die Verarbeitung auf Ihrer Einwilligung beruht, haben Sie das Recht, diese jederzeit zu widerrufen. Die Rechtmäßigkeit der aufgrund der Einwilligung bis zum Widerruf erfolgten Verarbeitung wird dadurch nicht berührt. Zur Ausübung des Widerrufsrechts können Sie uns jederzeit kontaktieren.</p>
+
+                    <h3>Beschwerderecht bei der Aufsichtsbehörde</h3>
+                    <p>Unbeschadet eines anderweitigen verwaltungsrechtlichen oder gerichtlichen Rechtsbehelfs steht Ihnen das Recht auf Beschwerde bei einer Aufsichtsbehörde zu, insbesondere in dem Mitgliedstaat Ihres Aufenthaltsorts, Ihres Arbeitsplatzes oder des Orts des mutmaßlichen Verstoßes.</p>
+                    <div class="contact-box">
+                        <p><strong>Zuständige Aufsichtsbehörde:</strong></p>
+                        <p>Der Hessische Beauftragte für Datenschutz und Informationsfreiheit</p>
+                        <p>Postfach 3163, 65021 Wiesbaden</p>
+                        <p>Telefon: +49 611 1408-0</p>
+                        <p>E-Mail: poststelle@datenschutz.hessen.de</p>
+                        <p>Website: <a href="https://datenschutz.hessen.de" target="_blank" rel="noopener" style="color: #336699;">datenschutz.hessen.de</a></p>
+                    </div>
+                </section>
+
+                <!-- 10. Speicherdauer -->
+                <section class="legal-section" id="speicherdauer">
+                    <h2><span class="section-number">10</span> Speicherdauer</h2>
+                    <p>Wir speichern Ihre personenbezogenen Daten nur so lange, wie es für die Erfüllung der Zwecke erforderlich ist, für die sie erhoben wurden, oder wie es gesetzlich vorgeschrieben ist.</p>
+                    
+                    <ul>
+                        <li><strong>Kontaktanfragen:</strong> Bis zur vollständigen Bearbeitung, maximal 2 Jahre</li>
+                        <li><strong>Vertragsdaten:</strong> 10 Jahre gemäß § 257 HGB (handelsrechtliche Aufbewahrungspflicht)</li>
+                        <li><strong>Rechnungsdaten:</strong> 10 Jahre gemäß § 147 AO (steuerrechtliche Aufbewahrungspflicht)</li>
+                        <li><strong>Server-Logfiles:</strong> 7 Tage</li>
+                        <li><strong>Cookie-Einwilligung:</strong> 1 Jahr</li>
+                        <li><strong>Bewerberdaten:</strong> 6 Monate nach Abschluss des Bewerbungsverfahrens (sofern zutreffend)</li>
+                    </ul>
+
+                    <p>Nach Ablauf der jeweiligen Frist werden die entsprechenden Daten routinemäßig gelöscht.</p>
+                </section>
+
+                <!-- 11. Datensicherheit -->
+                <section class="legal-section" id="sicherheit">
+                    <h2><span class="section-number">11</span> Datensicherheit</h2>
+                    <p>Wir verwenden innerhalb des Website-Besuchs das verbreitete SSL-Verfahren (Secure Socket Layer) in Verbindung mit der jeweils höchsten Verschlüsselungsstufe, die von Ihrem Browser unterstützt wird.</p>
+                    
+                    <p>Wir bedienen uns geeigneter technischer und organisatorischer Sicherheitsmaßnahmen, um Ihre Daten gegen zufällige oder vorsätzliche Manipulationen, teilweisen oder vollständigen Verlust, Zerstörung oder gegen den unbefugten Zugriff Dritter zu schützen. Unsere Sicherheitsmaßnahmen werden entsprechend der technologischen Entwicklung fortlaufend verbessert.</p>
+
+                    <p>Zu unseren Sicherheitsmaßnahmen gehören:</p>
+                    <ul>
+                        <li>Verschlüsselung Ihrer Daten bei der Übertragung (SSL/TLS)</li>
+                        <li>Sichere Server-Infrastruktur</li>
+                        <li>Regelmäßige Sicherheitsupdates</li>
+                        <li>Zugriffsbeschränkungen auf personenbezogene Daten</li>
+                        <li>Regelmäßige Überprüfung unserer Sicherheitsmaßnahmen</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <p><strong>🔒 Hinweis:</strong> Die Datenübertragung im Internet kann Sicherheitslücken aufweisen. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich. Wir empfehlen Ihnen, vertrauliche Informationen nicht unverschlüsselt per E-Mail zu versenden.</p>
+                    </div>
+                </section>
+
+                <!-- 12. Änderungen -->
+                <section class="legal-section" id="aenderungen">
+                    <h2><span class="section-number">12</span> Änderungen dieser Datenschutzerklärung</h2>
+                    <p>Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht oder um Änderungen unserer Leistungen in der Datenschutzerklärung umzusetzen, z.B. bei der Einführung neuer Services.</p>
+                    
+                    <p>Für Ihren erneuten Besuch gilt dann die neue Datenschutzerklärung. Wir empfehlen Ihnen, diese Datenschutzerklärung regelmäßig zu lesen, um über den Schutz Ihrer Daten informiert zu bleiben.</p>
+
+                    <p>Bei wesentlichen Änderungen, die Ihre Rechte oder die Art der Datenverarbeitung betreffen, werden wir Sie nach Möglichkeit gesondert informieren.</p>
+                </section>
+
+                <!-- Zurück zur Startseite -->
                 <div class="back-link">
-                    <a href="test2.html" class="cta-button">Zurück zur Startseite</a>
+                    <p style="color: #64748b; margin-bottom: 20px;">Bei Fragen zum Datenschutz kontaktieren Sie uns gerne unter <a href="mailto:info@immobilien-ghumman.de" style="color: #336699;">info@immobilien-ghumman.de</a></p>
+                    <a href="index.html" class="cta-button">← Zurück zur Startseite</a>
                 </div>
-            </article>
+
+            </div>
         </div>
     </main>
 
@@ -183,111 +615,48 @@
                         <img src="https://res.cloudinary.com/dlpdbr0ey/image/upload/v1755297887/7ae1aa7d-b239-4ee5-8090-6b8339e15d4e_fn1ulk.png"
                             alt="Immobilien Ghumman Logo" class="logo">
                     </div>
-                    <p>Ihr Immobilienpartner in Bad Vilbel. Vertrauen Sie auf unsere Erfahrung und Kompetenz.</p>
+                    <p>Ihr vertrauensvoller Immobilienpartner in Bad Vilbel und Umgebung.</p>
                 </div>
 
                 <div class="footer-section">
                     <h4>Navigation</h4>
                     <ul class="footer-links">
-                        <li><a href="test2.html#properties">Immobilien</a></li>
-                        <li><a href="test2.html#management">Hausverwaltung</a></li>
-                        <li><a href="test2.html#financing">Immobilienfinanzierung</a></li>
-                        <li><a href="test2.html#about">Über uns</a></li>
-                        <li><a href="test2.html#contact">Kontakt</a></li>
+                        <li><a href="index.html">Startseite</a></li>
+                        <li><a href="immobilien-angebote.html">Immobilien</a></li>
+                        <li><a href="hausverwaltung.html">Hausverwaltung</a></li>
+                        <li><a href="finanzierung.html">Finanzierung</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Rechtliches</h4>
+                    <ul class="footer-links">
+                        <li><a href="impressum.html">Impressum</a></li>
+                        <li><a href="datenschutz.html">Datenschutz</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
                     <h4>Kontakt</h4>
-                    <p>Homburger Str. 100<br>61118 Bad Vilbel</p>
-                    <p>Tel: 0160 98787878</p>
-                    <p>E-Mail: info@immobilienghumman.de</p>
+                    <ul class="footer-links">
+                        <li>Homburger Str. 100, 61118 Bad Vilbel</li>
+                        <li>Tel: +49 (0) 160 98787878</li>
+                        <li>E-Mail: info@immobilien-ghumman.de</li>
+                    </ul>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <div class="footer-legal">
-                    <a href="impressum.html">Impressum</a> |
-                    <a href="datenschutz.html">Datenschutz</a>
-                </div>
-                <p>&copy; 2025 Immobilien Ghumman. Alle Rechte vorbehalten.</p>
+                <p>&copy; 2026 Immobilien Ghumman. Alle Rechte vorbehalten.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="js/api-client.js"></script>
+    <script src="js/error-tracker.js"></script>
+    <script src="js/cookie-consent.js"></script>
     <script src="immobilien-script.js"></script>
-
-    <style>
-        .legal-page {
-            padding: 120px 0 80px 0;
-            background: var(--background-color);
-        }
-
-        .legal-content {
-            background: var(--background-color);
-            padding: var(--spacing-3xl);
-            border-radius: var(--border-radius-lg);
-            box-shadow: var(--shadow-lg);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .legal-content h1 {
-            color: var(--secondary-color);
-            text-align: center;
-            margin-bottom: var(--spacing-3xl);
-            padding-bottom: var(--spacing-xl);
-            border-bottom: 2px solid var(--light-gray);
-        }
-
-        .legal-section {
-            margin-bottom: var(--spacing-3xl);
-        }
-
-        .legal-section h2 {
-            color: var(--primary-color);
-            margin-bottom: var(--spacing-lg);
-            padding-bottom: var(--spacing-sm);
-            border-bottom: 1px solid var(--light-gray);
-        }
-
-        .legal-section h3 {
-            color: var(--secondary-color);
-            margin-bottom: var(--spacing-md);
-            margin-top: var(--spacing-xl);
-        }
-
-        .legal-section p {
-            line-height: 1.7;
-            margin-bottom: var(--spacing-md);
-            color: var(--text-gray);
-        }
-
-        .contact-details {
-            background: var(--light-gray);
-            padding: var(--spacing-lg);
-            border-radius: var(--border-radius-base);
-            margin: var(--spacing-lg) 0;
-        }
-
-        .back-link {
-            text-align: center;
-            margin-top: var(--spacing-3xl);
-            padding-top: var(--spacing-xl);
-            border-top: 1px solid var(--light-gray);
-        }
-
-        @media (max-width: 768px) {
-            .legal-content {
-                padding: var(--spacing-xl);
-                margin: var(--spacing-md);
-            }
-
-            .legal-section {
-                margin-bottom: var(--spacing-xl);
-            }
-        }
-    </style>
 </body>
 
 </html>

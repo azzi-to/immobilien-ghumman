@@ -3,7 +3,7 @@
  * Immobilien Ghumman - GDPR compliant
  */
 
-(function() {
+(function () {
     'use strict';
 
     const CONSENT_KEY = 'cookie_consent';
@@ -269,13 +269,13 @@
         document.body.appendChild(banner);
 
         // Event Listeners
-        document.getElementById('cookie-accept-all').addEventListener('click', function() {
+        document.getElementById('cookie-accept-all').addEventListener('click', function () {
             const consent = saveConsent({ analytics: true, marketing: true });
             updateAnalytics(true);
             hideBanner();
         });
 
-        document.getElementById('cookie-save-selection').addEventListener('click', function() {
+        document.getElementById('cookie-save-selection').addEventListener('click', function () {
             const analytics = document.getElementById('cookie-analytics').checked;
             const marketing = document.getElementById('cookie-marketing').checked;
             const consent = saveConsent({ analytics, marketing });
@@ -303,7 +303,7 @@
         } else {
             // Kein Consent - GA standardmäßig deaktivieren und Banner zeigen
             updateAnalytics(false);
-            
+
             // Warten bis DOM geladen ist
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', createBanner);
@@ -316,7 +316,7 @@
     // Global verfügbar machen für manuelle Aufrufe
     window.CookieConsent = {
         show: createBanner,
-        reset: function() {
+        reset: function () {
             localStorage.removeItem(CONSENT_KEY);
             location.reload();
         },

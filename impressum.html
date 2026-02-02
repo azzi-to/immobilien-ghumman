@@ -1,58 +1,293 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Impressum - Immobilien Ghumman</title>
-    <meta name="description" content="Impressum von Immobilien Ghumman - Rechtliche Informationen und Kontaktangaben.">
+    <meta name="description" content="Impressum von Immobilien Ghumman - Rechtliche Informationen, Kontaktangaben und Pflichtangaben gemäß § 5 TMG.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="https://res.cloudinary.com/dlpdbr0ey/image/upload/v1755051245/7ae1aa7d-b239-4ee5-8090-6b8339e15d4e-removebg-preview_m6fipk.png">
+    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="immobilien-styles.css">
+    
     <style>
-        .legal-content {
-            padding: 120px 0 60px;
-            min-height: 60vh;
+        .legal-page {
+            padding: 120px 0 80px 0;
+            background: linear-gradient(rgba(248, 250, 252, 0.97), rgba(241, 245, 249, 0.95));
+            min-height: 100vh;
         }
-        .legal-box {
-            background: #fff;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            max-width: 800px;
+
+        .legal-container {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            padding: 60px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            max-width: 900px;
             margin: 0 auto;
+            border: 1px solid rgba(51, 102, 153, 0.1);
         }
-        .legal-box h1 {
-            color: var(--primary-color);
-            margin-bottom: 30px;
+
+        .legal-header {
             text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #f1f5f9;
         }
-        .legal-box h2 {
-            color: var(--secondary-color);
-            margin-top: 30px;
+
+        .legal-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e293b;
             margin-bottom: 15px;
+        }
+
+        .legal-header .subtitle {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        .legal-section {
+            margin-bottom: 40px;
+        }
+
+        .legal-section h2 {
+            color: #336699;
             font-size: 1.5rem;
-            border-bottom: 2px solid var(--light-gray);
+            margin-bottom: 20px;
             padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
-        .legal-box p {
+
+        .legal-section h2 i {
+            color: #336699;
+        }
+
+        .legal-section h3 {
+            color: #1e293b;
+            font-size: 1.15rem;
+            margin: 25px 0 12px 0;
+        }
+
+        .legal-section p {
+            line-height: 1.8;
             margin-bottom: 15px;
-            line-height: 1.6;
-            color: var(--text-gray);
+            color: #475569;
         }
-        .legal-divider {
-            margin: 40px 0;
-            border: 0;
-            border-top: 1px solid #eee;
+
+        .legal-section ul {
+            margin: 15px 0 15px 25px;
+            color: #475569;
+        }
+
+        .legal-section ul li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, #336699 0%, #2a5580 100%);
+            color: white;
+            padding: 35px;
+            border-radius: 16px;
+            margin: 25px 0;
+            box-shadow: 0 10px 40px rgba(51, 102, 153, 0.3);
+        }
+
+        .contact-card h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(255,255,255,0.2);
+            padding-bottom: 15px;
+        }
+
+        .contact-card p {
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+
+        .contact-card .contact-highlight {
+            background: rgba(255,255,255,0.15);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .contact-card .contact-highlight a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-card .contact-highlight a:hover {
+            text-decoration: underline;
+        }
+
+        .info-box {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #336699;
+        }
+
+        .info-box p {
+            margin-bottom: 8px;
+        }
+
+        .info-box strong {
+            color: #1e293b;
+        }
+
+        .service-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .service-item {
+            background: #f8fafc;
+            padding: 15px 20px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .service-item i {
+            color: #336699;
+            font-size: 1.2rem;
+        }
+
+        .service-item span {
+            color: #475569;
+            font-size: 0.95rem;
+        }
+
+        .disclaimer-box {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .disclaimer-box h4 {
+            color: #92400e;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .disclaimer-box p {
+            color: #92400e;
+            margin: 0;
+        }
+
+        .lang-divider {
+            display: flex;
+            align-items: center;
+            margin: 50px 0 40px 0;
+            gap: 20px;
+        }
+
+        .lang-divider::before,
+        .lang-divider::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
+        }
+
+        .lang-divider span {
+            background: #f1f5f9;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            color: #64748b;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #f1f5f9;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .legal-container {
+                padding: 30px 20px;
+                margin: 0 15px;
+                border-radius: 15px;
+            }
+
+            .legal-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .legal-section h2 {
+                font-size: 1.25rem;
+            }
+
+            .contact-card {
+                padding: 25px 20px;
+            }
+
+            .service-list {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
+
 <body>
     <!-- Header Navigation -->
     <header class="header">
         <nav class="navbar">
             <div class="nav-container">
                 <div class="nav-logo">
-                    <img src="https://res.cloudinary.com/dlpdbr0ey/image/upload/v1755051245/7ae1aa7d-b239-4ee5-8090-6b8339e15d4e-removebg-preview_m6fipk.png" alt="Immobilien Ghumman Logo" class="logo">
+                    <a href="index.html">
+                        <img src="https://res.cloudinary.com/dlpdbr0ey/image/upload/v1755051245/7ae1aa7d-b239-4ee5-8090-6b8339e15d4e-removebg-preview_m6fipk.png" alt="Immobilien Ghumman Logo" class="logo">
+                    </a>
                 </div>
                 
                 <!-- Desktop Navigation -->
@@ -63,7 +298,6 @@
                     <li><a href="finanzierung.html" class="nav-link">Finanzierung</a></li>
                     <li><a href="index.html#about" class="nav-link">Über uns</a></li>
                     <li><a href="index.html#contact" class="nav-link">Kontakt</a></li>
-                    <li><a href="index.html#faq" class="nav-link">FAQ</a></li>
                 </ul>
 
                 <!-- Contact Icons -->
@@ -83,7 +317,7 @@
                             <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                         </svg>
                     </a>
-                    <a href="https://www.google.de/maps/place/Immobilien+Ghumman/@50.1888053,8.7283883,20.25z/data=!3m1!5s0x47bd05891d41d9a5:0x87e070e453787711!4m12!1m5!3m4!2zNTDCsDExJzMxLjMiTiA4wrA0MycyNi41IkU!8m2!3d50.1920278!4d8.7240278!3m5!1s0x47bd05891d6951f5:0xfafe3f395102c0f7!8m2!3d50.1890019!4d8.7283255!16s%2Fg%2F11g9dq60pv?entry=ttu&g_ep=EgoyMDI1MDkwNy4wIKXMDSoASAFQAw%3D%3D" class="contact-icon maps" target="_blank" title="Google Maps Navigation">
+                    <a href="https://www.google.de/maps/place/Immobilien+Ghumman/@50.1888053,8.7283883,20.25z" class="contact-icon maps" target="_blank" title="Google Maps Navigation">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="animated-icon">
                             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                         </svg>
@@ -100,65 +334,178 @@
         </nav>
     </header>
 
-    <main class="legal-content">
+    <main class="legal-page">
         <div class="container">
-            <div class="legal-box">
-                <h1>Impressum</h1>
+            <div class="legal-container">
                 
-                <div lang="de">
-                    <p>Angaben gemäß § 5 TMG</p>
-                    <p>
-                        <strong>Immobilien Ghumman</strong><br>
-                        Inhaber: Nasir Ghumman<br>
-                        Homburger Str. 100<br>
-                        61118 Bad Vilbel<br>
-                        Deutschland
-                    </p>
-                    <p>
-                        <strong>Kontakt:</strong><br>
-                        Telefon: 016098787878<br>
-                        E-Mail: info@immobilien-ghumman.de
-                    </p>
-                    <p>
-                        <strong>Umsatzsteuer-ID:</strong><br>
-                        Eine Umsatzsteuer-Identifikationsnummer ist nicht vorhanden, da die Kleinunternehmerregelung angewendet wird.
-                    </p>
-                    <p>
-                        <strong>Handelsregister:</strong><br>
-                        Kein Eintrag im Handelsregister.
-                    </p>
+                <!-- Header -->
+                <div class="legal-header">
+                    <h1>Impressum</h1>
+                    <p class="subtitle">Angaben gemäß § 5 TMG und § 18 Abs. 2 MStV</p>
                 </div>
 
-                <hr class="legal-divider">
+                <!-- Deutsche Version -->
+                <section class="legal-section" id="de-impressum">
+                    
+                    <!-- Kontakt Card -->
+                    <div class="contact-card">
+                        <h3><i class="fas fa-building" style="margin-right: 10px;"></i> Immobilien Ghumman</h3>
+                        <p><strong>Inhaber:</strong> Nasir Ghumman</p>
+                        <p><strong>Anschrift:</strong> Homburger Str. 100, 61118 Bad Vilbel, Deutschland</p>
+                        
+                        <div class="contact-highlight">
+                            <p><i class="fas fa-phone" style="margin-right: 8px;"></i> <a href="tel:+4916098787878">+49 (0) 160 98787878</a></p>
+                            <p><i class="fas fa-envelope" style="margin-right: 8px;"></i> <a href="mailto:info@immobilien-ghumman.de">info@immobilien-ghumman.de</a></p>
+                            <p><i class="fas fa-globe" style="margin-right: 8px;"></i> <a href="https://immobilienghumman.de" target="_blank">www.immobilienghumman.de</a></p>
+                        </div>
 
-                <div lang="en">
-                    <h2>Legal Notice</h2>
-                    <p>Information according to § 5 TMG</p>
-                    <p>
-                        <strong>Immobilien Ghumman</strong><br>
-                        Owner: Nasir Ghumman<br>
-                        Homburger Str. 100<br>
-                        61118 Bad Vilbel<br>
-                        Germany
-                    </p>
-                    <p>
-                        <strong>Contact:</strong><br>
-                        Phone: 016098787878<br>
-                        Email: info@immobilien-ghumman.de
-                    </p>
-                    <p>
-                        <strong>VAT ID:</strong><br>
-                        A VAT identification number is not available as the small business regulation is applied.
-                    </p>
-                    <p>
-                        <strong>Commercial Register:</strong><br>
-                        No entry in the commercial register.
-                    </p>
+                        <div class="social-links">
+                            <a href="https://wa.me/4916098787878" target="_blank" title="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="https://www.google.de/maps/place/Immobilien+Ghumman" target="_blank" title="Google Maps">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Steuerliche Angaben -->
+                    <h2><i class="fas fa-file-invoice"></i> Steuerliche Angaben</h2>
+                    <div class="info-box">
+                        <p><strong>Umsatzsteuer-Identifikationsnummer:</strong></p>
+                        <p>Eine Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz ist nicht vorhanden, da die Kleinunternehmerregelung gemäß § 19 UStG angewendet wird.</p>
+                    </div>
+
+                    <!-- Handelsregister -->
+                    <h2><i class="fas fa-landmark"></i> Handelsregister</h2>
+                    <div class="info-box">
+                        <p><strong>Registereintrag:</strong></p>
+                        <p>Ein Eintrag im Handelsregister liegt nicht vor, da es sich um ein Einzelunternehmen handelt.</p>
+                    </div>
+
+                    <!-- Berufsbezeichnung -->
+                    <h2><i class="fas fa-user-tie"></i> Berufsbezeichnung und Aufsichtsbehörde</h2>
+                    <div class="info-box">
+                        <p><strong>Berufsbezeichnung:</strong> Immobilienmakler (verliehen in der Bundesrepublik Deutschland)</p>
+                        <p><strong>Zuständige Aufsichtsbehörde:</strong></p>
+                        <p>Kreisausschuss des Wetteraukreises<br>
+                        Europaplatz<br>
+                        61169 Friedberg<br>
+                        Telefon: +49 (0) 6031 83-0</p>
+                        <p style="margin-top: 15px;"><strong>Erlaubnis:</strong> Gewerbeerlaubnis gemäß § 34c GewO</p>
+                    </div>
+
+                    <!-- Tätigkeitsbereich -->
+                    <h2><i class="fas fa-briefcase"></i> Tätigkeitsbereich</h2>
+                    <p>Immobilien Ghumman bietet folgende Dienstleistungen an:</p>
+                    <div class="service-list">
+                        <div class="service-item">
+                            <i class="fas fa-home"></i>
+                            <span>Immobilienvermittlung</span>
+                        </div>
+                        <div class="service-item">
+                            <i class="fas fa-building"></i>
+                            <span>Hausverwaltung</span>
+                        </div>
+                        <div class="service-item">
+                            <i class="fas fa-euro-sign"></i>
+                            <span>Finanzierungsberatung</span>
+                        </div>
+                        <div class="service-item">
+                            <i class="fas fa-search"></i>
+                            <span>Immobilienbewertung</span>
+                        </div>
+                        <div class="service-item">
+                            <i class="fas fa-key"></i>
+                            <span>Mietverwaltung</span>
+                        </div>
+                        <div class="service-item">
+                            <i class="fas fa-handshake"></i>
+                            <span>Eigentümerbetreuung</span>
+                        </div>
+                    </div>
+
+                    <!-- Streitschlichtung -->
+                    <h2><i class="fas fa-balance-scale"></i> Verbraucherstreitbeilegung / Universalschlichtungsstelle</h2>
+                    <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+                    <div class="info-box">
+                        <p><strong>Plattform der EU-Kommission zur Online-Streitbeilegung (OS):</strong></p>
+                        <p><a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener" style="color: #336699;">https://ec.europa.eu/consumers/odr</a></p>
+                    </div>
+
+                    <!-- Haftungsausschluss -->
+                    <h2><i class="fas fa-exclamation-triangle"></i> Haftungsausschluss</h2>
+                    
+                    <h3>Haftung für Inhalte</h3>
+                    <p>Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+                    <p>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
+
+                    <h3>Haftung für Links</h3>
+                    <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar.</p>
+                    <p>Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
+
+                    <h3>Urheberrecht</h3>
+                    <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.</p>
+                    <p>Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</p>
+
+                    <div class="disclaimer-box">
+                        <h4><i class="fas fa-info-circle"></i> Wichtiger Hinweis</h4>
+                        <p>Die auf dieser Website veröffentlichten Immobilienangebote und -informationen sind freibleibend und unverbindlich. Irrtümer, Zwischenverkauf und Änderungen bleiben vorbehalten.</p>
+                    </div>
+
+                </section>
+
+                <!-- Language Divider -->
+                <div class="lang-divider">
+                    <span>🇬🇧 English Version</span>
                 </div>
+
+                <!-- English Version -->
+                <section class="legal-section" id="en-impressum">
+                    <h2><i class="fas fa-file-alt"></i> Legal Notice</h2>
+                    <p>Information according to § 5 TMG (German Telemedia Act)</p>
+
+                    <div class="info-box">
+                        <p><strong>Immobilien Ghumman</strong></p>
+                        <p>Owner: Nasir Ghumman</p>
+                        <p>Homburger Str. 100</p>
+                        <p>61118 Bad Vilbel</p>
+                        <p>Germany</p>
+                        <p style="margin-top: 15px;">
+                            <strong>Phone:</strong> +49 (0) 160 98787878<br>
+                            <strong>Email:</strong> info@immobilien-ghumman.de<br>
+                            <strong>Website:</strong> www.immobilienghumman.de
+                        </p>
+                    </div>
+
+                    <h3>VAT ID</h3>
+                    <p>A VAT identification number is not available as the small business regulation (§ 19 UStG) is applied.</p>
+
+                    <h3>Commercial Register</h3>
+                    <p>No entry in the commercial register, as this is a sole proprietorship.</p>
+
+                    <h3>Professional Designation</h3>
+                    <p>Real Estate Agent (granted in the Federal Republic of Germany). Business license according to § 34c GewO (German Trade Regulation).</p>
+
+                    <h3>Responsible for Content</h3>
+                    <p>Nasir Ghumman, Homburger Str. 100, 61118 Bad Vilbel, Germany</p>
+
+                    <h3>Dispute Resolution</h3>
+                    <p>We are not willing or obligated to participate in dispute resolution proceedings before a consumer arbitration board.</p>
+                    <p>EU Commission's online dispute resolution platform: <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener" style="color: #336699;">https://ec.europa.eu/consumers/odr</a></p>
+                </section>
+
+                <!-- Zurück zur Startseite -->
+                <div class="back-link">
+                    <p style="color: #64748b; margin-bottom: 20px;">Bei Fragen erreichen Sie uns unter <a href="mailto:info@immobilien-ghumman.de" style="color: #336699;">info@immobilien-ghumman.de</a> oder telefonisch unter <a href="tel:+4916098787878" style="color: #336699;">0160 98787878</a></p>
+                    <a href="index.html" class="cta-button">← Zurück zur Startseite</a>
+                </div>
+
             </div>
         </div>
     </main>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-top">
@@ -183,21 +530,19 @@
                 <div class="footer-section">
                     <h3>Navigation</h3>
                     <ul class="footer-links">
-                        <li><a href="index.html" aria-label="Zur Startseite">Start</a></li>
-                        <li><a href="immobilien-angebote.html" aria-label="Zu unseren Immobilien">Immobilien</a></li>
-                        <li><a href="hausverwaltung.html" aria-label="Zu unserem Service">Service</a></li>
-                        <li><a href="index.html#contact" aria-label="Zur Kontaktseite">Kontakt</a></li>
+                        <li><a href="index.html">Start</a></li>
+                        <li><a href="immobilien-angebote.html">Immobilien</a></li>
+                        <li><a href="hausverwaltung.html">Hausverwaltung</a></li>
+                        <li><a href="finanzierung.html">Finanzierung</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
-                    <h3>Schnelllinks</h3>
+                    <h3>Rechtliches</h3>
                     <ul class="footer-links">
-                        <li><a href="impressum.html" aria-label="Zum Impressum">Impressum</a></li>
-                        <li><a href="datenschutz.html" aria-label="Zur Datenschutzerklärung">Datenschutz</a></li>
-                        <li><a href="index.html#contact" aria-label="Zur Kontaktseite">Beratung</a></li>
-                        <li><a href="immobilien-angebote.html" aria-label="Zu unseren aktuellen Angeboten">Aktuelle Angebote</a></li>
-                        <li><a href="admin-login.html" aria-label="Admin-Bereich" style="color: #94a3b8; font-size: 12px;">🔐 Admin</a></li>
+                        <li><a href="impressum.html">Impressum</a></li>
+                        <li><a href="datenschutz.html">Datenschutz</a></li>
+                        <li><a href="admin-login.html" style="color: #94a3b8; font-size: 12px;">🔐 Admin</a></li>
                     </ul>
                 </div>
                 
@@ -205,36 +550,23 @@
                     <h3>Kontakt</h3>
                     <ul class="footer-links">
                         <li>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 8px;" class="animated-icon">
-                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                            </svg>
-                            Bad Vilbel
+                            <i class="fas fa-map-marker-alt" style="margin-right: 8px; color: #336699;"></i>
+                            Homburger Str. 100, 61118 Bad Vilbel
                         </li>
                         <li>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 8px;" class="animated-icon">
-                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                            </svg>
+                            <i class="fas fa-envelope" style="margin-right: 8px; color: #336699;"></i>
                             info@immobilien-ghumman.de
                         </li>
                         <li>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 8px;" class="animated-icon">
-                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-                            </svg>
+                            <i class="fas fa-phone" style="margin-right: 8px; color: #336699;"></i>
                             +49 (0) 160 98787878
-                        </li>
-                        <li>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 8px;" class="animated-icon">
-                                <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
-                            </svg>
-                            Termine nach Vereinbarung
                         </li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2024 Immobilien Ghumman. Alle Rechte vorbehalten.</p>
-                <p>Hausverwaltung | Immobilien Service</p>
+                <p>&copy; 2026 Immobilien Ghumman. Alle Rechte vorbehalten.</p>
             </div>
         </div>
     </footer>
@@ -248,6 +580,11 @@
         </a>
     </div>
 
+    <!-- Scripts -->
+    <script src="js/api-client.js"></script>
+    <script src="js/error-tracker.js"></script>
+    <script src="js/cookie-consent.js"></script>
     <script src="immobilien-script.js"></script>
 </body>
+
 </html>

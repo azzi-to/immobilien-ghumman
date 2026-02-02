@@ -690,7 +690,9 @@
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .loading-text {
@@ -710,8 +712,8 @@
 <body>
     <!-- Initial Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
-        <img src="https://res.cloudinary.com/dlpdbr0ey/image/upload/v1755051245/7ae1aa7d-b239-4ee5-8090-6b8339e15d4e-removebg-preview_m6fipk.png" 
-             alt="Loading" class="loading-logo">
+        <img src="https://res.cloudinary.com/dlpdbr0ey/image/upload/v1755051245/7ae1aa7d-b239-4ee5-8090-6b8339e15d4e-removebg-preview_m6fipk.png"
+            alt="Loading" class="loading-logo">
         <div class="loading-spinner"></div>
         <p class="loading-text">Dashboard wird geladen...</p>
     </div>
@@ -1559,7 +1561,7 @@
         // Initialize - Load properties as default view
         window.addEventListener('DOMContentLoaded', async function () {
             const isAuthenticated = await checkAuth();
-            
+
             if (isAuthenticated) {
                 await loadProperties(); // Load properties immediately as it's the default view
                 hideLoadingOverlay();
