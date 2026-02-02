@@ -185,10 +185,17 @@ async function initializeTables() {
         `);
         console.log('✅ Contact requests table ready');
 
-        // Admin credentials - ÄNDERN SIE DIESE FÜR PRODUKTION!
-        const ADMIN_USERNAME = 'NG-admin';
-        const ADMIN_PASSWORD = 'Admin.2026';
-        const ADMIN_EMAIL = 'admin@immobilienghumman.de';
+        // Admin credentials aus Umgebungsvariablen (sicher für Produktion)
+        const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'NG-admin';
+        const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD; // MUSS in Railway gesetzt werden!
+        const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@immobilienghumman.de';
+
+        // Sicherheitscheck: Passwort muss gesetzt sein
+        if (!ADMIN_PASSWORD) {
+            console.warn('⚠️ WARNUNG: ADMIN_PASSWORD nicht gesetzt! Admin-User wird nicht erstellt/aktualisiert.');
+            console.warn('   Bitte ADMIN_PASSWORD als Umgebungsvariable setzen.');
+            return; // Ohne Passwort keinen Admin erstellen
+        }
 
         // Check if new admin user exists, create/update if needed
         const adminExists = await query('SELECT id, username FROM users WHERE username = ?', [ADMIN_USERNAME]);

@@ -3,6 +3,25 @@ const API_BASE_URL = window.location.hostname === 'localhost' || window.location
     ? 'http://localhost:3000/api'
     : 'https://immobilien-ghumman-production.up.railway.app/api'; // Railway Backend API
 
+// Produktions-Modus erkennen (keine console.logs auf Live-Site)
+const IS_PRODUCTION = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+
+// Debug-Logger (nur in Entwicklung aktiv)
+const debugLog = (...args) => {
+    if (!IS_PRODUCTION) {
+        console.log('[API]', ...args);
+    }
+};
+
+const debugError = (...args) => {
+    // Fehler immer loggen, aber mit weniger Details in Produktion
+    if (IS_PRODUCTION) {
+        console.error('[API Error]', args[0]);
+    } else {
+        console.error('[API]', ...args);
+    }
+};
+
 let authToken = localStorage.getItem('authToken');
 
 // API Client

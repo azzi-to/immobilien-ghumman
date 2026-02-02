@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 const { query, queryOne } = require('../config/database');
-const { authMiddleware } = require('../middleware/auth.middleware');
+const { authMiddleware, requireRole } = require('../middleware/auth.middleware');
 
 // Generate JWT token
 function generateToken(user) {
@@ -17,8 +17,8 @@ function generateToken(user) {
 
 // @route   POST /api/auth/register
 // @desc    Register new user
-// @access  Public
-router.post('/register', [
+// @access  Private (nur Admins können neue User anlegen)
+router.post('/register', authMiddleware, requireRole('admin'), [
     body('username').trim().isLength({ min: 3 }).withMessage('Benutzername muss mindestens 3 Zeichen lang sein'),
     body('email').isEmail().normalizeEmail().withMessage('Ungültige E-Mail-Adresse'),
     body('password').isLength({ min: 6 }).withMessage('Passwort muss mindestens 6 Zeichen lang sein'),

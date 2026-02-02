@@ -340,7 +340,7 @@ async function loadSampleProperties() {
  */
 function showEmptyPropertiesState(container, reason = '') {
     if (!container) return;
-    
+
     container.innerHTML = `
         <div class="empty-properties-message" style="
             grid-column: 1 / -1;
@@ -361,7 +361,7 @@ function showEmptyPropertiesState(container, reason = '') {
             <a href="#contact" class="cta-button" style="display: inline-block;">Kontaktieren Sie uns</a>
         </div>
     `;
-    
+
     console.log('Empty state displayed:', reason);
 }
 
