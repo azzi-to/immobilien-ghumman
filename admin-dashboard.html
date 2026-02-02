@@ -766,12 +766,11 @@
         <div class="sidebar-header">
             <img src="https://res.cloudinary.com/dlpdbr0ey/image/upload/v1755051245/7ae1aa7d-b239-4ee5-8090-6b8339e15d4e-removebg-preview_m6fipk.png"
                 alt="Logo">
-            <h2>Admin Panel</h2>
-            <p>Immobilien Management</p>
+            <h2>Admin Management</h2>
         </div>
 
         <nav class="sidebar-menu">
-            <a class="menu-item active" onclick="showSection('properties')">
+            <a class="menu-item active" data-section="properties" onclick="showSection('properties')">
                 <span class="menu-icon">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
@@ -779,7 +778,7 @@
                 </span>
                 <span>Immobilien</span>
             </a>
-            <a class="menu-item" onclick="showSection('add-property')">
+            <a class="menu-item" data-section="add-property" onclick="showSection('add-property')">
                 <span class="menu-icon">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
@@ -787,7 +786,7 @@
                 </span>
                 <span>Neue Immobilie</span>
             </a>
-            <a class="menu-item" onclick="showSection('settings')">
+            <a class="menu-item" data-section="settings" onclick="showSection('settings')">
                 <span class="menu-icon">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                         <path
@@ -852,7 +851,7 @@
         </div>
 
         <!-- Settings Section -->
-        <div id="settings" class="content-section">
+        <div id="settings" class="content-section"> 
             <div class="section-card">
                 <div class="section-header">
                     <h2>Einstellungen</h2>
@@ -1061,26 +1060,30 @@
             overlay.classList.remove('active');
         }
 
-        // Show Section
+        // Show Section - verbindet Sidebar mit Main Content
         function showSection(sectionId) {
+            // Validate section exists
+            const targetSection = document.getElementById(sectionId);
+            if (!targetSection) {
+                console.error('Section not found:', sectionId);
+                return;
+            }
+
             // Hide all sections
             document.querySelectorAll('.content-section').forEach(section => {
                 section.classList.remove('active');
             });
 
             // Show selected section
-            document.getElementById(sectionId).classList.add('active');
+            targetSection.classList.add('active');
 
-            // Update menu items
+            // Update menu items - use data-section attribute
             document.querySelectorAll('.menu-item').forEach(item => {
                 item.classList.remove('active');
+                if (item.dataset.section === sectionId) {
+                    item.classList.add('active');
+                }
             });
-
-            // Find the menu item that corresponds to this section
-            const menuItem = document.querySelector(`.menu-item[onclick*="'${sectionId}'"]`);
-            if (menuItem) {
-                menuItem.classList.add('active');
-            }
 
             // Update page title
             const titles = {
@@ -1118,7 +1121,7 @@
         // Load Properties with inline loading state
         async function loadProperties() {
             const propertyList = document.getElementById('property-list');
-            
+
             // Show inline loader only
             propertyList.innerHTML = `
                 <div class="inline-loader">
@@ -1205,7 +1208,7 @@
 
             } catch (error) {
                 console.error('Error loading properties:', error);
-                
+
                 // Determine error type
                 let errorMessage = 'Fehler beim Laden der Immobilien.';
                 if (!navigator.onLine) {
@@ -1222,7 +1225,7 @@
                 } else {
                     errorMessage = error.message;
                 }
-                
+
                 showErrorState(propertyList, errorMessage, 'loadProperties()');
             }
         }
