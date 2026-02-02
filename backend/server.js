@@ -57,8 +57,8 @@ app.use('/api/contact', contactRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
-    res.json({ 
-        status: 'OK', 
+    res.json({
+        status: 'OK',
         message: 'Immobilien Ghumman API is running',
         timestamp: new Date().toISOString()
     });
@@ -91,7 +91,7 @@ app.use((req, res) => {
 // Global error handler
 app.use((err, req, res, next) => {
     console.error('Error:', err);
-    
+
     res.status(err.status || 500).json({
         error: err.message || 'Interner Serverfehler',
         ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
@@ -102,10 +102,10 @@ app.use((err, req, res, next) => {
 async function initializeTables() {
     const { query } = require('./config/database');
     const bcrypt = require('bcryptjs');
-    
+
     try {
         console.log('🔄 Checking/Creating database tables...');
-        
+
         // Create users table
         await query(`
             CREATE TABLE IF NOT EXISTS users (
@@ -124,7 +124,7 @@ async function initializeTables() {
             )
         `);
         console.log('✅ Users table ready');
-        
+
         // Create properties table
         await query(`
             CREATE TABLE IF NOT EXISTS properties (
@@ -154,7 +154,7 @@ async function initializeTables() {
             )
         `);
         console.log('✅ Properties table ready');
-        
+
         // Create property_images table
         await query(`
             CREATE TABLE IF NOT EXISTS property_images (
@@ -169,7 +169,7 @@ async function initializeTables() {
             )
         `);
         console.log('✅ Property images table ready');
-        
+
         // Create contact_requests table
         await query(`
             CREATE TABLE IF NOT EXISTS contact_requests (
@@ -184,22 +184,35 @@ async function initializeTables() {
             )
         `);
         console.log('✅ Contact requests table ready');
+
+        // Admin credentials - ÄNDERN SIE DIESE FÜR PRODUKTION!
+        const ADMIN_USERNAME = 'NG-admin';
+        const ADMIN_PASSWORD = 'Admin.2026';
+        const ADMIN_EMAIL = 'admin@immobilienghumman.de';
+
+        // Check if new admin user exists, create/update if needed
+        const adminExists = await query('SELECT id, username FROM users WHERE username = ?', [ADMIN_USERNAME]);
         
-        // Check if admin user exists, create if not
-        const adminExists = await query('SELECT id FROM users WHERE username = ?', ['admin']);
         if (adminExists.length === 0) {
-            const hashedPassword = await bcrypt.hash('admin123', 10);
+            // Check if old admin exists and delete it
+            await query('DELETE FROM users WHERE username = ?', ['admin']);
+            
+            const hashedPassword = await bcrypt.hash(ADMIN_PASSWORD, 12); // Stärkerer Hash mit 12 Runden
             await query(
-                'INSERT INTO users (username, email, password, role, full_name) VALUES (?, ?, ?, ?, ?)',
-                ['admin', 'admin@immobilienghumman.de', hashedPassword, 'admin', 'Administrator']
+                'INSERT INTO users (username, email, password, role, full_name, status) VALUES (?, ?, ?, ?, ?, ?)',
+                [ADMIN_USERNAME, ADMIN_EMAIL, hashedPassword, 'admin', 'Administrator', 'active']
             );
-            console.log('✅ Admin user created (username: admin, password: admin123)');
+            console.log(`✅ Admin user created (username: ${ADMIN_USERNAME})`);
         } else {
-            console.log('✅ Admin user already exists');
+            // Update password if admin exists (ensures password is current)
+            const hashedPassword = await bcrypt.hash(ADMIN_PASSWORD, 12);
+            await query('UPDATE users SET password = ?, status = ? WHERE username = ?', 
+                [hashedPassword, 'active', ADMIN_USERNAME]);
+            console.log(`✅ Admin user updated (username: ${ADMIN_USERNAME})`);
         }
-        
+
         console.log('✅ All database tables initialized successfully!\n');
-        
+
     } catch (error) {
         console.error('❌ Database initialization error:', error.message);
         // Don't exit - server can still run, just DB might not be ready
@@ -220,7 +233,7 @@ app.listen(PORT, async () => {
     ║                                                   ║
     ╚═══════════════════════════════════════════════════╝
     `);
-    
+
     // Initialize database tables after server starts
     await initializeTables();
 });

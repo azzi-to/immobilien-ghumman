@@ -41,7 +41,7 @@ router.post('/image', [
         if (!req.file) {
             return res.status(400).json({ error: 'Keine Datei hochgeladen' });
         }
-        
+
         // Upload to Cloudinary
         const uploadPromise = new Promise((resolve, reject) => {
             const uploadStream = cloudinary.uploader.upload_stream(
@@ -58,19 +58,19 @@ router.post('/image', [
                     else resolve(result);
                 }
             );
-            
+
             uploadStream.end(req.file.buffer);
         });
-        
+
         const result = await uploadPromise;
-        
+
         // Generate thumbnail
         const thumbnailUrl = cloudinary.url(result.public_id, {
             transformation: [
                 { width: 400, height: 300, crop: 'fill', quality: 'auto:low' }
             ]
         });
-        
+
         res.json({
             message: 'Bild erfolgreich hochgeladen',
             image: {
@@ -83,7 +83,7 @@ router.post('/image', [
                 size: result.bytes
             }
         });
-        
+
     } catch (error) {
         console.error('Image upload error:', error);
         res.status(500).json({ error: 'Fehler beim Hochladen des Bildes: ' + error.message });
@@ -102,13 +102,13 @@ router.post('/property-images', [
         if (!req.files || req.files.length === 0) {
             return res.status(400).json({ error: 'Keine Dateien hochgeladen' });
         }
-        
+
         const { property_id } = req.body;
-        
+
         if (!property_id) {
             return res.status(400).json({ error: 'property_id erforderlich' });
         }
-        
+
         // Upload all images to Cloudinary
         const uploadPromises = req.files.map((file, index) => {
             return new Promise((resolve, reject) => {
@@ -126,13 +126,13 @@ router.post('/property-images', [
                         else resolve({ result, index });
                     }
                 );
-                
+
                 uploadStream.end(file.buffer);
             });
         });
-        
+
         const uploads = await Promise.all(uploadPromises);
-        
+
         // Save to database
         const imageInserts = uploads.map(({ result, index }) => {
             const thumbnailUrl = cloudinary.url(result.public_id, {
@@ -140,7 +140,7 @@ router.post('/property-images', [
                     { width: 400, height: 300, crop: 'fill', quality: 'auto:low' }
                 ]
             });
-            
+
             return query(`
                 INSERT INTO property_images (property_id, image_url, thumbnail_url, cloudinary_id, display_order, is_primary)
                 VALUES (?, ?, ?, ?, ?, ?)
@@ -153,9 +153,9 @@ router.post('/property-images', [
                 index === 0 ? 1 : 0 // First image is primary
             ]);
         });
-        
+
         await Promise.all(imageInserts);
-        
+
         res.json({
             message: `${uploads.length} Bilder erfolgreich hochgeladen`,
             images: uploads.map(({ result }, index) => ({
@@ -167,7 +167,7 @@ router.post('/property-images', [
                 display_order: index
             }))
         });
-        
+
     } catch (error) {
         console.error('Property images upload error:', error);
         res.status(500).json({ error: 'Fehler beim Hochladen der Bilder: ' + error.message });
@@ -183,15 +183,15 @@ router.delete('/image/:cloudinary_id', [
 ], async (req, res) => {
     try {
         const cloudinaryId = req.params.cloudinary_id.replace(/-/g, '/'); // Convert back to path format
-        
+
         // Delete from Cloudinary
         await cloudinary.uploader.destroy(cloudinaryId);
-        
+
         // Delete from database
         await query('DELETE FROM property_images WHERE cloudinary_id = ?', [cloudinaryId]);
-        
+
         res.json({ message: 'Bild erfolgreich gelöscht' });
-        
+
     } catch (error) {
         console.error('Image delete error:', error);
         res.status(500).json({ error: 'Fehler beim Löschen des Bildes' });

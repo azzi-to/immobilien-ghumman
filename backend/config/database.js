@@ -34,7 +34,7 @@ if (process.env.DATABASE_URL || process.env.MYSQL_URL) {
 }
 
 // Create connection pool
-const pool = dbConfig.uri 
+const pool = dbConfig.uri
     ? mysql.createPool(dbConfig.uri)
     : mysql.createPool(dbConfig);
 
@@ -77,7 +77,7 @@ async function queryOne(sql, params) {
 async function transaction(callback) {
     const connection = await pool.getConnection();
     await connection.beginTransaction();
-    
+
     try {
         await callback(connection);
         await connection.commit();

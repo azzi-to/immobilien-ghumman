@@ -7,7 +7,7 @@
  * - ARCHIV: Ältere Immobilien
  */
 
-document.addEventListener('DOMContentLoaded', async function() {
+document.addEventListener('DOMContentLoaded', async function () {
     await loadAllProperties();
 });
 
@@ -37,7 +37,7 @@ async function loadAllProperties() {
         }
 
         const api = new PropertyAPI();
-        
+
         // Kategorisierte Immobilien laden (neu vs. archiviert)
         const { recent, archived, total } = await api.getCategorizedProperties(14); // 14 Tage Schwelle
 
@@ -157,8 +157,8 @@ function createAngebotePropertyCard(property) {
     };
 
     // Truncate description if too long
-    const shortDescription = property.description.length > 120 
-        ? property.description.substring(0, 120) + '...' 
+    const shortDescription = property.description.length > 120
+        ? property.description.substring(0, 120) + '...'
         : property.description;
 
     // NEU-Badge HTML nur wenn property.isNew = true
@@ -194,7 +194,7 @@ function createAngebotePropertyCard(property) {
  */
 function filterByType(type) {
     const cards = document.querySelectorAll('.property-card');
-    
+
     cards.forEach(card => {
         if (type === 'all' || card.dataset.type === type) {
             card.style.display = 'block';

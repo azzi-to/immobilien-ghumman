@@ -560,29 +560,87 @@
         // Initialize API Client
         const api = new PropertyAPI();
 
-        // Check authentication
+        // Check authentication - mit Backend-Validierung
         async function checkAuth() {
             const token = localStorage.getItem('authToken');
+            const authTimestamp = localStorage.getItem('authTimestamp');
+            
             if (!token) {
-                window.location.href = 'admin-login.html';
+                redirectToLogin();
+                return false;
+            }
+
+            // Prüfen ob Token nicht älter als 7 Tage ist
+            const tokenAge = Date.now() - parseInt(authTimestamp || '0');
+            const maxAge = 7 * 24 * 60 * 60 * 1000; // 7 Tage
+
+            if (tokenAge > maxAge) {
+                console.log('Token expired');
+                clearAuthData();
+                redirectToLogin();
                 return false;
             }
 
             try {
-                // Verify token with backend
-                // await api.getCurrentUser(); // Optional: verify token validity
+                // Token beim Backend validieren
+                api.token = token;
+                const userData = await api.getCurrentUser();
+                
+                // User-Info aktualisieren
+                if (userData.user) {
+                    updateUserDisplay(userData.user);
+                }
+                
+                // Session-Marker setzen
+                sessionStorage.setItem('isAuthenticated', 'true');
                 return true;
             } catch (error) {
                 console.error('Auth check failed:', error);
-                localStorage.removeItem('authToken');
-                window.location.href = 'admin-login.html';
+                clearAuthData();
+                redirectToLogin();
                 return false;
+            }
+        }
+
+        // Auth-Daten löschen
+        function clearAuthData() {
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('authUser');
+            localStorage.removeItem('authTimestamp');
+            sessionStorage.removeItem('isAuthenticated');
+        }
+
+        // Zur Login-Seite weiterleiten
+        function redirectToLogin() {
+            window.location.href = 'admin-login.html';
+        }
+
+        // User-Anzeige aktualisieren
+        function updateUserDisplay(user) {
+            const userAvatar = document.querySelector('.user-avatar');
+            const userNameEl = document.querySelector('.user-info > div > div:first-child');
+            const userRoleEl = document.querySelector('.user-info > div > div:last-child');
+            
+            if (userAvatar && user.username) {
+                userAvatar.textContent = user.username.charAt(0).toUpperCase();
+            }
+            if (userNameEl && user.full_name) {
+                userNameEl.textContent = user.full_name || user.username;
+            }
+            if (userRoleEl && user.role) {
+                const roleLabels = {
+                    'admin': 'Administrator',
+                    'manager': 'Manager',
+                    'agent': 'Agent'
+                };
+                userRoleEl.textContent = roleLabels[user.role] || user.role;
             }
         }
 
         // Logout
         function handleLogout() {
             if (confirm('Möchten Sie sich wirklich abmelden?')) {
+                clearAuthData();
                 api.logout();
                 window.location.href = 'admin-login.html';
             }

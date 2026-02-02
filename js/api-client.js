@@ -51,14 +51,14 @@ class PropertyAPI {
             limit: 200,
             sort: 'newest'
         });
-        
+
         const properties = response.properties || [];
         const now = new Date();
         const thresholdDate = new Date(now.getTime() - daysThreshold * 24 * 60 * 60 * 1000);
-        
+
         const recent = [];
         const archived = [];
-        
+
         properties.forEach(property => {
             const createdAt = new Date(property.created_at);
             if (createdAt >= thresholdDate) {
@@ -67,10 +67,10 @@ class PropertyAPI {
                 archived.push(property);
             }
         });
-        
+
         return { recent, archived, total: properties.length };
     }
-    
+
     // Set auth token
     setToken(token) {
         this.token = token;
@@ -80,24 +80,24 @@ class PropertyAPI {
             localStorage.removeItem('authToken');
         }
     }
-    
+
     // Get auth headers
     getHeaders(includeAuth = true) {
         const headers = {
             'Content-Type': 'application/json'
         };
-        
+
         if (includeAuth && this.token) {
             headers['Authorization'] = `Bearer ${this.token}`;
         }
-        
+
         return headers;
     }
-    
+
     // Handle API response
     async handleResponse(response) {
         const data = await response.json();
-        
+
         if (!response.ok) {
             // Handle authentication errors
             if (response.status === 401) {
@@ -106,10 +106,10 @@ class PropertyAPI {
             }
             throw new Error(data.error || 'API Fehler');
         }
-        
+
         return data;
     }
-    
+
     // Authentication
     async login(username, password) {
         const response = await fetch(`${this.baseURL}/auth/login`, {
@@ -117,24 +117,24 @@ class PropertyAPI {
             headers: this.getHeaders(false),
             body: JSON.stringify({ username, password })
         });
-        
+
         const data = await this.handleResponse(response);
         this.setToken(data.token);
         return data;
     }
-    
+
     async logout() {
         this.setToken(null);
         return { message: 'Erfolgreich abgemeldet' };
     }
-    
+
     async getCurrentUser() {
         const response = await fetch(`${this.baseURL}/auth/me`, {
             headers: this.getHeaders()
         });
         return this.handleResponse(response);
     }
-    
+
     // Properties
     async getProperties(filters = {}) {
         const params = new URLSearchParams();
@@ -143,20 +143,20 @@ class PropertyAPI {
                 params.append(key, filters[key]);
             }
         });
-        
+
         const response = await fetch(`${this.baseURL}/properties?${params}`, {
             headers: this.getHeaders(false)
         });
         return this.handleResponse(response);
     }
-    
+
     async getProperty(id) {
         const response = await fetch(`${this.baseURL}/properties/${id}`, {
             headers: this.getHeaders(false)
         });
         return this.handleResponse(response);
     }
-    
+
     async createProperty(propertyData) {
         const response = await fetch(`${this.baseURL}/properties`, {
             method: 'POST',
@@ -165,7 +165,7 @@ class PropertyAPI {
         });
         return this.handleResponse(response);
     }
-    
+
     async updateProperty(id, propertyData) {
         const response = await fetch(`${this.baseURL}/properties/${id}`, {
             method: 'PUT',
@@ -174,7 +174,7 @@ class PropertyAPI {
         });
         return this.handleResponse(response);
     }
-    
+
     async deleteProperty(id) {
         const response = await fetch(`${this.baseURL}/properties/${id}`, {
             method: 'DELETE',
@@ -182,16 +182,16 @@ class PropertyAPI {
         });
         return this.handleResponse(response);
     }
-    
+
     // Image Upload
     async uploadPropertyImages(propertyId, files) {
         const formData = new FormData();
         formData.append('property_id', propertyId);
-        
+
         for (let i = 0; i < files.length; i++) {
             formData.append('images', files[i]);
         }
-        
+
         const response = await fetch(`${this.baseURL}/upload/property-images`, {
             method: 'POST',
             headers: {
@@ -199,14 +199,14 @@ class PropertyAPI {
             },
             body: formData
         });
-        
+
         return this.handleResponse(response);
     }
-    
+
     async uploadSingleImage(file) {
         const formData = new FormData();
         formData.append('image', file);
-        
+
         const response = await fetch(`${this.baseURL}/upload/image`, {
             method: 'POST',
             headers: {
@@ -214,10 +214,10 @@ class PropertyAPI {
             },
             body: formData
         });
-        
+
         return this.handleResponse(response);
     }
-    
+
     async deleteImage(cloudinaryId) {
         const response = await fetch(`${this.baseURL}/upload/image/${cloudinaryId.replace(/\//g, '-')}`, {
             method: 'DELETE',
@@ -225,7 +225,7 @@ class PropertyAPI {
         });
         return this.handleResponse(response);
     }
-    
+
     // Contact/Inquiries
     async submitInquiry(inquiryData) {
         const response = await fetch(`${this.baseURL}/contact/inquiry`, {
@@ -235,7 +235,7 @@ class PropertyAPI {
         });
         return this.handleResponse(response);
     }
-    
+
     async getInquiries(filters = {}) {
         const params = new URLSearchParams(filters);
         const response = await fetch(`${this.baseURL}/contact/inquiries?${params}`, {
@@ -243,14 +243,14 @@ class PropertyAPI {
         });
         return this.handleResponse(response);
     }
-    
+
     async getInquiry(id) {
         const response = await fetch(`${this.baseURL}/contact/inquiries/${id}`, {
             headers: this.getHeaders()
         });
         return this.handleResponse(response);
     }
-    
+
     async updateInquiry(id, data) {
         const response = await fetch(`${this.baseURL}/contact/inquiries/${id}`, {
             method: 'PUT',
@@ -259,14 +259,14 @@ class PropertyAPI {
         });
         return this.handleResponse(response);
     }
-    
+
     async getInquiryStats() {
         const response = await fetch(`${this.baseURL}/contact/stats`, {
             headers: this.getHeaders()
         });
         return this.handleResponse(response);
     }
-    
+
     // Users (Admin only)
     async getUsers(filters = {}) {
         const params = new URLSearchParams(filters);
@@ -275,14 +275,14 @@ class PropertyAPI {
         });
         return this.handleResponse(response);
     }
-    
+
     async getUser(id) {
         const response = await fetch(`${this.baseURL}/users/${id}`, {
             headers: this.getHeaders()
         });
         return this.handleResponse(response);
     }
-    
+
     async createUser(userData) {
         const response = await fetch(`${this.baseURL}/users`, {
             method: 'POST',
@@ -291,7 +291,7 @@ class PropertyAPI {
         });
         return this.handleResponse(response);
     }
-    
+
     async updateUser(id, userData) {
         const response = await fetch(`${this.baseURL}/users/${id}`, {
             method: 'PUT',
@@ -300,7 +300,7 @@ class PropertyAPI {
         });
         return this.handleResponse(response);
     }
-    
+
     async deleteUser(id) {
         const response = await fetch(`${this.baseURL}/users/${id}`, {
             method: 'DELETE',
@@ -308,7 +308,7 @@ class PropertyAPI {
         });
         return this.handleResponse(response);
     }
-    
+
     async getUserStats() {
         const response = await fetch(`${this.baseURL}/users/stats/overview`, {
             headers: this.getHeaders()
@@ -325,14 +325,14 @@ async function displayProperties(container, filters = {}) {
     try {
         const data = await api.getProperties(filters);
         const properties = data.properties;
-        
+
         if (!properties || properties.length === 0) {
             container.innerHTML = '<p class="no-properties">Keine Immobilien gefunden.</p>';
             return;
         }
-        
+
         container.innerHTML = properties.map(property => createPropertyCard(property)).join('');
-        
+
     } catch (error) {
         console.error('Error loading properties:', error);
         container.innerHTML = '<p class="error">Fehler beim Laden der Immobilien.</p>';
@@ -343,7 +343,7 @@ async function displayProperties(container, filters = {}) {
 function createPropertyCard(property) {
     const primaryImage = property.images?.[0] || 'https://via.placeholder.com/400x300?text=Kein+Bild';
     const imageUrl = typeof primaryImage === 'string' ? primaryImage : primaryImage.image_url;
-    
+
     return `
         <div class="property-card" data-id="${property.id}">
             <div class="property-image">
@@ -384,16 +384,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             max_price: params.get('max_price'),
             featured: params.get('featured')
         };
-        
+
         await displayProperties(propertyContainer, filters);
     }
-    
+
     // Property detail page
     const propertyDetail = document.querySelector('.property-detail');
     if (propertyDetail) {
         const params = new URLSearchParams(window.location.search);
         const propertyId = params.get('id');
-        
+
         if (propertyId) {
             try {
                 const data = await api.getProperty(propertyId);
@@ -404,16 +404,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }
     }
-    
+
     // Contact form submission
     const inquiryForm = document.querySelector('#inquiry-form');
     if (inquiryForm) {
         inquiryForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
             const formData = new FormData(inquiryForm);
             const data = Object.fromEntries(formData);
-            
+
             try {
                 const result = await api.submitInquiry(data);
                 alert('Ihre Anfrage wurde erfolgreich gesendet!');

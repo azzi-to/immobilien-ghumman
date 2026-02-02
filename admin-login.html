@@ -285,12 +285,6 @@
                 <button type="submit" class="login-btn">Anmelden</button>
             </form>
 
-            <div class="demo-credentials">
-                <strong>🔐 Demo-Zugangsdaten:</strong>
-                <div>Benutzername: <code>admin</code></div>
-                <div>Passwort: <code>admin123</code></div>
-            </div>
-
             <div class="back-home">
                 <a href="index.html">← Zurück zur Startseite</a>
             </div>
@@ -328,17 +322,33 @@
         async function handleLogin(event) {
             event.preventDefault();
 
-            const username = document.getElementById('username').value;
+            const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value;
             const remember = document.getElementById('remember').checked;
             const submitBtn = event.target.querySelector('button[type="submit"]');
+
+            // Validierung
+            if (!username || !password) {
+                showAlert('Bitte Benutzername und Passwort eingeben.', 'error');
+                return;
+            }
 
             submitBtn.disabled = true;
             submitBtn.textContent = 'Anmelden...';
 
             try {
                 // Use API for login
-                await api.login(username, password);
+                const response = await api.login(username, password);
+
+                // Token und User-Info speichern
+                if (response.token) {
+                    localStorage.setItem('authToken', response.token);
+                    localStorage.setItem('authUser', JSON.stringify(response.user));
+                    localStorage.setItem('authTimestamp', Date.now().toString());
+                    
+                    // Session-Marker setzen (für Reload-Schutz)
+                    sessionStorage.setItem('isAuthenticated', 'true');
+                }
 
                 showAlert('Login erfolgreich! Weiterleitung...', 'success');
 
@@ -353,13 +363,37 @@
             }
         }
 
-        // Prüfen, ob bereits eingeloggt
-        window.addEventListener('DOMContentLoaded', function () {
+        // Prüfen, ob bereits eingeloggt - mit Token-Validierung
+        window.addEventListener('DOMContentLoaded', async function () {
             const token = localStorage.getItem('authToken');
+            const authTimestamp = localStorage.getItem('authTimestamp');
 
             if (token) {
-                // Optional: Verify token validity with backend
-                window.location.href = 'admin-dashboard.html';
+                // Prüfen ob Token nicht älter als 7 Tage ist
+                const tokenAge = Date.now() - parseInt(authTimestamp || '0');
+                const maxAge = 7 * 24 * 60 * 60 * 1000; // 7 Tage in Millisekunden
+
+                if (tokenAge < maxAge) {
+                    try {
+                        // Token beim Backend validieren
+                        api.token = token;
+                        await api.getCurrentUser();
+                        window.location.href = 'admin-dashboard.html';
+                    } catch (error) {
+                        // Token ungültig - löschen
+                        console.log('Token invalid, clearing...');
+                        localStorage.removeItem('authToken');
+                        localStorage.removeItem('authUser');
+                        localStorage.removeItem('authTimestamp');
+                        sessionStorage.removeItem('isAuthenticated');
+                    }
+                } else {
+                    // Token zu alt - löschen
+                    localStorage.removeItem('authToken');
+                    localStorage.removeItem('authUser');
+                    localStorage.removeItem('authTimestamp');
+                    sessionStorage.removeItem('isAuthenticated');
+                }
             }
         });
     </script>
