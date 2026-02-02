@@ -102,7 +102,10 @@ class PropertyAPI {
             // Handle authentication errors
             if (response.status === 401) {
                 this.setToken(null);
-                window.location.href = '/admin-login.html';
+                // Nur weiterleiten wenn nicht bereits auf Login-Seite
+                if (!window.location.pathname.includes('admin-login')) {
+                    window.location.href = 'admin-login.html';
+                }
             }
             throw new Error(data.error || 'API Fehler');
         }
@@ -118,8 +121,17 @@ class PropertyAPI {
             body: JSON.stringify({ username, password })
         });
 
-        const data = await this.handleResponse(response);
-        this.setToken(data.token);
+        const data = await response.json();
+        
+        if (!response.ok) {
+            throw new Error(data.error || 'Login fehlgeschlagen');
+        }
+        
+        // Token speichern
+        if (data.token) {
+            this.setToken(data.token);
+        }
+        
         return data;
     }
 

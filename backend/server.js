@@ -192,11 +192,11 @@ async function initializeTables() {
 
         // Check if new admin user exists, create/update if needed
         const adminExists = await query('SELECT id, username FROM users WHERE username = ?', [ADMIN_USERNAME]);
-        
+
         if (adminExists.length === 0) {
             // Check if old admin exists and delete it
             await query('DELETE FROM users WHERE username = ?', ['admin']);
-            
+
             const hashedPassword = await bcrypt.hash(ADMIN_PASSWORD, 12); // Stärkerer Hash mit 12 Runden
             await query(
                 'INSERT INTO users (username, email, password, role, full_name, status) VALUES (?, ?, ?, ?, ?, ?)',
@@ -206,7 +206,7 @@ async function initializeTables() {
         } else {
             // Update password if admin exists (ensures password is current)
             const hashedPassword = await bcrypt.hash(ADMIN_PASSWORD, 12);
-            await query('UPDATE users SET password = ?, status = ? WHERE username = ?', 
+            await query('UPDATE users SET password = ?, status = ? WHERE username = ?',
                 [hashedPassword, 'active', ADMIN_USERNAME]);
             console.log(`✅ Admin user updated (username: ${ADMIN_USERNAME})`);
         }

@@ -339,22 +339,27 @@
             try {
                 // Use API for login
                 const response = await api.login(username, password);
+                
+                console.log('Login response:', response); // Debug
 
                 // Token und User-Info speichern
-                if (response.token) {
+                if (response && response.token) {
                     localStorage.setItem('authToken', response.token);
-                    localStorage.setItem('authUser', JSON.stringify(response.user));
+                    localStorage.setItem('authUser', JSON.stringify(response.user || {}));
                     localStorage.setItem('authTimestamp', Date.now().toString());
-                    
+
                     // Session-Marker setzen (für Reload-Schutz)
                     sessionStorage.setItem('isAuthenticated', 'true');
+                    
+                    showAlert('Login erfolgreich! Weiterleitung...', 'success');
+
+                    // Direkte Weiterleitung mit replace (verhindert Zurück-Button-Problem)
+                    setTimeout(() => {
+                        window.location.replace('admin-dashboard.html');
+                    }, 500);
+                } else {
+                    throw new Error('Kein Token erhalten');
                 }
-
-                showAlert('Login erfolgreich! Weiterleitung...', 'success');
-
-                setTimeout(() => {
-                    window.location.href = 'admin-dashboard.html';
-                }, 1000);
             } catch (error) {
                 console.error('Login error:', error);
                 showAlert(error.message || 'Ungültige Zugangsdaten! Bitte versuchen Sie es erneut.', 'error');

@@ -564,7 +564,7 @@
         async function checkAuth() {
             const token = localStorage.getItem('authToken');
             const authTimestamp = localStorage.getItem('authTimestamp');
-            
+
             if (!token) {
                 redirectToLogin();
                 return false;
@@ -585,12 +585,12 @@
                 // Token beim Backend validieren
                 api.token = token;
                 const userData = await api.getCurrentUser();
-                
+
                 // User-Info aktualisieren
                 if (userData.user) {
                     updateUserDisplay(userData.user);
                 }
-                
+
                 // Session-Marker setzen
                 sessionStorage.setItem('isAuthenticated', 'true');
                 return true;
@@ -620,7 +620,7 @@
             const userAvatar = document.querySelector('.user-avatar');
             const userNameEl = document.querySelector('.user-info > div > div:first-child');
             const userRoleEl = document.querySelector('.user-info > div > div:last-child');
-            
+
             if (userAvatar && user.username) {
                 userAvatar.textContent = user.username.charAt(0).toUpperCase();
             }
