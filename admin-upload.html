@@ -100,6 +100,75 @@
             resize: vertical;
         }
 
+        /* Upload Tabs Navigation */
+        .upload-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 15px;
+        }
+        
+        .upload-tab {
+            flex: 1;
+            padding: 15px 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            background: #f8fafc;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .upload-tab:hover {
+            border-color: #336699;
+            background: #f1f5f9;
+        }
+        
+        .upload-tab.active {
+            background: linear-gradient(135deg, #336699 0%, #2a5580 100%);
+            color: white;
+            border-color: #336699;
+        }
+        
+        .upload-tab .tab-icon {
+            font-size: 24px;
+        }
+        
+        .upload-tab .tab-text {
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        /* Upload Tab Content */
+        .upload-tab-content {
+            display: none;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .upload-tab-content.active {
+            display: block;
+        }
+        
+        .upload-info {
+            text-align: center;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 15px;
+        }
+        
+        .url-input-area {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
         /* Upload Device Button - Mobile-freundlich */
         .btn-upload-device {
             width: 100%;
@@ -204,12 +273,32 @@
         
         /* Mobile: Drag&Drop kleiner, Upload-Button größer */
         @media (max-width: 768px) {
-            .image-upload#dropZone {
+            .upload-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .upload-tab {
+                padding: 12px 8px;
+            }
+            
+            .upload-tab .tab-icon {
+                font-size: 20px;
+            }
+            
+            .upload-tab .tab-text {
+                font-size: 11px;
+            }
+            
+            .upload-tab-content {
                 padding: 15px;
             }
             
+            .image-upload#dropZone {
+                padding: 20px 15px;
+            }
+            
             .image-upload#dropZone .upload-icon {
-                font-size: 28px;
+                font-size: 36px;
             }
             
             .btn-upload-device {
@@ -461,44 +550,63 @@
             <div class="form-section">
                 <h3 class="section-title">🖼️ Bilder hochladen</h3>
                 
-                <!-- Option 1: Vom Gerät hochladen (Mobile-freundlich) -->
-                <div class="upload-option">
-                    <h4 style="margin-bottom: 15px; color: #336699;">📱 Vom Gerät hochladen</h4>
-                    
-                    <!-- Verstecktes File Input -->
-                    <input type="file" id="fileInput" accept="image/*" multiple style="display: none;">
-                    
-                    <!-- Sichtbarer Upload Button für Mobile -->
-                    <button type="button" class="btn-upload-device" onclick="document.getElementById('fileInput').click()">
-                        <span class="btn-icon">📷</span>
-                        <span class="btn-text">Fotos auswählen</span>
-                        <span class="btn-hint">Von Galerie oder Kamera</span>
+                <!-- Tab-Navigation -->
+                <div class="upload-tabs">
+                    <button type="button" class="upload-tab active" onclick="showUploadTab('device')">
+                        <span class="tab-icon">📱</span>
+                        <span class="tab-text">Vom Gerät</span>
                     </button>
-                    
-                    <!-- Drag & Drop Zone (Desktop) -->
+                    <button type="button" class="upload-tab" onclick="showUploadTab('dragdrop')">
+                        <span class="tab-icon">🖱️</span>
+                        <span class="tab-text">Drag & Drop</span>
+                    </button>
+                    <button type="button" class="upload-tab" onclick="showUploadTab('url')">
+                        <span class="tab-icon">🔗</span>
+                        <span class="tab-text">URL eingeben</span>
+                    </button>
+                </div>
+                
+                <!-- Tab 1: Vom Gerät hochladen (Standard/Immer sichtbar als erster Tab) -->
+                <div id="upload-tab-device" class="upload-tab-content active">
+                    <div class="upload-area-device">
+                        <input type="file" id="fileInput" accept="image/*" multiple style="display: none;">
+                        <button type="button" class="btn-upload-device" onclick="document.getElementById('fileInput').click()">
+                            <span class="btn-icon">📷</span>
+                            <span class="btn-text">Fotos auswählen</span>
+                            <span class="btn-hint">Von Galerie oder Kamera</span>
+                        </button>
+                        <p class="upload-info">Wählen Sie Bilder von Ihrem Gerät aus (max. 10 Bilder)</p>
+                    </div>
+                </div>
+                
+                <!-- Tab 2: Drag & Drop -->
+                <div id="upload-tab-dragdrop" class="upload-tab-content">
                     <div class="image-upload" id="dropZone">
                         <div class="upload-icon">⬆️</div>
                         <div class="upload-text">Bilder hierher ziehen</div>
-                        <div class="upload-hint">oder klicken zum Auswählen (max. 5 Bilder)</div>
+                        <div class="upload-hint">Ziehen Sie Ihre Bilder in diesen Bereich</div>
+                    </div>
+                    <p class="upload-info">Ziehen Sie Bilder per Drag & Drop in den Bereich oben</p>
+                </div>
+                
+                <!-- Tab 3: URL eingeben -->
+                <div id="upload-tab-url" class="upload-tab-content">
+                    <div class="url-input-area">
+                        <label style="display: block; font-weight: 600; margin-bottom: 10px; color: #336699;">
+                            Bild-URL eingeben
+                        </label>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <input type="url" name="imageUrl" id="imageUrl" placeholder="https://example.com/image.jpg"
+                                style="flex: 1; min-width: 200px;">
+                            <button type="button" onclick="addImageUrl()" class="btn btn-primary" style="padding: 12px 20px;">
+                                ➕ Hinzufügen
+                            </button>
+                        </div>
+                        <p class="upload-info">💡 Verwenden Sie URLs von Cloudinary, Unsplash oder anderen Hosting-Diensten</p>
                     </div>
                 </div>
                 
-                <!-- Option 2: Bild-URL eingeben -->
-                <div class="upload-option" style="margin-top: 25px; padding-top: 25px; border-top: 2px solid #e2e8f0;">
-                    <h4 style="margin-bottom: 15px; color: #336699;">🔗 Bild-URL eingeben</h4>
-                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                        <input type="url" name="imageUrl" id="imageUrl" placeholder="https://example.com/image.jpg"
-                            style="flex: 1; min-width: 200px;">
-                        <button type="button" onclick="addImageUrl()" class="btn btn-secondary" style="padding: 12px 20px;">
-                            ➕ Hinzufügen
-                        </button>
-                    </div>
-                    <small style="color: #64748b; margin-top: 8px; display: block;">
-                        💡 Tipp: Bilder von Cloudinary, Unsplash oder anderen Hosting-Diensten
-                    </small>
-                </div>
-                
-                <!-- Bild-Vorschau -->
+                <!-- Bild-Vorschau (immer sichtbar) -->
                 <div id="imagePreviewContainer" class="image-preview"></div>
                 <div id="uploadStatus" class="upload-status" style="display: none;"></div>
             </div>
@@ -590,6 +698,23 @@
             const parentToken = window.parent.localStorage.getItem('authToken');
             if (parentToken) {
                 api.setToken(parentToken);
+            }
+        }
+        
+        // Tab-Wechsel Funktion
+        function showUploadTab(tabName) {
+            // Alle Tabs deaktivieren
+            document.querySelectorAll('.upload-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.upload-tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Ausgewählten Tab aktivieren
+            event.currentTarget.classList.add('active');
+            document.getElementById('upload-tab-' + tabName).classList.add('active');
+        }
             }
         }
 
