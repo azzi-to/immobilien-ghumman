@@ -30,40 +30,40 @@ router.post('/register', authMiddleware, requireRole('admin'), [
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
-        
+
         const { username, email, password, full_name, phone } = req.body;
-        
+
         // Check if user exists
         const existingUser = await queryOne(
             'SELECT id FROM users WHERE username = ? OR email = ?',
             [username, email]
         );
-        
+
         if (existingUser) {
             return res.status(409).json({ error: 'Benutzername oder E-Mail bereits vergeben' });
         }
-        
+
         // Hash password
         const hashedPassword = await bcrypt.hash(password, 10);
-        
+
         // Create user
         const result = await query(
             `INSERT INTO users (username, email, password, full_name, phone, role) 
              VALUES (?, ?, ?, ?, ?, 'user')`,
             [username, email, hashedPassword, full_name || null, phone || null]
         );
-        
+
         const userId = result.insertId;
-        
+
         // Get created user
         const user = await queryOne(
             'SELECT id, username, email, full_name, role, created_at FROM users WHERE id = ?',
             [userId]
         );
-        
+
         // Generate token
         const token = generateToken(user);
-        
+
         res.status(201).json({
             message: 'Benutzer erfolgreich registriert',
             token,
@@ -75,7 +75,7 @@ router.post('/register', authMiddleware, requireRole('admin'), [
                 role: user.role
             }
         });
-        
+
     } catch (error) {
         console.error('Registration error:', error);
         res.status(500).json({ error: 'Registrierung fehlgeschlagen' });
@@ -95,37 +95,37 @@ router.post('/login', [
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
-        
+
         const { username, password } = req.body;
-        
+
         // Find user
         const user = await queryOne(
             'SELECT * FROM users WHERE username = ? OR email = ?',
             [username, username]
         );
-        
+
         if (!user) {
             return res.status(401).json({ error: 'Ungültige Zugangsdaten' });
         }
-        
+
         // Check if account is active
         if (user.status !== 'active') {
             return res.status(403).json({ error: 'Konto ist nicht aktiv' });
         }
-        
+
         // Verify password
         const isValidPassword = await bcrypt.compare(password, user.password);
-        
+
         if (!isValidPassword) {
             return res.status(401).json({ error: 'Ungültige Zugangsdaten' });
         }
-        
+
         // Update last login
         await query('UPDATE users SET last_login = NOW() WHERE id = ?', [user.id]);
-        
+
         // Generate token
         const token = generateToken(user);
-        
+
         res.json({
             message: 'Login erfolgreich',
             token,
@@ -138,7 +138,7 @@ router.post('/login', [
                 avatar_url: user.avatar_url
             }
         });
-        
+
     } catch (error) {
         console.error('Login error:', error);
         res.status(500).json({ error: 'Login fehlgeschlagen' });
@@ -156,13 +156,13 @@ router.get('/me', authMiddleware, async (req, res) => {
              FROM users WHERE id = ?`,
             [req.user.id]
         );
-        
+
         if (!user) {
             return res.status(404).json({ error: 'Benutzer nicht gefunden' });
         }
-        
+
         res.json({ user });
-        
+
     } catch (error) {
         console.error('Get user error:', error);
         res.status(500).json({ error: 'Fehler beim Abrufen der Benutzerdaten' });
@@ -182,32 +182,32 @@ router.put('/change-password', [
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
-        
+
         const { currentPassword, newPassword } = req.body;
-        
+
         // Get user with password
         const user = await queryOne(
             'SELECT password FROM users WHERE id = ?',
             [req.user.id]
         );
-        
+
         // Verify current password
         const isValid = await bcrypt.compare(currentPassword, user.password);
         if (!isValid) {
             return res.status(401).json({ error: 'Aktuelles Passwort ist falsch' });
         }
-        
+
         // Hash new password
         const hashedPassword = await bcrypt.hash(newPassword, 10);
-        
+
         // Update password
         await query(
             'UPDATE users SET password = ? WHERE id = ?',
             [hashedPassword, req.user.id]
         );
-        
+
         res.json({ message: 'Passwort erfolgreich geändert' });
-        
+
     } catch (error) {
         console.error('Change password error:', error);
         res.status(500).json({ error: 'Fehler beim Ändern des Passworts' });

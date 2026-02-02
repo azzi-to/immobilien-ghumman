@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Immobilien Ghumman</title>
-    
+
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/dlpdbr0ey/image/upload/v1755051245/7ae1aa7d-b239-4ee5-8090-6b8339e15d4e-removebg-preview_m6fipk.png">
-    
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="https://res.cloudinary.com/dlpdbr0ey/image/upload/v1755051245/7ae1aa7d-b239-4ee5-8090-6b8339e15d4e-removebg-preview_m6fipk.png">
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -657,10 +658,64 @@
                 height: 12px;
             }
         }
+
+        /* Initial Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #f5f7fa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            transition: opacity 0.3s ease;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #e2e8f0;
+            border-top-color: #336699;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 20px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .loading-logo {
+            max-width: 120px;
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
     </style>
 </head>
 
 <body>
+    <!-- Initial Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <img src="https://res.cloudinary.com/dlpdbr0ey/image/upload/v1755051245/7ae1aa7d-b239-4ee5-8090-6b8339e15d4e-removebg-preview_m6fipk.png" 
+             alt="Loading" class="loading-logo">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Dashboard wird geladen...</p>
+    </div>
+
     <!-- Mobile Menu Button -->
     <button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="Menü öffnen">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -1492,10 +1547,23 @@
             }
         });
 
+        // Hide loading overlay
+        function hideLoadingOverlay() {
+            const overlay = document.getElementById('loadingOverlay');
+            if (overlay) {
+                overlay.classList.add('hidden');
+                setTimeout(() => overlay.remove(), 300);
+            }
+        }
+
         // Initialize - Load properties as default view
-        window.addEventListener('DOMContentLoaded', function () {
-            checkAuth();
-            loadProperties(); // Load properties immediately as it's the default view
+        window.addEventListener('DOMContentLoaded', async function () {
+            const isAuthenticated = await checkAuth();
+            
+            if (isAuthenticated) {
+                await loadProperties(); // Load properties immediately as it's the default view
+                hideLoadingOverlay();
+            }
         });
     </script>
 </body>
