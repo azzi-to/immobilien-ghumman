@@ -346,6 +346,137 @@
             transform: translateY(-2px);
         }
 
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 32px;
+            cursor: pointer;
+            color: #64748b;
+            z-index: 10;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: #ef4444;
+        }
+
+        .modal-header {
+            padding: 25px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .modal-header h2 {
+            font-size: 24px;
+            color: #336699;
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .modal-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .modal-gallery img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .modal-gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        .modal-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .modal-info-item {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .modal-info-item label {
+            display: block;
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 5px;
+        }
+
+        .modal-info-item span {
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        /* Alert Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            z-index: 3000;
+            animation: slideIn 0.3s ease;
+            max-width: 400px;
+        }
+
+        .toast.success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .toast.error {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
         /* Empty State */
         .empty-state {
             text-align: center;
@@ -398,17 +529,24 @@
 
             .main-content {
                 margin-left: 0;
-                padding: 20px 15px;
+                padding: 80px 15px 20px 15px;
             }
 
             .mobile-menu-btn {
-                display: block;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
 
             .top-bar {
                 padding: 15px 20px;
                 flex-direction: column;
                 gap: 15px;
+                text-align: center;
+            }
+            
+            .top-bar h1 {
+                font-size: 22px;
             }
 
             .stats-grid {
@@ -423,13 +561,116 @@
                 width: 100%;
                 height: 200px;
             }
+            
+            .property-actions {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .btn-edit, .btn-delete, .btn-view {
+                flex: 1;
+                min-width: 80px;
+                text-align: center;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .section-header .btn-primary {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            /* Modal responsive */
+            .modal {
+                padding: 10px;
+            }
+            
+            .modal-content {
+                max-height: 95vh;
+            }
+            
+            .modal-gallery {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .modal-info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Sidebar Overlay für Mobile */
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
+            
+            .sidebar-overlay.active {
+                display: block;
+            }
+            
+            /* Touch-freundliche Buttons */
+            .menu-item {
+                padding: 18px 25px;
+            }
+            
+            .logout-btn {
+                padding: 15px;
+            }
+            
+            /* Toast für Mobile */
+            .toast {
+                left: 15px;
+                right: 15px;
+                bottom: 15px;
+                max-width: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .stats-grid {
+                gap: 10px;
+            }
+            
+            .stat-card {
+                padding: 15px;
+            }
+            
+            .stat-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 22px;
+            }
+            
+            .stat-info h3 {
+                font-size: 24px;
+            }
+            
+            .section-card {
+                padding: 15px;
+            }
+            
+            .modal-gallery img {
+                height: 120px;
+            }
         }
     </style>
 </head>
 
 <body>
     <!-- Mobile Menu Button -->
-    <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
+    <button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="Menü öffnen">☰</button>
+    
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
@@ -548,9 +789,65 @@
         <div id="settings" class="content-section">
             <div class="section-card">
                 <div class="section-header">
-                    <h2>Einstellungen</h2>
+                    <h2>⚙️ Einstellungen</h2>
                 </div>
-                <p style="color: #64748b;">Einstellungen werden hier angezeigt...</p>
+                
+                <!-- Passwort ändern -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="margin-bottom: 15px; color: #336699;">🔐 Passwort ändern</h3>
+                    <form id="changePasswordForm" onsubmit="changePassword(event)">
+                        <div style="display: grid; gap: 15px; max-width: 400px;">
+                            <div>
+                                <label style="display: block; margin-bottom: 5px; font-weight: 600;">Aktuelles Passwort</label>
+                                <input type="password" name="currentPassword" required 
+                                    style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px;">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 5px; font-weight: 600;">Neues Passwort</label>
+                                <input type="password" name="newPassword" required minlength="6"
+                                    style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px;">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 5px; font-weight: 600;">Passwort bestätigen</label>
+                                <input type="password" name="confirmPassword" required minlength="6"
+                                    style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px;">
+                            </div>
+                            <button type="submit" class="btn-primary" style="justify-content: center;">
+                                💾 Passwort speichern
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Konto Info -->
+                <div style="padding-top: 20px; border-top: 1px solid #e2e8f0;">
+                    <h3 style="margin-bottom: 15px; color: #336699;">👤 Kontoinformationen</h3>
+                    <div id="accountInfo" style="background: #f8fafc; padding: 20px; border-radius: 8px;">
+                        <p><strong>Benutzername:</strong> <span id="settingsUsername">-</span></p>
+                        <p style="margin-top: 10px;"><strong>Rolle:</strong> <span id="settingsRole">-</span></p>
+                        <p style="margin-top: 10px;"><strong>Letzter Login:</strong> <span id="settingsLastLogin">-</span></p>
+                    </div>
+                </div>
+                
+                <!-- API Info -->
+                <div style="padding-top: 20px; margin-top: 20px; border-top: 1px solid #e2e8f0;">
+                    <h3 style="margin-bottom: 15px; color: #336699;">🌐 API Status</h3>
+                    <div id="apiStatus" style="background: #f8fafc; padding: 20px; border-radius: 8px;">
+                        <p><strong>API URL:</strong> <span id="apiUrl" style="word-break: break-all;">-</span></p>
+                        <p style="margin-top: 10px;"><strong>Status:</strong> <span id="apiConnectionStatus">Prüfen...</span></p>
+                        <button onclick="checkApiStatus()" class="btn-primary" style="margin-top: 15px;">
+                            🔄 Status prüfen
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Property View Modal -->
+        <div id="propertyModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="modal-close" onclick="closeModal()">&times;</span>
+                <div id="modalBody"></div>
             </div>
         </div>
     </main>
@@ -648,7 +945,18 @@
 
         // Toggle Sidebar (Mobile)
         function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('active');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+        
+        // Close Sidebar
+        function closeSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
         }
 
         // Show Section
@@ -685,6 +993,11 @@
             if (sectionId === 'properties') {
                 loadProperties();
             }
+            
+            // Load settings if needed
+            if (sectionId === 'settings') {
+                loadSettings();
+            }
 
             // Reset iframe if switching to add-property (to clear any edit state)
             if (sectionId === 'add-property') {
@@ -697,7 +1010,7 @@
 
             // Close sidebar on mobile
             if (window.innerWidth <= 768) {
-                document.getElementById('sidebar').classList.remove('active');
+                closeSidebar();
             }
         }
 
@@ -774,16 +1087,127 @@
             }
         }
 
-        // View Property
+        // View Property - Vollständige Vorschau
         async function viewProperty(id) {
             try {
                 const response = await api.getProperty(id);
                 const property = response.property;
-                alert(`Immobilie: ${property.title}\nPreis: ${property.price}\nDetails: ${property.description}`);
+                
+                const modal = document.getElementById('propertyModal');
+                const modalBody = document.getElementById('modalBody');
+                
+                // Bilder-Galerie vorbereiten
+                let images = [];
+                if (property.images && property.images.length > 0) {
+                    images = property.images.map(img => typeof img === 'string' ? img : img.image_url);
+                } else if (property.primary_image) {
+                    images = [property.primary_image];
+                } else {
+                    images = ['https://via.placeholder.com/400x300?text=Kein+Bild'];
+                }
+                
+                const galleryHtml = images.map(img => `<img src="${img}" alt="Bild" onclick="window.open('${img}', '_blank')">`).join('');
+                
+                // Features formatieren
+                const features = property.features || [];
+                const featuresHtml = features.length > 0 
+                    ? features.map(f => `<span style="background:#e0f2fe; padding:5px 10px; border-radius:4px; font-size:13px;">✓ ${f}</span>`).join(' ')
+                    : '<span style="color:#94a3b8;">Keine Ausstattung angegeben</span>';
+                
+                modalBody.innerHTML = `
+                    <div class="modal-header">
+                        <h2>${property.title}</h2>
+                        <p style="color: #64748b; margin-top: 5px;">📍 ${property.city || property.location || 'Keine Adresse'}</p>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-gallery">
+                            ${galleryHtml}
+                        </div>
+                        
+                        <div class="modal-info-grid">
+                            <div class="modal-info-item">
+                                <label>Preis</label>
+                                <span style="color: #10b981; font-size: 20px;">
+                                    ${new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(property.price)}
+                                    ${property.offer_type === 'miete' ? '/Monat' : ''}
+                                </span>
+                            </div>
+                            <div class="modal-info-item">
+                                <label>Typ</label>
+                                <span>${property.type || '-'}</span>
+                            </div>
+                            <div class="modal-info-item">
+                                <label>Angebotart</label>
+                                <span>${property.offer_type === 'miete' ? '🏷️ Zur Miete' : '🏷️ Zum Kauf'}</span>
+                            </div>
+                            <div class="modal-info-item">
+                                <label>Wohnfläche</label>
+                                <span>📐 ${property.size} m²</span>
+                            </div>
+                            <div class="modal-info-item">
+                                <label>Zimmer</label>
+                                <span>🛏️ ${property.rooms}</span>
+                            </div>
+                            <div class="modal-info-item">
+                                <label>Baujahr</label>
+                                <span>📅 ${property.year_built || 'Nicht angegeben'}</span>
+                            </div>
+                            <div class="modal-info-item">
+                                <label>PLZ / Ort</label>
+                                <span>${property.zip_code || ''} ${property.city || ''}</span>
+                            </div>
+                            <div class="modal-info-item">
+                                <label>Status</label>
+                                <span style="color: ${property.status === 'available' ? '#10b981' : '#f59e0b'};">
+                                    ${property.status === 'available' ? '✅ Verfügbar' : property.status === 'sold' ? '🏷️ Verkauft' : '⏳ Reserviert'}
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 25px;">
+                            <label style="display: block; font-weight: 600; margin-bottom: 10px;">Beschreibung</label>
+                            <p style="color: #475569; line-height: 1.6;">${property.description || 'Keine Beschreibung vorhanden.'}</p>
+                        </div>
+                        
+                        <div style="margin-top: 25px;">
+                            <label style="display: block; font-weight: 600; margin-bottom: 10px;">Ausstattung</label>
+                            <div style="display: flex; flex-wrap: wrap; gap: 8px;">${featuresHtml}</div>
+                        </div>
+                        
+                        <div style="margin-top: 30px; display: flex; gap: 15px; justify-content: flex-end;">
+                            <button class="btn-edit" onclick="closeModal(); editProperty(${property.id});">✏️ Bearbeiten</button>
+                            <button class="btn-delete" onclick="closeModal(); deleteProperty(${property.id});">🗑️ Löschen</button>
+                        </div>
+                    </div>
+                `;
+                
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
             } catch (error) {
-                alert('Fehler beim Laden der Details');
+                showToast('Fehler beim Laden der Details: ' + error.message, 'error');
             }
         }
+        
+        // Modal schließen
+        function closeModal() {
+            document.getElementById('propertyModal').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        
+        // Click outside modal to close
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('propertyModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        
+        // ESC zum Schließen
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
 
         // Edit Property
         async function editProperty(id) {
@@ -819,12 +1243,109 @@
                 try {
                     await api.deleteProperty(id);
                     loadProperties();
-                    alert('Immobilie erfolgreich gelöscht!');
+                    showToast('✅ Immobilie erfolgreich gelöscht!', 'success');
                 } catch (error) {
                     console.error('Error deleting property:', error);
-                    alert('Fehler beim Löschen: ' + error.message);
+                    showToast('Fehler beim Löschen: ' + error.message, 'error');
                 }
             }
+        }
+        
+        // Toast Notification
+        function showToast(message, type = 'success') {
+            // Alte Toasts entfernen
+            const existing = document.querySelectorAll('.toast');
+            existing.forEach(t => t.remove());
+            
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.animation = 'slideIn 0.3s ease reverse';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+        
+        // Passwort ändern
+        async function changePassword(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const currentPassword = form.querySelector('[name="currentPassword"]').value;
+            const newPassword = form.querySelector('[name="newPassword"]').value;
+            const confirmPassword = form.querySelector('[name="confirmPassword"]').value;
+            
+            if (newPassword !== confirmPassword) {
+                showToast('Die Passwörter stimmen nicht überein!', 'error');
+                return;
+            }
+            
+            if (newPassword.length < 6) {
+                showToast('Das Passwort muss mindestens 6 Zeichen haben!', 'error');
+                return;
+            }
+            
+            try {
+                // API-Aufruf zum Passwort ändern (falls Backend unterstützt)
+                const response = await fetch(`${api.baseURL}/auth/change-password`, {
+                    method: 'POST',
+                    headers: api.getHeaders(),
+                    body: JSON.stringify({ currentPassword, newPassword })
+                });
+                
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error || 'Fehler beim Ändern des Passworts');
+                }
+                
+                form.reset();
+                showToast('✅ Passwort erfolgreich geändert!', 'success');
+            } catch (error) {
+                showToast('Fehler: ' + error.message, 'error');
+            }
+        }
+        
+        // API Status prüfen
+        async function checkApiStatus() {
+            const statusEl = document.getElementById('apiConnectionStatus');
+            statusEl.textContent = 'Prüfen...';
+            statusEl.style.color = '#64748b';
+            
+            try {
+                const response = await fetch(`${api.baseURL}/health`);
+                const data = await response.json();
+                
+                if (response.ok && data.status === 'OK') {
+                    statusEl.innerHTML = '<span style="color: #10b981;">✅ Verbunden</span>';
+                } else {
+                    statusEl.innerHTML = '<span style="color: #ef4444;">❌ Nicht erreichbar</span>';
+                }
+            } catch (error) {
+                statusEl.innerHTML = '<span style="color: #ef4444;">❌ Verbindungsfehler</span>';
+            }
+        }
+        
+        // Einstellungen laden
+        async function loadSettings() {
+            // API URL anzeigen
+            document.getElementById('apiUrl').textContent = api.baseURL;
+            
+            // User-Daten laden
+            try {
+                const userData = await api.getCurrentUser();
+                if (userData.user) {
+                    document.getElementById('settingsUsername').textContent = userData.user.username;
+                    document.getElementById('settingsRole').textContent = userData.user.role === 'admin' ? 'Administrator' : userData.user.role;
+                    document.getElementById('settingsLastLogin').textContent = new Date().toLocaleString('de-DE');
+                }
+            } catch (error) {
+                console.error('Error loading user data:', error);
+            }
+            
+            // API Status prüfen
+            checkApiStatus();
         }
 
         // Listen for property updates from iframe

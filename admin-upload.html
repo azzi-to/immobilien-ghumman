@@ -380,13 +380,32 @@
             <!-- Images -->
             <div class="form-section">
                 <h3 class="section-title">🖼️ Bilder</h3>
-                <div class="form-group full-width">
-                    <label>Bild-URL <span class="required">*</span></label>
-                    <input type="url" name="imageUrl" id="imageUrl" placeholder="https://example.com/image.jpg"
-                        required>
-                    <small style="color: #64748b; margin-top: 5px; display: block;">Geben Sie die URL eines Bildes ein
-                        (z.B. von Unsplash oder einem anderen Hosting-Service)</small>
+                
+                <!-- Drag & Drop Upload Zone -->
+                <div class="image-upload" id="dropZone">
+                    <input type="file" id="fileInput" accept="image/*" multiple>
+                    <div class="upload-icon">📷</div>
+                    <div class="upload-text">Bilder hierher ziehen oder klicken zum Auswählen</div>
+                    <div class="upload-hint">Max. 5 Bilder (JPG, PNG)</div>
                 </div>
+                
+                <!-- Alternative: URL-Eingabe -->
+                <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 10px;">
+                        Oder Bild-URL eingeben
+                    </label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="url" name="imageUrl" id="imageUrl" placeholder="https://example.com/image.jpg"
+                            style="flex: 1;">
+                        <button type="button" onclick="addImageUrl()" class="btn btn-secondary" style="flex: 0 0 auto; padding: 12px 20px;">
+                            ➕ Hinzufügen
+                        </button>
+                    </div>
+                    <small style="color: #64748b; margin-top: 5px; display: block;">
+                        Geben Sie die URL eines Bildes ein (z.B. von Cloudinary, Unsplash)
+                    </small>
+                </div>
+                
                 <div id="imagePreviewContainer" class="image-preview"></div>
             </div>
 
@@ -471,6 +490,14 @@
         const api = new PropertyAPI();
         let currentPropertyId = null;
         let selectedFiles = [];
+        
+        // Token vom Parent-Fenster erben (für iframe)
+        if (window.parent !== window) {
+            const parentToken = window.parent.localStorage.getItem('authToken');
+            if (parentToken) {
+                api.setToken(parentToken);
+            }
+        }
 
         // Image Upload Handling
         const dropZone = document.getElementById('dropZone');
@@ -529,20 +556,49 @@
             selectedFiles.splice(index, 1);
             updateImagePreviews();
         }
+        
+        // Array für externe Bild-URLs
+        let externalImageUrls = [];
 
-        // Image URL preview (legacy support)
-        document.getElementById('imageUrl').addEventListener('input', function (e) {
-            const url = e.target.value;
-            if (url && url.startsWith('http')) {
-                // Add to preview but not to selectedFiles
-                const div = document.createElement('div');
-                div.className = 'preview-item';
-                div.innerHTML = `
-                    <img src="${url}" alt="Preview" onerror="this.remove()">
-                `;
-                imagePreviewContainer.appendChild(div);
+        // Externe Bild-URL hinzufügen
+        function addImageUrl() {
+            const input = document.getElementById('imageUrl');
+            const url = input.value.trim();
+            
+            if (!url) {
+                showAlert('Bitte geben Sie eine URL ein', 'error');
+                return;
             }
-        });
+            
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                showAlert('Bitte geben Sie eine gültige URL ein (http:// oder https://)', 'error');
+                return;
+            }
+            
+            // URL zur Liste hinzufügen
+            externalImageUrls.push(url);
+            
+            // Vorschau anzeigen
+            const div = document.createElement('div');
+            div.className = 'preview-item';
+            const urlIndex = externalImageUrls.length - 1;
+            div.innerHTML = `
+                <img src="${url}" alt="Preview" onerror="this.parentElement.innerHTML='<div style=\\'padding:20px;color:#ef4444;text-align:center;\\'>Bild konnte nicht geladen werden</div>'">
+                <button type="button" class="preview-remove" onclick="removeImageUrl(${urlIndex}, this)">×</button>
+            `;
+            imagePreviewContainer.appendChild(div);
+            
+            // Input leeren
+            input.value = '';
+            
+            showAlert('✅ Bild-URL hinzugefügt', 'success');
+        }
+        
+        // Externe Bild-URL entfernen
+        function removeImageUrl(index, btn) {
+            externalImageUrls.splice(index, 1);
+            btn.parentElement.remove();
+        }
 
         function showAlert(message, type) {
             const alert = document.getElementById('alert');
@@ -563,6 +619,7 @@
                 document.getElementById('propertyForm').reset();
                 document.getElementById('imagePreviewContainer').innerHTML = '';
                 selectedFiles = [];
+                externalImageUrls = [];
                 currentPropertyId = null;
                 document.querySelector('button[type="submit"]').textContent = '🚀 Immobilie veröffentlichen';
             }
@@ -597,9 +654,18 @@
                     featured: formData.get('featured') === 'true'
                 };
 
-                // If we have an image URL, use it as primary image (if no files uploaded)
-                // Note: Backend might expect 'primary_image' or handle it differently
-                // For now we rely on file uploads or the legacy imageUrl field if backend supports it
+                    // Externe Bild-URLs zum Property-Daten hinzufügen
+                    if (externalImageUrls.length > 0) {
+                        propertyData.images = externalImageUrls;
+                        propertyData.primary_image = externalImageUrls[0];
+                    }
+                    
+                    // Oder aus dem Formular die einzelne URL (falls keine Liste)
+                    const singleImageUrl = formData.get('imageUrl');
+                    if (singleImageUrl && !propertyData.images) {
+                        propertyData.primary_image = singleImageUrl;
+                        propertyData.images = [singleImageUrl];
+                    }
 
                 let result;
 
@@ -636,6 +702,7 @@
                     event.target.reset();
                     document.getElementById('imagePreviewContainer').innerHTML = '';
                     selectedFiles = [];
+                    externalImageUrls = [];
                 } else {
                     // If update, maybe keep the form or reset? 
                     // Usually keep it or close modal. 

@@ -339,7 +339,7 @@
             try {
                 // Use API for login
                 const response = await api.login(username, password);
-                
+
                 console.log('Login response:', response); // Debug
 
                 // Token und User-Info speichern
@@ -350,7 +350,7 @@
 
                     // Session-Marker setzen (für Reload-Schutz)
                     sessionStorage.setItem('isAuthenticated', 'true');
-                    
+
                     showAlert('Login erfolgreich! Weiterleitung...', 'success');
 
                     // Direkte Weiterleitung mit replace (verhindert Zurück-Button-Problem)

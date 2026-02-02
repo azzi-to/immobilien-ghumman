@@ -122,16 +122,16 @@ class PropertyAPI {
         });
 
         const data = await response.json();
-        
+
         if (!response.ok) {
             throw new Error(data.error || 'Login fehlgeschlagen');
         }
-        
+
         // Token speichern
         if (data.token) {
             this.setToken(data.token);
         }
-        
+
         return data;
     }
 
