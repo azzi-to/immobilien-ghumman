@@ -126,18 +126,18 @@ Mobil: 0160 98 78 78 78`,
 
 async function main() {
     console.log('🔌 Verbinde mit der Datenbank...\n');
-    
+
     const pool = mysql.createPool(DATABASE_URL);
-    
+
     try {
         // Test connection
         const connection = await pool.getConnection();
         console.log('✅ Datenbankverbindung hergestellt\n');
         connection.release();
-        
+
         for (const property of properties) {
             console.log(`📍 Erstelle: ${property.title}...`);
-            
+
             // Insert property
             const [result] = await pool.query(`
                 INSERT INTO properties (
@@ -159,14 +159,14 @@ async function main() {
                 property.status,
                 property.featured ? 1 : 0
             ]);
-            
+
             const propertyId = result.insertId;
             console.log(`   ✅ Erstellt mit ID: ${propertyId}`);
-            
+
             // Insert images
             if (property.images && property.images.length > 0) {
                 console.log(`   📸 Füge ${property.images.length} Bilder hinzu...`);
-                
+
                 for (let i = 0; i < property.images.length; i++) {
                     const img = property.images[i];
                     await pool.query(`
@@ -176,15 +176,15 @@ async function main() {
                 }
                 console.log(`   ✅ Alle Bilder hinzugefügt`);
             }
-            
+
             console.log('');
         }
-        
+
         console.log('🎉 Fertig! Beide Immobilien wurden erfolgreich hinzugefügt.\n');
         console.log('Überprüfe die Immobilien unter:');
         console.log('- https://immobilien-ghumman.de/immobilien-angebote.html');
         console.log('- Admin Dashboard: https://immobilien-ghumman.de/admin-dashboard.html');
-        
+
     } catch (error) {
         console.error('❌ Fehler:', error.message);
         process.exit(1);

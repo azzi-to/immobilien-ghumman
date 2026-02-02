@@ -300,40 +300,40 @@ async function loadSampleProperties() {
         console.log('No properties found');
         showEmptyPropertiesState(propertiesGrid, 'Keine Immobilien vorhanden');
         return;
-        }
+    }
 
-        // Create and append property cards with "NEU" badge for recent properties
-        const now = new Date();
-        const twoWeeksAgo = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000);
+    // Create and append property cards with "NEU" badge for recent properties
+    const now = new Date();
+    const twoWeeksAgo = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000);
 
-        properties.forEach(property => {
-            // Check if property is "new" (< 14 days old)
-            const createdAt = new Date(property.created_at);
-            const isNew = createdAt >= twoWeeksAgo;
+    properties.forEach(property => {
+        // Check if property is "new" (< 14 days old)
+        const createdAt = new Date(property.created_at);
+        const isNew = createdAt >= twoWeeksAgo;
 
-            // Convert database property to card format
-            const propertyData = {
-                id: property.id,
-                title: property.title,
-                location: property.city?.toLowerCase().replace(/\s+/g, '-') || 'unbekannt',
-                locationName: property.city || 'Unbekannt',
-                price: property.price,
-                pricingType: property.offer_type === 'kauf' ? 'Kaufpreis' : 'Kaltmiete',
-                rooms: property.rooms,
-                area: property.size,
-                type: property.type,
-                image: property.primary_image || property.images?.[0] || 'https://via.placeholder.com/400x300?text=Kein+Bild',
-                images: property.images || [property.primary_image],
-                description: property.description || '',
-                features: property.features || [],
-                isNew: isNew // NEU-Badge anzeigen
-            };
+        // Convert database property to card format
+        const propertyData = {
+            id: property.id,
+            title: property.title,
+            location: property.city?.toLowerCase().replace(/\s+/g, '-') || 'unbekannt',
+            locationName: property.city || 'Unbekannt',
+            price: property.price,
+            pricingType: property.offer_type === 'kauf' ? 'Kaufpreis' : 'Kaltmiete',
+            rooms: property.rooms,
+            area: property.size,
+            type: property.type,
+            image: property.primary_image || property.images?.[0] || 'https://via.placeholder.com/400x300?text=Kein+Bild',
+            images: property.images || [property.primary_image],
+            description: property.description || '',
+            features: property.features || [],
+            isNew: isNew // NEU-Badge anzeigen
+        };
 
-            const propertyCard = createPropertyCard(propertyData);
-            propertiesGrid.appendChild(propertyCard);
-        });
+        const propertyCard = createPropertyCard(propertyData);
+        propertiesGrid.appendChild(propertyCard);
+    });
 
-        console.log(`Loaded ${properties.length} properties`);
+    console.log(`Loaded ${properties.length} properties`);
 }
 
 /**

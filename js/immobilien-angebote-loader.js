@@ -48,7 +48,7 @@ async function loadAllProperties() {
         console.log('Using static properties as fallback');
         const now = new Date();
         const twoWeeksAgo = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000);
-        
+
         STATIC_PROPERTIES.forEach(property => {
             const createdAt = new Date(property.created_at);
             if (createdAt >= twoWeeksAgo) {

@@ -136,12 +136,12 @@ async function createProperty(propertyData) {
         },
         body: JSON.stringify(propertyData)
     });
-    
+
     if (!response.ok) {
         const error = await response.text();
         throw new Error(`Failed to create property: ${response.status} - ${error}`);
     }
-    
+
     return response.json();
 }
 
@@ -158,13 +158,13 @@ async function addPropertyImage(propertyId, imageUrl, isPrimary = false, display
             display_order: displayOrder
         })
     });
-    
+
     if (!response.ok) {
         const error = await response.text();
         console.warn(`Warning: Failed to add image: ${error}`);
         return null;
     }
-    
+
     return response.json();
 }
 
@@ -189,7 +189,7 @@ async function main() {
         console.log('📍 Erstelle: 3 Zimmer Wohnung Usingen...');
         const usingenResult = await createProperty(usingen3Zimmer);
         console.log(`   ✅ Erstellt mit ID: ${usingenResult.property.id}`);
-        
+
         // Video als "Bild" hinzufügen (für Video-Player in der Detail-Ansicht)
         // Das Video wird über einen Cloudinary-Player eingebettet
         // Für jetzt verwenden wir ein Platzhalterbild - das Video kann in der Beschreibung verlinkt werden
@@ -200,7 +200,7 @@ async function main() {
         console.log('\n📍 Erstelle: 2 Zimmer Wohnung Karben Möbliert...');
         const karbenResult = await createProperty(karben2Zimmer);
         console.log(`   ✅ Erstellt mit ID: ${karbenResult.property.id}`);
-        
+
         // Bilder hinzufügen
         console.log('   📸 Füge Bilder hinzu...');
         for (let i = 0; i < karbenImages.length; i++) {

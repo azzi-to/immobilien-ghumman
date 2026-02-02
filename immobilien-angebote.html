@@ -239,6 +239,52 @@
             grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
         }
 
+        /* Inner Grid für kategorisierte Immobilien (Neu/Archiv Sektionen) */
+        .properties-grid-inner {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .property-section {
+            margin-bottom: 40px;
+        }
+
+        .section-subtitle {
+            font-size: 1.5rem;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .count-badge {
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .new-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
+        }
+
         .properties-grid.list-view {
             grid-template-columns: 1fr;
         }
@@ -491,6 +537,10 @@
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .properties-grid.grid-view {
+                grid-template-columns: 1fr;
+            }
+
+            .properties-grid-inner {
                 grid-template-columns: 1fr;
             }
 

@@ -15,18 +15,18 @@ async function loadPropertyDetails() {
     // Get property ID from URL
     const urlParams = new URLSearchParams(window.location.search);
     const propertyId = urlParams.get('id');
-    
+
     if (!propertyId) {
         showError('Keine Immobilien-ID angegeben');
         return;
     }
-    
+
     let property = null;
-    
+
     try {
         // Show loading state
         showLoading();
-        
+
         // Check if API client is available
         if (typeof PropertyAPI !== 'undefined') {
             const api = new PropertyAPI();
@@ -35,18 +35,18 @@ async function loadPropertyDetails() {
     } catch (error) {
         console.warn('API error, trying static fallback:', error.message);
     }
-    
+
     // Fallback auf statische Daten
     if (!property && typeof getStaticPropertyById !== 'undefined') {
         console.log('Using static property data for ID:', propertyId);
         property = getStaticPropertyById(propertyId);
     }
-    
+
     if (!property) {
         showError('Immobilie nicht gefunden');
         return;
     }
-    
+
     // Display property details
     displayProperty(property);
 }
@@ -57,34 +57,34 @@ async function loadPropertyDetails() {
 function displayProperty(property) {
     // Update page title
     document.title = `${property.title} - ${property.city} | Immobilien Ghumman`;
-    
+
     // Update hero section
     updateHeroSection(property);
-    
+
     // Update key facts
     updateKeyFacts(property);
-    
+
     // Update gallery
     updateGallery(property);
-    
+
     // Update description (includes ALL data)
     updateDescription(property);
-    
+
     // Update features
     updateFeatures(property);
-    
+
     // Update location info (includes ALL location data)
     updateLocation(property);
-    
+
     // Add complete property info section
     addCompletePropertyInfo(property);
-    
+
     // Update structured data
     updateStructuredData(property);
-    
+
     // Hide loading
     hideLoading();
-    
+
     // Log property for debugging
     console.log('Property loaded:', property);
 }
@@ -97,19 +97,19 @@ function updateHeroSection(property) {
     const title = document.querySelector('.property-title h1');
     const location = document.querySelector('.property-location');
     const priceElement = document.querySelector('.property-price');
-    
+
     // Update background image if available
     if (property.primary_image || (property.images && property.images.length > 0)) {
         const bgImage = property.primary_image || property.images[0].image_url;
         heroSection.style.backgroundImage = `linear-gradient(rgba(44, 62, 80, 0.8), rgba(52, 73, 94, 0.85)), url('${bgImage}')`;
     }
-    
+
     // Update title
     if (title) {
         const typeLabel = getTypeLabel(property.type);
         title.innerHTML = `${typeLabel}: <span id="typewriter-text-property">${property.title}</span><span class="cursor">|</span>`;
     }
-    
+
     // Update location
     if (location) {
         location.innerHTML = `
@@ -119,7 +119,7 @@ function updateHeroSection(property) {
             ${property.city}${property.address ? ', ' + property.address : ''}
         `;
     }
-    
+
     // Update price
     if (priceElement) {
         const formattedPrice = new Intl.NumberFormat('de-DE').format(property.price);
@@ -134,9 +134,9 @@ function updateHeroSection(property) {
 function updateKeyFacts(property) {
     const keyFactsContainer = document.querySelector('.key-facts');
     if (!keyFactsContainer) return;
-    
+
     const facts = [];
-    
+
     // Size (Wohnfläche)
     if (property.size) {
         facts.push({
@@ -145,7 +145,7 @@ function updateKeyFacts(property) {
             sublabel: 'Wohnfläche'
         });
     }
-    
+
     // Rooms (Zimmer)
     if (property.rooms) {
         facts.push({
@@ -154,7 +154,7 @@ function updateKeyFacts(property) {
             sublabel: property.rooms > 1 ? 'Mehrere Zimmer' : 'Ein Zimmer'
         });
     }
-    
+
     // Bathrooms (Badezimmer)
     if (property.bathrooms) {
         facts.push({
@@ -163,7 +163,7 @@ function updateKeyFacts(property) {
             sublabel: 'Sanitärräume'
         });
     }
-    
+
     // Year built (Baujahr)
     if (property.year_built) {
         const age = new Date().getFullYear() - property.year_built;
@@ -173,20 +173,20 @@ function updateKeyFacts(property) {
             sublabel: age <= 5 ? 'Neubau' : age <= 15 ? 'Modernisiert' : 'Bestand'
         });
     }
-    
+
     // Offer type (Miete/Kauf)
     if (property.offer_type) {
-        const offerIcon = property.offer_type === 'kauf' 
+        const offerIcon = property.offer_type === 'kauf'
             ? `<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z"/>`
             : `<path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>`;
-        
+
         facts.push({
             icon: offerIcon,
             label: property.offer_type === 'kauf' ? 'Kaufobjekt' : 'Mietobjekt',
             sublabel: property.offer_type === 'kauf' ? 'Zum Verkauf' : 'Zur Miete'
         });
     }
-    
+
     // Type (Wohnung/Haus/etc.)
     if (property.type) {
         const typeLabels = {
@@ -196,14 +196,14 @@ function updateKeyFacts(property) {
             'grundstück': { label: 'Grundstück', sublabel: 'Bauland' }
         };
         const typeInfo = typeLabels[property.type] || { label: property.type, sublabel: 'Immobilie' };
-        
+
         facts.push({
             icon: `<path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>`,
             label: typeInfo.label,
             sublabel: typeInfo.sublabel
         });
     }
-    
+
     // Availability (Verfügbarkeit)
     const availabilityText = property.available_from ? new Date(property.available_from).toLocaleDateString('de-DE') : 'ab sofort';
     facts.push({
@@ -211,7 +211,7 @@ function updateKeyFacts(property) {
         label: 'Verfügbar',
         sublabel: availabilityText
     });
-    
+
     // Generate HTML
     keyFactsContainer.innerHTML = facts.map(fact => `
         <div class="fact-item">
@@ -231,27 +231,27 @@ function updateKeyFacts(property) {
  */
 function updateGallery(property) {
     propertyImages = [];
-    
+
     // Collect all images
     if (property.images && property.images.length > 0) {
-        propertyImages = property.images.map(img => 
+        propertyImages = property.images.map(img =>
             typeof img === 'string' ? img : img.image_url
         );
     } else if (property.primary_image) {
         propertyImages = [property.primary_image];
     }
-    
+
     if (propertyImages.length === 0) {
         propertyImages = ['https://via.placeholder.com/800x500?text=Kein+Bild+verfügbar'];
     }
-    
+
     // Update main image
     const mainImage = document.getElementById('main-image');
     if (mainImage) {
         mainImage.src = propertyImages[0];
         mainImage.alt = property.title;
     }
-    
+
     // Update thumbnails
     const thumbnailsContainer = document.getElementById('gallery-thumbnails');
     if (thumbnailsContainer) {
@@ -261,7 +261,7 @@ function updateGallery(property) {
             </div>
         `).join('');
     }
-    
+
     currentImageIndex = 0;
 }
 
@@ -271,9 +271,9 @@ function updateGallery(property) {
 function updateDescription(property) {
     const descSection = document.querySelector('.property-details .content-section');
     if (!descSection) return;
-    
+
     const description = property.description || 'Keine Beschreibung verfügbar.';
-    
+
     // Build comprehensive property information
     let html = `
         <h2>Objektbeschreibung</h2>
@@ -284,10 +284,10 @@ function updateDescription(property) {
         <h3 style="margin-top: 2rem; color: var(--secondary-color);">Objektdaten im Detail</h3>
         <div class="property-data-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
     `;
-    
+
     // Create data sections
     const dataGroups = [];
-    
+
     // Basic Information
     const basicInfo = [];
     if (property.type) basicInfo.push({ label: 'Objektart', value: getTypeLabel(property.type) });
@@ -296,11 +296,11 @@ function updateDescription(property) {
     if (property.size) basicInfo.push({ label: 'Wohnfläche', value: `${property.size} m²` });
     if (property.rooms) basicInfo.push({ label: 'Zimmer', value: property.rooms });
     if (property.bathrooms) basicInfo.push({ label: 'Badezimmer', value: property.bathrooms });
-    
+
     if (basicInfo.length > 0) {
         dataGroups.push({ title: 'Basisdaten', items: basicInfo });
     }
-    
+
     // Building Information
     const buildingInfo = [];
     if (property.year_built) buildingInfo.push({ label: 'Baujahr', value: property.year_built });
@@ -313,11 +313,11 @@ function updateDescription(property) {
         };
         buildingInfo.push({ label: 'Status', value: statusLabels[property.status] || property.status });
     }
-    
+
     if (buildingInfo.length > 0) {
         dataGroups.push({ title: 'Gebäudedaten', items: buildingInfo });
     }
-    
+
     // Location Information
     const locationInfo = [];
     if (property.address) locationInfo.push({ label: 'Adresse', value: property.address });
@@ -325,30 +325,30 @@ function updateDescription(property) {
     if (property.city) locationInfo.push({ label: 'Stadt', value: property.city });
     if (property.state) locationInfo.push({ label: 'Bundesland', value: property.state });
     if (property.location) locationInfo.push({ label: 'Lage', value: property.location });
-    
+
     if (locationInfo.length > 0) {
         dataGroups.push({ title: 'Lage', items: locationInfo });
     }
-    
+
     // Additional Information
     const additionalInfo = [];
     if (property.created_at) {
-        additionalInfo.push({ 
-            label: 'Veröffentlicht am', 
-            value: new Date(property.created_at).toLocaleDateString('de-DE', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
+        additionalInfo.push({
+            label: 'Veröffentlicht am',
+            value: new Date(property.created_at).toLocaleDateString('de-DE', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
             })
         });
     }
     if (property.views) additionalInfo.push({ label: 'Aufrufe', value: property.views });
     if (property.featured) additionalInfo.push({ label: 'Highlight', value: '⭐ Top-Angebot' });
-    
+
     if (additionalInfo.length > 0) {
         dataGroups.push({ title: 'Weitere Informationen', items: additionalInfo });
     }
-    
+
     // Generate HTML for data groups
     dataGroups.forEach(group => {
         html += `
@@ -367,9 +367,9 @@ function updateDescription(property) {
             </div>
         `;
     });
-    
+
     html += `</div>`;
-    
+
     descSection.innerHTML = html;
 }
 
@@ -388,15 +388,15 @@ function updateFeatures(property) {
         }
         return updateFeatures(property); // Retry
     }
-    
+
     const features = property.features || [];
     const featuresList = Array.isArray(features) ? features : [];
-    
+
     if (featuresList.length === 0) {
         featuresSection.style.display = 'none';
         return;
     }
-    
+
     featuresSection.style.display = 'block';
     featuresSection.innerHTML = `
         <div class="container">
@@ -421,41 +421,41 @@ function updateFeatures(property) {
 function updateLocation(property) {
     const locationSection = document.querySelector('.location-info');
     if (!locationSection) return;
-    
+
     let locationHTML = `
         <div class="container">
             <h2>Lage & Standort</h2>
     `;
-    
+
     // Main location info
     locationHTML += `<div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); margin-bottom: 2rem;">`;
-    
+
     if (property.city) {
         locationHTML += `<h3 style="color: var(--primary-color); margin-bottom: 1rem;">📍 ${property.city}</h3>`;
     }
-    
+
     if (property.address) {
         locationHTML += `<p style="font-size: 1.1rem; margin-bottom: 0.5rem;"><strong>Adresse:</strong> ${property.address}</p>`;
     }
-    
+
     if (property.zip_code && property.city) {
         locationHTML += `<p style="margin-bottom: 0.5rem;"><strong>PLZ/Ort:</strong> ${property.zip_code} ${property.city}</p>`;
     }
-    
+
     if (property.state) {
         locationHTML += `<p style="margin-bottom: 0.5rem;"><strong>Bundesland:</strong> ${property.state}</p>`;
     }
-    
+
     if (property.country) {
         locationHTML += `<p style="margin-bottom: 0.5rem;"><strong>Land:</strong> ${property.country}</p>`;
     }
-    
+
     if (property.location) {
         locationHTML += `<p style="margin-top: 1rem; color: var(--text-gray); line-height: 1.6;">${property.location}</p>`;
     }
-    
+
     locationHTML += `</div>`;
-    
+
     // Coordinates (if available)
     if (property.latitude && property.longitude) {
         locationHTML += `
@@ -472,9 +472,9 @@ function updateLocation(property) {
             </div>
         `;
     }
-    
+
     locationHTML += `</div>`;
-    
+
     locationSection.innerHTML = locationHTML;
 }
 
@@ -484,7 +484,7 @@ function updateLocation(property) {
 function addCompletePropertyInfo(property) {
     // Find or create a section for complete info
     let completeInfoSection = document.querySelector('.complete-property-info');
-    
+
     if (!completeInfoSection) {
         // Create section after location info
         const locationSection = document.querySelector('.location-info');
@@ -497,7 +497,7 @@ function addCompletePropertyInfo(property) {
             return; // Can't add section
         }
     }
-    
+
     let html = `
         <div class="container">
             <h2 style="text-align: center; color: var(--secondary-color); margin-bottom: 2rem;">
@@ -513,7 +513,7 @@ function addCompletePropertyInfo(property) {
                     </thead>
                     <tbody>
     `;
-    
+
     // Add all property data
     const allData = [
         { label: 'Immobilien-ID', value: property.id, show: true },
@@ -540,7 +540,7 @@ function addCompletePropertyInfo(property) {
         { label: 'Veröffentlicht am', value: formatDate(property.created_at), show: property.created_at },
         { label: 'Letzte Aktualisierung', value: formatDate(property.updated_at), show: property.updated_at }
     ];
-    
+
     let rowIndex = 0;
     allData.forEach(item => {
         if (item.show && item.value) {
@@ -554,7 +554,7 @@ function addCompletePropertyInfo(property) {
             rowIndex++;
         }
     });
-    
+
     html += `
                     </tbody>
                 </table>
@@ -565,7 +565,7 @@ function addCompletePropertyInfo(property) {
             </div>
         </div>
     `;
-    
+
     completeInfoSection.innerHTML = html;
 }
 
@@ -606,7 +606,7 @@ function updateStructuredData(property) {
     if (existingScript) {
         existingScript.remove();
     }
-    
+
     // Create new structured data
     const structuredData = {
         "@context": "https://schema.org",
@@ -627,11 +627,11 @@ function updateStructuredData(property) {
             "unitCode": "MTK"
         }
     };
-    
+
     if (propertyImages.length > 0) {
         structuredData.image = propertyImages;
     }
-    
+
     if (property.price) {
         structuredData.price = {
             "@type": "MonetaryAmount",
@@ -639,7 +639,7 @@ function updateStructuredData(property) {
             "currency": "EUR"
         };
     }
-    
+
     // Add to page
     const script = document.createElement('script');
     script.type = 'application/ld+json';
@@ -652,13 +652,13 @@ function updateStructuredData(property) {
  */
 function showImage(index) {
     if (index < 0 || index >= propertyImages.length) return;
-    
+
     currentImageIndex = index;
     const mainImage = document.getElementById('main-image');
     if (mainImage) {
         mainImage.src = propertyImages[index];
     }
-    
+
     // Update active thumbnail
     document.querySelectorAll('.thumbnail').forEach((thumb, i) => {
         thumb.classList.toggle('active', i === index);
