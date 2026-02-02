@@ -274,8 +274,8 @@ async function loadSampleProperties() {
     try {
         // Check if API client is available
         if (typeof PropertyAPI === 'undefined') {
-            console.warn('PropertyAPI not available, loading sample properties');
-            loadFallbackProperties();
+            console.warn('PropertyAPI not available');
+            showEmptyPropertiesState(propertiesGrid, 'API nicht verfügbar');
             return;
         }
 
@@ -290,8 +290,8 @@ async function loadSampleProperties() {
         propertiesGrid.innerHTML = '';
 
         if (properties.length === 0) {
-            console.log('No properties found in API, loading fallback properties');
-            loadFallbackProperties();
+            console.log('No properties found in database');
+            showEmptyPropertiesState(propertiesGrid, 'Keine Immobilien vorhanden');
             return;
         }
 
@@ -330,77 +330,42 @@ async function loadSampleProperties() {
 
     } catch (error) {
         console.error('Error loading properties:', error);
-        // Fallback to sample properties if API fails
-        console.log('Falling back to sample properties due to error');
-        loadFallbackProperties();
+        showEmptyPropertiesState(propertiesGrid, 'Fehler beim Laden');
     }
 }
 
 /**
- * Load Fallback Sample Properties (if API is not available)
+ * Zeigt eine leere Ansicht, wenn keine Immobilien vorhanden sind
+ * KEINE Demo- oder Platzhalter-Immobilien!
  */
-function loadFallbackProperties() {
-    const propertiesGrid = document.getElementById('propertiesGrid');
-    if (!propertiesGrid) return;
-
-    const sampleProperties = [
-        {
-            title: '1 Zimmer Wohnung',
-            location: 'bad-vilbel',
-            locationName: 'Bad Vilbel',
-            price: 550,
-            pricingType: 'Kaltmiete',
-            rooms: 1,
-            area: 20,
-            type: 'wohnung',
-            image: 'https://res.cloudinary.com/dlpdbr0ey/image/upload/v1752787953/lohstr._2_qhs0np.jpg',
-            images: [
-                "https://res.cloudinary.com/dlpdbr0ey/image/upload/v1752787953/lohstr._2_qhs0np.jpg",
-                "https://res.cloudinary.com/dlpdbr0ey/image/upload/v1752787969/lohstr_1_eerakf.jpg"
-            ],
-            description: 'Ab sofort verfügbar: Gepflegte 1-Zimmer-Wohnung – ideal für Singles, Pendler oder Studierende.'
-        },
-        {
-            title: '3 Zimmer Wohnung mit Balkon',
-            location: 'bad-vilbel',
-            locationName: 'Bad Vilbel - Dortelweil',
-            price: 1250,
-            pricingType: 'Kaltmiete',
-            rooms: 3,
-            area: 85,
-            type: 'wohnung',
-            image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80',
-            images: [
-                'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80',
-                'https://images.unsplash.com/photo-1484101403633-562f891dc89a?auto=format&fit=crop&w=800&q=80'
-            ],
-            description: 'Helle 3-Zimmer-Wohnung in ruhiger Lage von Dortelweil. Großer Balkon, Einbauküche und Tiefgaragenstellplatz.'
-        },
-        {
-            title: 'Modernes Einfamilienhaus',
-            location: 'karben',
-            locationName: 'Karben',
-            price: 595000,
-            pricingType: 'Kaufpreis',
-            rooms: 5,
-            area: 145,
-            type: 'haus',
-            image: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=800&q=80',
-            images: [
-                'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=800&q=80',
-                'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80'
-            ],
-            description: 'Freistehendes Einfamilienhaus mit großem Garten. Baujahr 2015, gehobene Ausstattung, sofort bezugsfrei.'
-        }
-    ];
-
-    propertiesGrid.innerHTML = '';
-
-    sampleProperties.forEach(property => {
-        const propertyCard = createPropertyCard(property);
-        propertiesGrid.appendChild(propertyCard);
-    });
+function showEmptyPropertiesState(container, reason = '') {
+    if (!container) return;
+    
+    container.innerHTML = `
+        <div class="empty-properties-message" style="
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 16px;
+            border: 2px dashed #dee2e6;
+        ">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" style="margin-bottom: 20px; opacity: 0.5;">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" stroke="#6c757d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="9 22 9 12 15 12 15 22" stroke="#6c757d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h3 style="color: #495057; margin-bottom: 12px; font-size: 1.4rem;">Derzeit keine Immobilien verfügbar</h3>
+            <p style="color: #6c757d; margin-bottom: 20px; max-width: 400px; margin-left: auto; margin-right: auto;">
+                Neue Angebote werden hier angezeigt, sobald sie verfügbar sind.
+            </p>
+            <a href="#contact" class="cta-button" style="display: inline-block;">Kontaktieren Sie uns</a>
+        </div>
+    `;
+    
+    console.log('Empty state displayed:', reason);
 }
+
+
 
 /**
  * Create Property Card Element
