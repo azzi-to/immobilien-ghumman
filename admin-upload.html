@@ -100,10 +100,51 @@
             resize: vertical;
         }
 
+        /* Upload Device Button - Mobile-freundlich */
+        .btn-upload-device {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, #336699 0%, #2a5580 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .btn-upload-device:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(51, 102, 153, 0.4);
+        }
+        
+        .btn-upload-device:active {
+            transform: scale(0.98);
+        }
+        
+        .btn-upload-device .btn-icon {
+            font-size: 32px;
+        }
+        
+        .btn-upload-device .btn-text {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .btn-upload-device .btn-hint {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
         .image-upload {
             border: 2px dashed #cbd5e1;
             border-radius: 12px;
-            padding: 40px 20px;
+            padding: 30px 20px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -118,10 +159,30 @@
         .image-upload.dragover {
             border-color: #336699;
             background: #e0f2fe;
+            border-width: 3px;
         }
-
-        .image-upload input {
-            display: none;
+        
+        .upload-status {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .upload-status.uploading {
+            background: #e0f2fe;
+            color: #0369a1;
+        }
+        
+        .upload-status.success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .upload-status.error {
+            background: #fee2e2;
+            color: #991b1b;
         }
 
         .upload-icon {
@@ -139,6 +200,29 @@
             color: #94a3b8;
             font-size: 12px;
             margin-top: 5px;
+        }
+        
+        /* Mobile: Drag&Drop kleiner, Upload-Button größer */
+        @media (max-width: 768px) {
+            .image-upload#dropZone {
+                padding: 15px;
+            }
+            
+            .image-upload#dropZone .upload-icon {
+                font-size: 28px;
+            }
+            
+            .btn-upload-device {
+                padding: 25px;
+            }
+            
+            .btn-upload-device .btn-icon {
+                font-size: 40px;
+            }
+            
+            .btn-upload-device .btn-text {
+                font-size: 20px;
+            }
         }
 
         .image-preview {
@@ -296,7 +380,7 @@
         <form id="propertyForm" onsubmit="handleSubmit(event)">
             <!-- Basic Information -->
             <div class="form-section">
-                <h3 class="section-title">📝 Grundinformationen</h3>
+                <h3 class="section-title">Grundinformationen</h3>
                 <div class="form-grid">
                     <div class="form-group full-width">
                         <label>Immobilientitel <span class="required">*</span></label>
@@ -347,13 +431,9 @@
 
             <!-- Location -->
             <div class="form-section">
-                <h3 class="section-title">📍 Standort</h3>
+                <h3 class="section-title"> Standort</h3>
                 <div class="form-grid">
                     <div class="form-group full-width">
-                        <label>Adresse <span class="required">*</span></label>
-                        <input type="text" name="location" placeholder="z.B. Bad Vilbel Zentrum, Frankfurter Str. 25"
-                            required>
-                    </div>
 
                     <div class="form-group">
                         <label>PLZ</label>
@@ -369,7 +449,7 @@
 
             <!-- Description -->
             <div class="form-section">
-                <h3 class="section-title">📄 Beschreibung</h3>
+                <h3 class="section-title">Beschreibung</h3>
                 <div class="form-group full-width">
                     <label>Objektbeschreibung <span class="required">*</span></label>
                     <textarea name="description" placeholder="Beschreiben Sie die Immobilie im Detail..."
@@ -379,39 +459,53 @@
 
             <!-- Images -->
             <div class="form-section">
-                <h3 class="section-title">🖼️ Bilder</h3>
+                <h3 class="section-title">🖼️ Bilder hochladen</h3>
                 
-                <!-- Drag & Drop Upload Zone -->
-                <div class="image-upload" id="dropZone">
-                    <input type="file" id="fileInput" accept="image/*" multiple>
-                    <div class="upload-icon">📷</div>
-                    <div class="upload-text">Bilder hierher ziehen oder klicken zum Auswählen</div>
-                    <div class="upload-hint">Max. 5 Bilder (JPG, PNG)</div>
+                <!-- Option 1: Vom Gerät hochladen (Mobile-freundlich) -->
+                <div class="upload-option">
+                    <h4 style="margin-bottom: 15px; color: #336699;">📱 Vom Gerät hochladen</h4>
+                    
+                    <!-- Verstecktes File Input -->
+                    <input type="file" id="fileInput" accept="image/*" multiple style="display: none;">
+                    
+                    <!-- Sichtbarer Upload Button für Mobile -->
+                    <button type="button" class="btn-upload-device" onclick="document.getElementById('fileInput').click()">
+                        <span class="btn-icon">📷</span>
+                        <span class="btn-text">Fotos auswählen</span>
+                        <span class="btn-hint">Von Galerie oder Kamera</span>
+                    </button>
+                    
+                    <!-- Drag & Drop Zone (Desktop) -->
+                    <div class="image-upload" id="dropZone">
+                        <div class="upload-icon">⬆️</div>
+                        <div class="upload-text">Bilder hierher ziehen</div>
+                        <div class="upload-hint">oder klicken zum Auswählen (max. 5 Bilder)</div>
+                    </div>
                 </div>
                 
-                <!-- Alternative: URL-Eingabe -->
-                <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
-                    <label style="display: block; font-weight: 600; margin-bottom: 10px;">
-                        Oder Bild-URL eingeben
-                    </label>
-                    <div style="display: flex; gap: 10px;">
+                <!-- Option 2: Bild-URL eingeben -->
+                <div class="upload-option" style="margin-top: 25px; padding-top: 25px; border-top: 2px solid #e2e8f0;">
+                    <h4 style="margin-bottom: 15px; color: #336699;">🔗 Bild-URL eingeben</h4>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                         <input type="url" name="imageUrl" id="imageUrl" placeholder="https://example.com/image.jpg"
-                            style="flex: 1;">
-                        <button type="button" onclick="addImageUrl()" class="btn btn-secondary" style="flex: 0 0 auto; padding: 12px 20px;">
+                            style="flex: 1; min-width: 200px;">
+                        <button type="button" onclick="addImageUrl()" class="btn btn-secondary" style="padding: 12px 20px;">
                             ➕ Hinzufügen
                         </button>
                     </div>
-                    <small style="color: #64748b; margin-top: 5px; display: block;">
-                        Geben Sie die URL eines Bildes ein (z.B. von Cloudinary, Unsplash)
+                    <small style="color: #64748b; margin-top: 8px; display: block;">
+                        💡 Tipp: Bilder von Cloudinary, Unsplash oder anderen Hosting-Diensten
                     </small>
                 </div>
                 
+                <!-- Bild-Vorschau -->
                 <div id="imagePreviewContainer" class="image-preview"></div>
+                <div id="uploadStatus" class="upload-status" style="display: none;"></div>
             </div>
 
             <!-- Features -->
             <div class="form-section">
-                <h3 class="section-title">✨ Ausstattung & Features</h3>
+                <h3 class="section-title">Ausstattung & Features</h3>
                 <div class="features-grid">
                     <label class="feature-checkbox">
                         <input type="checkbox" name="features" value="Balkon">
@@ -458,7 +552,7 @@
 
             <!-- Status -->
             <div class="form-section">
-                <h3 class="section-title">🏷️ Status & Sichtbarkeit</h3>
+                <h3 class="section-title">Status & Sichtbarkeit</h3>
                 <div class="form-grid">
                     <div class="form-group">
                         <label>Status</label>
@@ -530,8 +624,30 @@
 
         function handleFiles(e) {
             const files = Array.from(e.target.files);
+            
+            // Maximale Anzahl prüfen
+            if (selectedFiles.length + files.length > 10) {
+                showAlert('⚠️ Maximal 10 Bilder erlaubt!', 'error');
+                return;
+            }
+            
             selectedFiles = [...selectedFiles, ...files];
             updateImagePreviews();
+            updateUploadStatus();
+            showAlert(`✅ ${files.length} Bild(er) hinzugefügt`, 'success');
+        }
+        
+        function updateUploadStatus() {
+            const statusEl = document.getElementById('uploadStatus');
+            const totalImages = selectedFiles.length + externalImageUrls.length;
+            
+            if (totalImages > 0) {
+                statusEl.style.display = 'block';
+                statusEl.className = 'upload-status success';
+                statusEl.innerHTML = `📷 <strong>${totalImages}</strong> Bild(er) ausgewählt`;
+            } else {
+                statusEl.style.display = 'none';
+            }
         }
 
         function updateImagePreviews() {
@@ -543,7 +659,7 @@
                     const div = document.createElement('div');
                     div.className = 'preview-item';
                     div.innerHTML = `
-                        <img src="${e.target.result}" alt="Preview">
+                        <img src="${e.target.result}" alt="Preview">`
                         <button type="button" class="preview-remove" onclick="removeFile(${index})">×</button>
                     `;
                     imagePreviewContainer.appendChild(div);
@@ -555,6 +671,7 @@
         function removeFile(index) {
             selectedFiles.splice(index, 1);
             updateImagePreviews();
+            updateUploadStatus();
         }
         
         // Array für externe Bild-URLs
@@ -591,6 +708,7 @@
             // Input leeren
             input.value = '';
             
+            updateUploadStatus();
             showAlert('✅ Bild-URL hinzugefügt', 'success');
         }
         
@@ -598,6 +716,7 @@
         function removeImageUrl(index, btn) {
             externalImageUrls.splice(index, 1);
             btn.parentElement.remove();
+            updateUploadStatus();
         }
 
         function showAlert(message, type) {
