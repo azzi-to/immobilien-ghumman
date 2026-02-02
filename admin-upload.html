@@ -552,15 +552,15 @@
                 
                 <!-- Tab-Navigation -->
                 <div class="upload-tabs">
-                    <button type="button" class="upload-tab active" onclick="showUploadTab('device')">
+                    <button type="button" class="upload-tab active" onclick="showUploadTab('device', this)">
                         <span class="tab-icon">📱</span>
                         <span class="tab-text">Vom Gerät</span>
                     </button>
-                    <button type="button" class="upload-tab" onclick="showUploadTab('dragdrop')">
+                    <button type="button" class="upload-tab" onclick="showUploadTab('dragdrop', this)">
                         <span class="tab-icon">🖱️</span>
                         <span class="tab-text">Drag & Drop</span>
                     </button>
-                    <button type="button" class="upload-tab" onclick="showUploadTab('url')">
+                    <button type="button" class="upload-tab" onclick="showUploadTab('url', this)">
                         <span class="tab-icon">🔗</span>
                         <span class="tab-text">URL eingeben</span>
                     </button>
@@ -702,7 +702,7 @@
         }
         
         // Tab-Wechsel Funktion
-        function showUploadTab(tabName) {
+        function showUploadTab(tabName, clickedTab) {
             // Alle Tabs deaktivieren
             document.querySelectorAll('.upload-tab').forEach(tab => {
                 tab.classList.remove('active');
@@ -712,10 +712,8 @@
             });
             
             // Ausgewählten Tab aktivieren
-            event.currentTarget.classList.add('active');
+            clickedTab.classList.add('active');
             document.getElementById('upload-tab-' + tabName).classList.add('active');
-        }
-            }
         }
 
         // Image Upload Handling
@@ -784,7 +782,7 @@
                     const div = document.createElement('div');
                     div.className = 'preview-item';
                     div.innerHTML = `
-                        <img src="${e.target.result}" alt="Preview">`
+                        <img src="${e.target.result}" alt="Preview">
                         <button type="button" class="preview-remove" onclick="removeFile(${index})">×</button>
                     `;
                     imagePreviewContainer.appendChild(div);
