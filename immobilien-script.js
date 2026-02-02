@@ -261,7 +261,7 @@ function loadMoreProperties() {
 }
 
 /**
- * Load Properties from Database - NUR AKTUELLE (neueste 6 für Startseite)
+ * Load Properties from Database - NUR AKTUELLE (neueste 3 für Startseite)
  * Ältere Immobilien werden auf der Angebote-Seite angezeigt
  */
 async function loadSampleProperties() {
@@ -281,8 +281,8 @@ async function loadSampleProperties() {
 
         const api = new PropertyAPI();
 
-        // ⬇️ NUR die neuesten 6 Immobilien für die Startseite laden
-        const response = await api.getRecentProperties(6);
+        // ⬇️ NUR die neuesten 3 Immobilien für die Startseite laden
+        const response = await api.getRecentProperties(3);
 
         const properties = response.properties || [];
 

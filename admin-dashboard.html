@@ -301,7 +301,7 @@
         .btn-images:hover,
         .btn-status:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         /* Property Status Badges */
@@ -1273,11 +1273,11 @@
                 { value: 'reserved', label: 'Reserviert' },
                 { value: 'sold', label: 'Verkauft/Vermietet' }
             ];
-            
+
             // Create status selection modal
             const modal = document.getElementById('propertyModal');
             const modalBody = document.getElementById('modalBody');
-            
+
             modalBody.innerHTML = `
                 <div class="modal-header">
                     <h2>Status ändern</h2>
@@ -1302,7 +1302,7 @@
                     </button>
                 </div>
             `;
-            
+
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
@@ -1325,17 +1325,17 @@
             try {
                 const response = await api.getProperty(id);
                 const property = response.property;
-                
+
                 let images = [];
                 if (property.images && property.images.length > 0) {
                     images = property.images.map(img => typeof img === 'string' ? img : img.image_url);
                 } else if (property.primary_image) {
                     images = [property.primary_image];
                 }
-                
+
                 const modal = document.getElementById('propertyModal');
                 const modalBody = document.getElementById('modalBody');
-                
+
                 modalBody.innerHTML = `
                     <div class="modal-header">
                         <h2>Bilder verwalten</h2>
@@ -1374,7 +1374,7 @@
                         </button>
                     </div>
                 `;
-                
+
                 modal.style.display = 'flex';
                 document.body.style.overflow = 'hidden';
             } catch (error) {
